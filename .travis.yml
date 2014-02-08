@@ -1,0 +1,6 @@
+deploy:
+  provider: heroku
+  api_key:
+  app:
+    heroku-development: graph-visualizer-xkb
+
