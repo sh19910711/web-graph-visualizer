@@ -9,3 +9,11 @@ group :production, :development do
   gem "haml"
 end
 
+group :development do
+  gem "rake"
+end
+
+group :test do
+  gem "rspec"
+end
+
