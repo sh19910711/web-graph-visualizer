@@ -1,6 +1,7 @@
-deploy:
-  provider: heroku
-  api_key:
-  app:
-    heroku-development: graph-visualizer-xkb
-
+language: ruby
+rvm:
+  - 2.1.0
+before_script:
+  - bundle install
+gemfile:
+  - Gemfile
