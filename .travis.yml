@@ -5,3 +5,10 @@ before_script:
   - bundle install
 gemfile:
   - Gemfile
+deploy:
+  provider: heroku
+  api_key:
+    secure: "h4UaaDKAkZrI4B3zoBB/oBiHGlMHsi7EKv74QpCJku/yvULdKFtHnjY13P6C3giIPGfMNLx58eZkkmiOM0wzfSIVRujXq4JyxqYa0x0MhByFjt/cLBUOKgSRcOZK8jH9BRhDG8Tkn6vD8nqQzvZoF8c7b1X3pEZNiSv+9DYaesk="
+  app:
+    heroku-development: graph-visualizer-xkb
+
