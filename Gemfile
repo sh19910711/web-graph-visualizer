@@ -7,6 +7,7 @@ group :production, :development do
   gem "sinatra"
   gem "sinatra-contrib"
   gem "haml"
+  gem "sass"
 end
 
 group :development do
