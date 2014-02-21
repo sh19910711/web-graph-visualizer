@@ -1,12 +1,28 @@
 require_relative 'lib/application/server'
-require 'sass/plugin/rack'
+require 'sprockets'
 
-# Sass Config
-Sass::Plugin.options[:style] = :compressed
-Sass::Plugin.options[:template_location] = './src/sass/'
-Sass::Plugin.options[:css_location] = './dist/css/'
-Sass::Plugin.options[:cache_location] = './tmp/sass-cache/'
-use Sass::Plugin::Rack
+# http://.../lib/
+map '/lib' do
+  env = Sprockets::Environment.new
+  env.append_path 'dist/js/lib/'
+  run env
+end
 
-# Run Server
-run Application::Server
+# http://.../js/
+map '/js' do
+  env = Sprockets::Environment.new
+  env.append_path 'assets/coffee'
+  run env
+end
+
+# http://.../css/
+map '/css' do
+  env = Sprockets::Environment.new
+  env.css_compressor = :scss
+  env.append_path 'assets/sass'
+  run env
+end
+
+map '/' do
+  run Application::Server
+end

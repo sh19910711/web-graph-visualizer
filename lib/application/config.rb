@@ -1,7 +1,11 @@
+require 'sinatra/reloader'
+
 module Application
   module Config
     def self.registered(app)
-      app.set :public_folder, './dist/'
+      app.configure :development do
+        app.register Sinatra::Reloader
+      end
     end
   end
 end

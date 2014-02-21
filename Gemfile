@@ -8,6 +8,8 @@ group :production, :development do
   gem "sinatra-contrib"
   gem "haml"
   gem "sass"
+  gem "coffee-script"
+  gem "sprockets"
 end
 
 group :development do

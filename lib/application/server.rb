@@ -6,6 +6,10 @@ module Application
   class Server < Sinatra::Base
     register Config
 
+    get "/" do
+      haml :index
+    end
+
     get "/version" do
       Application::VERSION_TEXT
     end
