@@ -1,5 +1,6 @@
 define(
   [
+    "./module_sub"
   ]
   (
   )->
