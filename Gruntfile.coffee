@@ -1,15 +1,35 @@
 module.exports = (grunt)->
-  grunt.initConfig {}
-  
-  # load tasks in `grunt` directory
+  _ = require 'underscore'
+
+  # load tasks from `grunt` directory
   grunt.loadTasks 'grunt'
 
   # load npm module tasks
   pkg = grunt.file.readJSON 'package.json'
-  for task of pkg.devDependencies when /^grunt-/.test task
+  for task of pkg.dependencies when /^grunt-/.test task
     grunt.loadNpmTasks task
 
-  # config: extend
-  config = grunt.config()
+  # grunt build
+  grunt.registerTask(
+    'build'
+    [
+      'bower:build'
+    ]
+  )
+
+  # task config: extend
+  config = {}
+
+  _(config).extend
+    bower:
+      'build':
+        options:
+          targetDir:      "dist/js/lib/"
+          layout:         "byComponent"
+          install:        true
+          verbose:        true
+          cleanTargetDir: true
+          cleanBowerDir:  true
+
   grunt.initConfig config
 
