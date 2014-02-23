@@ -2,7 +2,7 @@ require_relative 'lib/application/server'
 require 'sprockets'
 
 # http://.../lib/
-map '/lib' do
+map '/js/lib' do
   env = Sprockets::Environment.new
   env.append_path 'dist/js/lib/'
   run env
@@ -33,14 +33,7 @@ if ENV['RACK_ENV'] == 'development'
   map '/test' do
     env = Sprockets::Environment.new
     env.append_path 'spec/'
-    run env
-  end
-
-  # http://.../test/lib/
-  map '/test/lib' do
-    env = Sprockets::Environment.new
-    env.append_path 'dist/test/lib/'
+    env.append_path 'dist/test/'
     run env
   end
 end
-

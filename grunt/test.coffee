@@ -20,7 +20,7 @@ module.exports = (grunt)->
         src: [
           '**/*.coffee'
         ]
-        dest: 'dist/test/test/coffee/'
+        dest: 'dist/test/coffee/'
         ext: '.js'
 
   # run server
@@ -33,7 +33,7 @@ module.exports = (grunt)->
           middleware: (connect)->
             [
               connect.static path.resolve('spec/')
-              connect.static path.resolve('dist/test/')
+              connect.static path.resolve('dist/')
             ]
 
   # mocha_phantomjs

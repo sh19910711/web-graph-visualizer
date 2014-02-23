@@ -14,11 +14,11 @@ describe "module01/module_main", ->
 
   context "get", =>
     it "#get_one", ()=>
-      expect(@module.get_one()).to.eql 1
+      chai.expect(@module.get_one()).to.eq 1
 
     it "#get_two", ()=>
-      expect(@module.get_two()).to.eql 2
+      chai.expect(@module.get_two()).to.eq 2
 
     it "#get_three", ()=>
-      expect(@module.get_three()).to.eql 3
+      chai.expect(@module.get_three()).to.eq 3
 
