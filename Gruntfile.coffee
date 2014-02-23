@@ -1,6 +1,4 @@
 module.exports = (grunt)->
-  _ = require 'underscore'
-
   # load tasks from `grunt` directory
   grunt.loadTasks 'grunt'
 
