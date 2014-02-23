@@ -9,27 +9,3 @@ module.exports = (grunt)->
   for task of pkg.dependencies when /^grunt-/.test task
     grunt.loadNpmTasks task
 
-  # grunt build
-  grunt.registerTask(
-    'build'
-    [
-      'bower:build'
-    ]
-  )
-
-  # task config: extend
-  config = {}
-
-  _(config).extend
-    bower:
-      'build':
-        options:
-          targetDir:      "dist/js/lib/"
-          layout:         "byComponent"
-          install:        true
-          verbose:        true
-          cleanTargetDir: true
-          cleanBowerDir:  true
-
-  grunt.initConfig config
-
