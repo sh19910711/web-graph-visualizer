@@ -2,7 +2,7 @@ require_relative 'lib/application/server'
 require 'sprockets'
 
 # http://.../lib/
-map '/js/lib' do
+map '/lib' do
   env = Sprockets::Environment.new
   env.append_path 'dist/js/lib/'
   run env

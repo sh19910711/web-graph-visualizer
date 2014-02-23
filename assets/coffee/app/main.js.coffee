@@ -1,19 +1,15 @@
 requirejs(
   [
-    'module01/module_main'
-    'module_ixxa/test'
-    'module_sune/test'
+    'app/application'
   ]
   (
-    Main
-    Ixxa
-    Sune
+    Application
   )->
     console.log "after load modules"
 
-    ixxa = new Ixxa
+    ixxa = new Application.Ixxa
     console.log "ixxa = #{ixxa.get_message()}"
 
-    sune = new Sune
+    sune = new Application.Sune
     console.log "sune = #{sune.get_message()}"
 )

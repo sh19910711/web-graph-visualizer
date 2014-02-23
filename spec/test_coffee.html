@@ -14,7 +14,8 @@
     <script src="/test/js/app/requirejs_config.js"></script>
     <script>
       requirejs.config({
-        baseUrl: "/test/js"
+        baseUrl: "/test",
+        paths: requirejs_paths
       });
       mocha.setup('bdd');
     </script>
