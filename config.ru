@@ -26,3 +26,21 @@ end
 map '/' do
   run Application::Server
 end
+
+# development
+if ENV['RACK_ENV'] == 'development'
+  # http://.../test/
+  map '/test' do
+    env = Sprockets::Environment.new
+    env.append_path 'spec/'
+    run env
+  end
+
+  # http://.../test/lib/
+  map '/test/lib' do
+    env = Sprockets::Environment.new
+    env.append_path 'dist/test/lib/'
+    run env
+  end
+end
+

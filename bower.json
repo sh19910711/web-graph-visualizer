@@ -2,11 +2,26 @@
   "name": "web-graph-visualizer",
   "version": "0.0.0",
   "dependencies": {
-    "requirejs": "~2.1.11"
+    "requirejs": "~2.1.11",
+    "jquery": "~2.1.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.1",
+    "expect": "~0.3.1"
   },
   "exportsOverride": {
     "requirejs": {
       "js": "require.js"
+    },
+    "jquery": {
+      "js": "dist/jquery.js"
+    },
+    "mocha": {
+      "js": "mocha.js",
+      "css": "mocha.css"
+    },
+    "expect": {
+      "js": "index.js"
     }
   }
 }
