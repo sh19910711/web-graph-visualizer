@@ -11,7 +11,17 @@ module.exports = (grunt)->
           install:        true
           verbose:        true
           cleanTargetDir: true
-          cleanBowerDir:  true
+          cleanBowerDir:  false
+          production:     true
+      'test':
+        options:
+          targetDir:      "dist/test/lib/"
+          layout:         "byComponent"
+          install:        true
+          verbose:        true
+          cleanTargetDir: true
+          cleanBowerDir:  false
+          production:     false
 
   grunt.initConfig config
 

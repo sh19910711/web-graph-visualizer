@@ -8,8 +8,10 @@
   "dependencies": {
     "grunt-cli": "~0.1.13",
     "grunt": "~0.4.2",
+    "grunt-bower-task": "~0.3.4",
     "underscore": "~1.6.0",
-    "grunt-bower-task": "~0.3.4"
+    "mocha-phantomjs": "~3.3.2",
+    "grunt-mocha-phantomjs": "~0.4.2"
   },
   "engines": {
     "node": "0.10.x"
