@@ -1,0 +1,12 @@
+{
+  "name": "web-graph-visualizer",
+  "version": "0.0.0",
+  "dependencies": {
+    "requirejs": "~2.1.11"
+  },
+  "exportsOverride": {
+    "requirejs": {
+      "js": "require.js"
+    }
+  }
+}
