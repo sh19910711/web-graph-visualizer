@@ -20,7 +20,7 @@ module.exports = (grunt)->
         src: [
           '**/*.coffee'
         ]
-        dest: 'dist/test/test/'
+        dest: 'dist/test/test/coffee/'
         ext: '.js'
 
   # run server
