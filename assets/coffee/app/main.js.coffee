@@ -1,9 +1,11 @@
 requirejs(
   [
     'app/application'
+    'bootstrap'
   ]
   (
     Application
+    _dummy_1
   )->
     console.log "after load modules"
 
