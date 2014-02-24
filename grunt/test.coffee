@@ -6,10 +6,10 @@ module.exports = (grunt)->
   # bower:test
   _(config).merge
     bower:
-      'test':
+      test:
         options:
-          targetDir:      "dist/test/lib/"
-          layout:         "byComponent"
+          targetDir:      'dist/test/lib/'
+          layout:         'byComponent'
           install:        true
           verbose:        true
           cleanTargetDir: true
@@ -21,7 +21,7 @@ module.exports = (grunt)->
     coffee:
       test_assets:
         expand: true
-        cwd: "assets/coffee"
+        cwd: 'assets/coffee'
         src: [
           '**/*.coffee'
         ]
@@ -29,7 +29,7 @@ module.exports = (grunt)->
         ext: '.js'
       test_spec:
         expand: true
-        cwd: "spec/coffee/"
+        cwd: 'spec/coffee/'
         src: [
           '**/*.coffee'
         ]
@@ -56,7 +56,7 @@ module.exports = (grunt)->
         options:
           reporter: 'dot'
           urls: [
-            "http://localhost:39000/test_coffee.html"
+            'http://localhost:39000/test_coffee.html'
           ]
 
   grunt.initConfig config

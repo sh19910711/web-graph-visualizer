@@ -4,10 +4,10 @@ module.exports = (grunt)->
 
   _(config).merge
     bower:
-      'build':
+      build:
         options:
-          targetDir:      "dist/js/lib/"
-          layout:         "byComponent"
+          targetDir:      'dist/js/lib/'
+          layout:         'byComponent'
           install:        true
           verbose:        true
           cleanTargetDir: true
