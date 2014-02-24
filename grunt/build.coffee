@@ -1,8 +1,8 @@
 module.exports = (grunt)->
-  _ = require 'underscore'
+  _ = require 'lodash'
   config = grunt.config()
 
-  _(config).extend
+  _(config).merge
     bower:
       'build':
         options:
@@ -13,15 +13,6 @@ module.exports = (grunt)->
           cleanTargetDir: true
           cleanBowerDir:  false
           production:     true
-      'test':
-        options:
-          targetDir:      "dist/test/lib/"
-          layout:         "byComponent"
-          install:        true
-          verbose:        true
-          cleanTargetDir: true
-          cleanBowerDir:  false
-          production:     false
 
   grunt.initConfig config
 

@@ -1,10 +1,23 @@
 module.exports = (grunt)->
-  _ = require 'underscore'
+  _ = require 'lodash'
   path = require 'path'
   config = grunt.config()
 
-  # compile coffee
-  _(config).extend
+  # bower:test
+  _(config).merge
+    bower:
+      'test':
+        options:
+          targetDir:      "dist/test/lib/"
+          layout:         "byComponent"
+          install:        true
+          verbose:        true
+          cleanTargetDir: true
+          cleanBowerDir:  false
+          production:     false
+
+  # coffee:test_* | compile coffee
+  _(config).merge
     coffee:
       test_assets:
         expand: true
@@ -23,8 +36,8 @@ module.exports = (grunt)->
         dest: 'dist/test/coffee/'
         ext: '.js'
 
-  # run server
-  _(config).extend
+  # connect:test | run server
+  _(config).merge
     connect:
       test:
         options:
@@ -37,7 +50,7 @@ module.exports = (grunt)->
             ]
 
   # mocha_phantomjs
-  _(config).extend
+  _(config).merge
     mocha_phantomjs:
       test:
         options:
