@@ -5,6 +5,7 @@ module Application
     def self.registered(app)
       app.configure :development do
         app.register Sinatra::Reloader
+        app.set :haml, :attr_wrapper => '"'
       end
     end
   end

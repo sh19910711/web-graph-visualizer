@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "dependencies": {
     "requirejs": "~2.1.11",
-    "jquery": "~2.1.0"
+    "jquery": "~2.1.0",
+    "bootstrap": "~3.1.1"
   },
   "devDependencies": {
     "mocha": "~1.17.1",
@@ -22,6 +23,10 @@
     },
     "chai": {
       "js": "chai.js"
+    },
+    "bootstrap": {
+      "js": "dist/js/bootstrap.js",
+      "css": "dist/css/bootstrap.css"
     }
   }
 }
