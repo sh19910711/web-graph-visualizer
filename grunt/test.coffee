@@ -1,6 +1,6 @@
 module.exports = (grunt)->
-  _ = require 'lodash'
-  path = require 'path'
+  _      = require 'lodash'
+  path   = require 'path'
   config = grunt.config()
 
   # bower:test
