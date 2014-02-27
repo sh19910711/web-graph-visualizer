@@ -1,7 +1,8 @@
 module.exports = (grunt)->
-  _ = require 'lodash'
+  _      = require 'lodash'
   config = grunt.config()
 
+  # bower:build
   _(config).merge
     bower:
       build:
