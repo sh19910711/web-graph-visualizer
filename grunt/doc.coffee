@@ -10,7 +10,7 @@ module.exports = (grunt)->
           'assets/coffee/app/{,**/}*.coffee'
         ]
         options:
-          output: 'doc/coffee/app'
+          output: 'doc/coffee/docco/app'
 
   # docco:doc_module01
   _(config).merge
@@ -20,7 +20,7 @@ module.exports = (grunt)->
           'assets/coffee/module01/{,**/}*.coffee'
         ]
         options:
-          output: 'doc/coffee/module01'
+          output: 'doc/coffee/docco/module01'
 
   # markdown:doc
   _(config).merge
@@ -36,6 +36,13 @@ module.exports = (grunt)->
           }
         ]
 
+  # codo
+  _(config).merge
+    codo:
+      options:
+        output: 'doc/coffee/codo'
+        inputs: ['assets/coffee']
+
   grunt.initConfig config
 
   # grunt concurrent:doc
@@ -44,6 +51,7 @@ module.exports = (grunt)->
     [
       'docco:doc_app'
       'docco:doc_module01'
+      'codo'
       'markdown:doc'
     ]
   )
