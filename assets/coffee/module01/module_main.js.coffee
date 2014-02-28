@@ -13,14 +13,20 @@ define(
     # 諸々確認用のダミーモジュール（CoffeeScript）
     class Module01
       # 1を返す
+      #
+      # @return {Number} 1
       get_one: ->
         1
 
       # 2を返す
+      #
+      # @return {Number} 2
       get_two: ->
         2
 
       # 3を返す
+      #
+      # @return {Number} 3
       get_three: ->
         # SubModuleを利用する
         module = new SubModule
