@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>main.js.coffee</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="application.js.html">
+                application.js.coffee
+              </a>
+            
+              
+              <a class="source" href="main.js.html">
+                main.js.coffee
+              </a>
+            
+              
+              <a class="source" href="requirejs_config.js.html">
+                requirejs_config.js.coffee
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>main.js.coffee</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <pre><code>main.js.coffee
+</code></pre>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>load modules</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>requirejs(
+  [
+    <span class="hljs-string">'app/application'</span>
+    <span class="hljs-string">'bootstrap'</span>
+  ]
+  (
+    Application
+    _dummy_1
+  )<span class="hljs-function">-&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>モジュールが読み込まれたあとに実行される部分</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-built_in">console</span>.log <span class="hljs-string">"after load modules"</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>練習用</p>
+<ul>
+<li><a href="https://github.com/sh19910711/web-graph-visualizer/issues/3">https://github.com/sh19910711/web-graph-visualizer/issues/3</a></li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    ixxa = <span class="hljs-keyword">new</span> Application.Ixxa
+    <span class="hljs-built_in">console</span>.log <span class="hljs-string">"ixxa = <span class="hljs-subst">#{ixxa.get_message()}</span>"</span>
+    sune = <span class="hljs-keyword">new</span> Application.Sune
+    <span class="hljs-built_in">console</span>.log <span class="hljs-string">"sune = <span class="hljs-subst">#{sune.get_message()}</span>"</span>
+)</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
