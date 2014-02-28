@@ -61,13 +61,21 @@ module.exports = (grunt)->
 
   grunt.initConfig config
 
-  # grunt test
+  # grunt concurrent:test
   grunt.registerTask(
-    'test'
+    'concurrent:test'
     [
       'bower:test'
       'coffee:test_assets'
       'coffee:test_spec'
+    ]
+  )
+
+  # grunt test
+  grunt.registerTask(
+    'test'
+    [
+      'concurrent:test'
       'connect:test'
       'mocha_phantomjs:test'
     ]
