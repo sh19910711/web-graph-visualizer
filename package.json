@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "echo postinstall && ./node_modules/grunt-cli/bin/grunt build"
+    "postinstall": "echo postinstall && node ./node_modules/grunt-cli/bin/grunt build"
   },
   "dependencies": {
     "grunt-cli": "~0.1.13",
