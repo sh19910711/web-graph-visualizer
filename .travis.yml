@@ -5,8 +5,10 @@ before_script:
   - bundle install
   - npm install
 script:
-  - bundle exec rake spec
-  - npm run-script grunt test
+  - bundle exec rake test
+  - npm run-script test
+  - bundle exec rake doc
+  - npm run-script doc
 gemfile:
   - Gemfile
 deploy:
