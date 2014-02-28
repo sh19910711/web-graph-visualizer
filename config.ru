@@ -36,4 +36,9 @@ if ENV['RACK_ENV'] == 'development'
     env.append_path 'dist/test/'
     run env
   end
+
+  # http://.../doc
+  map '/doc' do
+    run Rack::Directory.new(File.expand_path('doc', File.dirname(__FILE__)))
+  end
 end
