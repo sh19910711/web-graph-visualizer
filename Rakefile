@@ -1,2 +1,2 @@
-require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new(:spec)
+require_relative 'rake/test'
+require_relative 'rake/doc'
