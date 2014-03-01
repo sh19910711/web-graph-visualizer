@@ -2,9 +2,9 @@
   "name": "web-graph-visualizer",
   "version": "0.0.0",
   "scripts": {
-    "test": "echo test && ./node_modules/grunt-cli/bin/grunt test",
-    "doc": "echo doc && ./node_modules/grunt-cli/bin/grunt doc",
-    "postinstall": "echo postinstall && ./node_modules/grunt-cli/bin/grunt build"
+    "test": "echo test && node ./node_modules/grunt-cli/bin/grunt test",
+    "doc": "echo doc && node ./node_modules/grunt-cli/bin/grunt doc",
+    "postinstall": "echo postinstall && node ./node_modules/grunt-cli/bin/grunt build"
   },
   "dependencies": {
     "grunt-cli": "~0.1.13",
