@@ -1,4 +1,10 @@
 language: ruby
+branches:
+  only:
+    - master
+    - develop
+    - /^feature\/.*$/
+    - heroku/development
 rvm:
   - 2.1.0
 before_script:
@@ -9,7 +15,7 @@ script:
   - npm run-script test
   - bundle exec rake doc
   - npm run-script doc
-after_success:
+after_script:
   - 
     if [ "${TRAVIS_BRANCH}" == "develop" ]; then
       git clone --quiet -b gh-pages git://github.com/sh19910711/web-graph-visualizer.git tmp/gh-pages ;
