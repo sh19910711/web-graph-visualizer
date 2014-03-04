@@ -18,7 +18,7 @@ script:
 after_script:
   - 
     if [ "${TRAVIS_BRANCH}" == "develop" ]; then
-      git clone --quiet -b gh-pages git://github.com/sh19910711/web-graph-visualizer.git tmp/gh-pages ;
+      git clone --quiet --single-branch -b gh-pages git://github.com/sh19910711/web-graph-visualizer.git tmp/gh-pages ;
       cp -r doc tmp/gh-pages/ ;
       cd tmp/gh-pages/ ;
       git config --global user.email "sh19910711@gmail.com" ;
