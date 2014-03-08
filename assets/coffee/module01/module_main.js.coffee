@@ -6,12 +6,17 @@
 define(
   [
     "./module_sub"
+    "backbone"
   ]
   (
     SubModule
+    Backbone
   )->
     # 諸々確認用のダミーモジュール（CoffeeScript）
-    class Module01
+    class Module01 extends Backbone.Model
+      initialize: ->
+        console.log "@Module01#initialize"
+
       # 1を返す
       #
       # @return {Number} 1
