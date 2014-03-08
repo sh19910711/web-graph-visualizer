@@ -37,4 +37,9 @@ A[k] B[k]
 * http://www5.pf-x.net/~uwi/tool/graph.html
 * http://jsfiddle.net/masashinakata/mtcJE/2/embedded/result/
 
+#### 開発チームについて
+
+* [sh19910711](https://github.com/sh19910711)
+* [ixxa](https://github.com/ixxa)
+* [sune2](https://github.com/sune2)
 
