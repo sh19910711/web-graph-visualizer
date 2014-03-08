@@ -10,6 +10,8 @@
 
   'jquery': 'lib/jquery/js/jquery'
   'bootstrap': 'lib/bootstrap/js/bootstrap'
+  'backbone': 'lib/backbone/js/backbone'
+  'underscore': 'lib/underscore/js/underscore'
 }
 
 # AMDに対応していないモジュールの依存関係を指定する
