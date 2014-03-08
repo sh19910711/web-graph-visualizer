@@ -32,6 +32,13 @@ env:
     - secure: "SKgHTnxfWMgG2NeuMN9li+DKfL2dt+T6P6nIzhzbUdiF0QSo4Za6KGyJopRclrpc9lA+099SBx4viPTGL3s0x5nmVC1NWZUTNQt8v2vSjMf9mRVQYCz8LX8IEQURb+zWPgQWTdOa4YgAJOFa8/7qfC759daptHMOgcTcQDcquTM="
 gemfile:
   - Gemfile
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/a500e93876b7976aea71
+    on_success: change
+    on_failure: always
+    on_start: false
 deploy:
   provider: heroku
   api_key:
