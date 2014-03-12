@@ -1,7 +1,7 @@
 # Graph Visualizer（仮）
 
-[![Build Status](https://travis-ci.org/sh19910711/web-graph-visualizer.png?branch=develop)](https://travis-ci.org/sh19910711/web-graph-visualizer)
-[![Gitter chat](https://badges.gitter.im/sh19910711/web-graph-visualizer.png)](https://gitter.im/sh19910711/web-graph-visualizer)
+[![Build Status](https://travis-ci.org/sh19910711/graph-visualizer.png?branch=develop)](https://travis-ci.org/sh19910711/graph-visualizer)
+[![Gitter chat](https://badges.gitter.im/sh19910711/graph-visualizer.png)](https://gitter.im/sh19910711/graph-visualizer)
 
 ## 概要
 
