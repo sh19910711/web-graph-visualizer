@@ -30,7 +30,7 @@ after_script:
     fi
 env:
   global:
-    - secure: "SKgHTnxfWMgG2NeuMN9li+DKfL2dt+T6P6nIzhzbUdiF0QSo4Za6KGyJopRclrpc9lA+099SBx4viPTGL3s0x5nmVC1NWZUTNQt8v2vSjMf9mRVQYCz8LX8IEQURb+zWPgQWTdOa4YgAJOFa8/7qfC759daptHMOgcTcQDcquTM="
+    - secure: "E7jPQ/LyZFl8l3/Zg3CPCrMM6WcAUFE7mfOObP36xLfTmkZWMA+QOFjxZsvgcHNEbaJdlsCRqN9vsSkobbt07G4YGbXOHojI/O8XA9oCfaGsKfiMt08l/kOsuJyQRe/fsn4MmfpxnQbPLs4zMtZxpqI6KR+fvYx3WIpvkl5mMyo="
 gemfile:
   - Gemfile
 notifications:
@@ -43,7 +43,7 @@ notifications:
 deploy:
   provider: heroku
   api_key:
-    secure: "E7jPQ/LyZFl8l3/Zg3CPCrMM6WcAUFE7mfOObP36xLfTmkZWMA+QOFjxZsvgcHNEbaJdlsCRqN9vsSkobbt07G4YGbXOHojI/O8XA9oCfaGsKfiMt08l/kOsuJyQRe/fsn4MmfpxnQbPLs4zMtZxpqI6KR+fvYx3WIpvkl5mMyo="
+    secure: "h4UaaDKAkZrI4B3zoBB/oBiHGlMHsi7EKv74QpCJku/yvULdKFtHnjY13P6C3giIPGfMNLx58eZkkmiOM0wzfSIVRujXq4JyxqYa0x0MhByFjt/cLBUOKgSRcOZK8jH9BRhDG8Tkn6vD8nqQzvZoF8c7b1X3pEZNiSv+9DYaesk="
   app:
     heroku/development: graph-visualizer-xkb
 
