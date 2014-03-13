@@ -1,19 +1,26 @@
+#
+#     main.js.coffee
+#
+
+# load modules
 requirejs(
   [
-    'module01/module_main'
-    'module_ixxa/test'
-    'module_sune/test'
+    'app/application'
+    'bootstrap'
   ]
   (
-    Main
-    Ixxa
-    Sune
+    Application
+    _dummy_1
   )->
+    # モジュールが読み込まれたあとに実行される部分
     console.log "after load modules"
 
-    ixxa = new Ixxa
+    # 練習用
+    #
+    # * https://github.com/sh19910711/web-graph-visualizer/issues/3
+    ixxa = new Application.Ixxa
     console.log "ixxa = #{ixxa.get_message()}"
-
-    sune = new Sune
+    sune = new Application.Sune
     console.log "sune = #{sune.get_message()}"
 )
+

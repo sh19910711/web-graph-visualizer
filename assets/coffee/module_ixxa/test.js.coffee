@@ -5,5 +5,10 @@ define(
   )->
     class Ixxa
       get_message: ->
-        "このメッセージを変更してください"
+        "hogeeeeeeeeeeeeeee"
+
+      # 42を返すメソッド
+      get_42: ->
+        2
+
 )
