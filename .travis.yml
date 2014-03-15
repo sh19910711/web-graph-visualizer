@@ -11,6 +11,7 @@ rvm:
 before_script:
   - bundle install
   - npm install
+  - mkdir -p tmp/test
 script:
   - bundle exec rake test > tmp/test/result-ruby.txt
   - npm run-script test
