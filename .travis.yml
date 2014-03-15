@@ -11,14 +11,17 @@ rvm:
 before_script:
   - bundle install
   - npm install
+  - mkdir -p tmp/test
 script:
-  - bundle exec rake test
+  - bundle exec rake test > tmp/test/result-ruby.txt
   - npm run-script test
+  - for RESULT_PATH in `ls tmp/test/result-*.txt`; do cat ${RESULT_PATH} | sed -e "s/\[TODO\]/# TODO/" > `echo ${RESULT_PATH}`; done
+  - prove tmp/test/result-*.txt --exec "cat"
   - bundle exec rake doc
   - npm run-script doc
 after_script:
   - 
-    if [ "${TRAVIS_PULL_REQUEST}" == false && "${TRAVIS_BRANCH}" == "develop" ]; then
+    if [ "${TRAVIS_PULL_REQUEST}" == false ] && [ "${TRAVIS_BRANCH}" == "develop" ]; then
       git clone --quiet --single-branch -b gh-pages git://github.com/sh19910711/web-graph-visualizer.git tmp/gh-pages ;
       cp -r doc tmp/gh-pages/ ;
       cd tmp/gh-pages/ ;

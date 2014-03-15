@@ -13,6 +13,6 @@ describe "module_sune/test", ->
     )
 
   context "#get_42", =>
-    it "should return 42", =>
+    it "should return 42 [TODO] remove", =>
       expect(@module.get_42()).to.equal 42
 
