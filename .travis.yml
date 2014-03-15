@@ -16,7 +16,7 @@ script:
   - npm run-script test
   - 
     for RESULT_PATH in `ls tmp/test/result-*.txt`; do \
-      cat ${RESULT_PATH} | sed -e "s/\[TODO\]/# TODO/" > `echo ${RESULT_PATH}` \
+      cat ${RESULT_PATH} | sed -e "s/\[TODO\]/# TODO/" > `echo ${RESULT_PATH}` ; \
     done
   - prove tmp/test/result-*.txt --exec "cat"
   - bundle exec rake doc
