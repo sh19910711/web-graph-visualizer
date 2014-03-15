@@ -19,5 +19,6 @@ end
 
 group :test do
   gem "rspec"
+  gem "rspec-extra-formatters"
 end
 
