@@ -8,6 +8,7 @@
   'module_ixxa': 'js/module_ixxa'
   'module_sune': 'js/module_sune'
   'graph': 'js/graph'
+  'parser': 'js/parser'
 
   'jquery': 'lib/jquery/js/jquery'
   'bootstrap': 'lib/bootstrap/js/bootstrap'
