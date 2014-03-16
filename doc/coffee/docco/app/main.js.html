@@ -29,8 +29,23 @@
               </a>
             
               
+              <a class="source" href="application_model.html">
+                application_model.coffee
+              </a>
+            
+              
               <a class="source" href="requirejs_config.js.html">
                 requirejs_config.js.coffee
+              </a>
+            
+              
+              <a class="source" href="application_router.html">
+                application_router.coffee
+              </a>
+            
+              
+              <a class="source" href="application_view.html">
+                application_view.coffee
               </a>
             
           </div>
@@ -72,49 +87,16 @@
             
             <div class="content"><div class='highlight'><pre>requirejs(
   [
-    <span class="hljs-string">'app/application'</span>
+    <span class="hljs-string">'app/routers/application_router'</span>
+    <span class="hljs-string">'backbone'</span>
     <span class="hljs-string">'bootstrap'</span>
   ]
   (
-    Application
-    _dummy_1
-  )<span class="hljs-function">-&gt;</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>モジュールが読み込まれたあとに実行される部分</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-built_in">console</span>.log <span class="hljs-string">"after load modules"</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-4">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
-              </div>
-              <p>練習用</p>
-<ul>
-<li><a href="https://github.com/sh19910711/web-graph-visualizer/issues/3">https://github.com/sh19910711/web-graph-visualizer/issues/3</a></li>
-</ul>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    ixxa = <span class="hljs-keyword">new</span> Application.Ixxa
-    <span class="hljs-built_in">console</span>.log <span class="hljs-string">"ixxa = <span class="hljs-subst">#{ixxa.get_message()}</span>"</span>
-    sune = <span class="hljs-keyword">new</span> Application.Sune
-    <span class="hljs-built_in">console</span>.log <span class="hljs-string">"sune = <span class="hljs-subst">#{sune.get_message()}</span>"</span>
+    ApplicationRouter
+    Backbone
+  )<span class="hljs-function">-&gt;</span>
+    router = <span class="hljs-keyword">new</span> ApplicationRouter
+    Backbone.history.start()
 )</pre></div></div>
             
         </li>
