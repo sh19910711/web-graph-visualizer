@@ -19,32 +19,48 @@
       Index
     </a>
     &raquo;
-    <span class='title'>Module01</span>
+    <span class='title'>GraphView</span>
   </div>
 </div>
     <div id='content'>
       <h1>
         Class:
-        Module01
+        GraphView
       </h1>
       <table class='box'>
         <tr>
           <td>Defined in:</td>
-          <td>assets&#47;coffee&#47;module01&#47;module_main.js.coffee</td>
+          <td>assets&#47;coffee&#47;graph&#47;views&#47;graph_view.coffee</td>
         </tr>
         <tr>
           <td>Inherits:</td>
           <td>
-            Backbone.Model
+            Backbone.View
           </td>
         </tr>
       </table>
       <h2>Overview</h2>
       <div class='docstring'>
-  <p>諸々確認用のダミーモジュール（CoffeeScript）</p>
+  <p>GraphModelのView
+divタグの中で、svg/canvasタグを操作する</p>
 </div>
 <div class='tags'>
 </div>
+      <h2>Variables Summary</h2>
+      <dl class='constants'>
+  <dt id='tagName-variable'>
+    tagName
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>&quot;div&quot;</code></pre>
+    <div class='docstring'>
+  <p>HTMLタグ</p>
+</div>
+<div class='tags'>
+</div>
+  </dd>
+</dl>
       <h2>Instance Method Summary</h2>
       <ul class='summary'>
   <li>
@@ -56,42 +72,44 @@
       </a>
     </span>
     <span class='desc'>
+      初期化 
     </span>
   </li>
   <li>
     <span class='signature'>
-      <a href='#get_one-dynamic'>
+      <a href='#tick_visualizer-dynamic'>
         #
-(Number)
-<b>get_one</b><span>()</span>
+(void)
+<b>tick_visualizer</b><span>()</span>
       </a>
     </span>
+    <span class='bound note title'>Bound</span>
     <span class='desc'>
-      1を返す 
+      位置などの更新 
     </span>
   </li>
   <li>
     <span class='signature'>
-      <a href='#get_two-dynamic'>
+      <a href='#update_visualizer-dynamic'>
         #
-(Number)
-<b>get_two</b><span>()</span>
+(void)
+<b>update_visualizer</b><span>()</span>
       </a>
     </span>
     <span class='desc'>
-      2を返す 
+      ビジュアライザに関するDOMの更新 
     </span>
   </li>
   <li>
     <span class='signature'>
-      <a href='#get_three-dynamic'>
+      <a href='#render-dynamic'>
         #
-(Number)
-<b>get_three</b><span>()</span>
+(void)
+<b>render</b><span>()</span>
       </a>
     </span>
     <span class='desc'>
-      3を返す 
+      描画 
     </span>
   </li>
 </ul>
@@ -104,72 +122,50 @@
 <b>initialize</b><span>()</span>
       <br>
     </p>
-    
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='get_one-dynamic'>
-      #
-(Number)
-<b>get_one</b><span>()</span>
-      <br>
-    </p>
     <div class='docstring'>
-  <p>1を返す</p>
+  <p>初期化</p>
 </div>
 <div class='tags'>
-  <h3>Returns:</h3>
-  <ul class='return'>
-    <li>
-      <span class='type'></span>
-      (<tt>Number</tt>)
-      &mdash;
-      <span class='desc'>1 </span>
-    </li>
-  </ul>
 </div>
   </div>
   <div class='method_details'>
-    <p class='signature' id='get_two-dynamic'>
+    <p class='signature' id='tick_visualizer-dynamic'>
       #
-(Number)
-<b>get_two</b><span>()</span>
+(void)
+<b>tick_visualizer</b><span>()</span>
+      <span class='bound note'>Bound</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>2を返す</p>
+  <p>位置などの更新</p>
 </div>
 <div class='tags'>
-  <h3>Returns:</h3>
-  <ul class='return'>
-    <li>
-      <span class='type'></span>
-      (<tt>Number</tt>)
-      &mdash;
-      <span class='desc'>2 </span>
-    </li>
-  </ul>
 </div>
   </div>
   <div class='method_details'>
-    <p class='signature' id='get_three-dynamic'>
+    <p class='signature' id='update_visualizer-dynamic'>
       #
-(Number)
-<b>get_three</b><span>()</span>
+(void)
+<b>update_visualizer</b><span>()</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>3を返す</p>
+  <p>ビジュアライザに関するDOMの更新</p>
 </div>
 <div class='tags'>
-  <h3>Returns:</h3>
-  <ul class='return'>
-    <li>
-      <span class='type'></span>
-      (<tt>Number</tt>)
-      &mdash;
-      <span class='desc'>3 </span>
-    </li>
-  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='render-dynamic'>
+      #
+(void)
+<b>render</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>描画</p>
+</div>
+<div class='tags'>
 </div>
   </div>
 </div>
