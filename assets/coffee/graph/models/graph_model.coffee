@@ -53,6 +53,7 @@ define(
         adj_list = @get "adj_list"
         adj_list[from].push to
         @set "adj_list", adj_list
+        @trigger "add_edge_success"
         
         @
         
