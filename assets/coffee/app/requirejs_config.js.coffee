@@ -13,6 +13,7 @@
   'bootstrap': 'lib/bootstrap/js/bootstrap'
   'backbone': 'lib/backbone/js/backbone'
   'underscore': 'lib/underscore/js/underscore'
+  'd3': 'lib/d3/js/d3'
 }
 
 # AMDに対応していないモジュールの依存関係を指定する
