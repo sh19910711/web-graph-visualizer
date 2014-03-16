@@ -13,12 +13,12 @@ describe "module01/module_main", ->
     )
 
   context "get", =>
-    it "#get_one", ()=>
+    it "#get_one [TODO] remove", ()=>
       expect(@module.get_one()).to.equal 1
 
-    it "#get_two", ()=>
+    it "#get_two [TODO] remove", ()=>
       expect(@module.get_two()).to.equal 2
 
-    it "#get_three", ()=>
+    it "#get_three [TODO] remove", ()=>
       expect(@module.get_three()).to.equal 3
 

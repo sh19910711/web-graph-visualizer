@@ -1,31 +1,48 @@
 language: ruby
+branches:
+  only:
+    - master
+    - develop
+    - /^exercise-.*$/
+    - /^feature\/.*$/
+    - heroku/development
 rvm:
   - 2.1.0
 before_script:
   - bundle install
   - npm install
+  - mkdir -p tmp/test
 script:
-  - bundle exec rake test
+  - bundle exec rake test > tmp/test/result-ruby.txt
   - npm run-script test
+  - for RESULT_PATH in `ls tmp/test/result-*.txt`; do cat ${RESULT_PATH} | sed -e "s/\[TODO\]/# TODO/" > `echo ${RESULT_PATH}`; done
+  - prove tmp/test/result-*.txt --exec "cat"
   - bundle exec rake doc
   - npm run-script doc
-after_success:
+after_script:
   - 
-    if [ "${TRAVIS_BRANCH}" == "develop" ]; then
-      git clone --quiet -b gh-pages git://github.com/sh19910711/web-graph-visualizer.git tmp/gh-pages ;
+    if [ "${TRAVIS_PULL_REQUEST}" == false ] && [ "${TRAVIS_BRANCH}" == "develop" ]; then
+      git clone --quiet --single-branch -b gh-pages git://github.com/sh19910711/web-graph-visualizer.git tmp/gh-pages ;
       cp -r doc tmp/gh-pages/ ;
       cd tmp/gh-pages/ ;
-      git config --global user.email "sh19910711@gmail.com" ;
-      git config --global user.name "Hiroyuki Sano" ;
+      git config --global user.email "sh19910711+ynkkowrv0b14@gmail.com" ;
+      git config --global user.name "Mr. Bot" ;
       git add doc &&
-        git commit -m 'wip' &&
+        git commit -m 'Update Document' &&
         git push --quiet https://${GITHUB_TOKEN}@github.com/sh19910711/web-graph-visualizer.git gh-pages ;
     fi
 env:
   global:
-    - secure: "SKgHTnxfWMgG2NeuMN9li+DKfL2dt+T6P6nIzhzbUdiF0QSo4Za6KGyJopRclrpc9lA+099SBx4viPTGL3s0x5nmVC1NWZUTNQt8v2vSjMf9mRVQYCz8LX8IEQURb+zWPgQWTdOa4YgAJOFa8/7qfC759daptHMOgcTcQDcquTM="
+    - secure: "E7jPQ/LyZFl8l3/Zg3CPCrMM6WcAUFE7mfOObP36xLfTmkZWMA+QOFjxZsvgcHNEbaJdlsCRqN9vsSkobbt07G4YGbXOHojI/O8XA9oCfaGsKfiMt08l/kOsuJyQRe/fsn4MmfpxnQbPLs4zMtZxpqI6KR+fvYx3WIpvkl5mMyo="
 gemfile:
   - Gemfile
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/ecc9c266d5c4e7d4d2b7
+    on_success: change
+    on_failure: always
+    on_start: false
 deploy:
   provider: heroku
   api_key:

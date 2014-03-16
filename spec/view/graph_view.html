@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>GraphView</title>
+    <script src="/test/lib/jquery/js/jquery.js"></script>
+    <link href="/test/lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="/test/lib/bootstrap/js/bootstrap.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>GraphViewを確認する</h1>
+    </div>
+    <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8" id="stage">&nbsp;</div>
+        <div class="col-sm-4" id="controller">&nbsp;</div>
+      </div>
+    </div>
+
+    <script src="/test/lib/requirejs/js/require.js"></script>
+    <script src="/test/js/app/requirejs_config.js"></script>
+    <script>
+      requirejs.config({
+        baseUrl: "/test",
+        paths: requirejs_paths
+      });
+    </script>
+    <script src="/test/view/graph_view.js"></script>
+  </body>
+</html>

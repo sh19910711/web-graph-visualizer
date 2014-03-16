@@ -54,7 +54,8 @@ module.exports = (grunt)->
     mocha_phantomjs:
       test:
         options:
-          reporter: 'dot'
+          reporter: 'tap'
+          output: 'tmp/test/result-coffee.txt'
           urls: [
             'http://localhost:39000/test_coffee.html'
           ]
