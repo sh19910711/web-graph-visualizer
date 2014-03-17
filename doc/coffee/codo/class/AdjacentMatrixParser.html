@@ -19,54 +19,92 @@
       Index
     </a>
     &raquo;
-    <span class='title'>ApplicationModel</span>
+    <span class='title'>AdjacentMatrixParser</span>
   </div>
 </div>
     <div id='content'>
       <h1>
         Class:
-        ApplicationModel
+        AdjacentMatrixParser
       </h1>
       <table class='box'>
         <tr>
           <td>Defined in:</td>
-          <td>assets&#47;coffee&#47;app&#47;models&#47;application_model.coffee</td>
+          <td>assets&#47;coffee&#47;parser&#47;graph&#47;adjacent_matrix_parser.coffee</td>
         </tr>
         <tr>
           <td>Inherits:</td>
           <td>
-            Backbone.Model
+            <a href='../class/ParserBase.html'>ParserBase</a>
           </td>
         </tr>
       </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>隣接行列形式の入力を読み込むクラス</p><p>対応する入力文字列については
+spec/parser/graph/adjacent_matrix_parser_spec.coffee
+を参照すること</p>
+</div>
+<div class='tags'>
+</div>
       <h2>Instance Method Summary</h2>
       <ul class='summary'>
   <li>
     <span class='signature'>
-      <a href='#initialize-dynamic'>
+      <a href='#parse-dynamic'>
         #
-(void)
-<b>initialize</b><span>()</span>
+(GraphModel)
+<b>parse</b><span>(text)</span>
       </a>
     </span>
     <span class='desc'>
-      初期化 
+      parse 
     </span>
   </li>
 </ul>
+      <h2>
+        <small>Inherited Method Summary</small>
+        <h3 class='inherited'>
+          Methods inherited from
+          <a href='../class/ParserBase.html'>ParserBase</a>
+        </h3>
+        <p class='inherited'>
+          <a href='../class/ParserBase.html#parse-dynamic'>#parse</a>
+        </p>
+      </h2>
       <h2>Instance Method Details</h2>
       <div class='methods'>
   <div class='method_details'>
-    <p class='signature' id='initialize-dynamic'>
+    <p class='signature' id='parse-dynamic'>
       #
-(void)
-<b>initialize</b><span>()</span>
+(GraphModel)
+<b>parse</b><span>(text)</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>初期化</p>
+  <p>parse</p>
 </div>
 <div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>text</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>入力文字列 </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>GraphModel</tt>)
+      &mdash;
+      <span class='desc'>parse後のグラフ </span>
+    </li>
+  </ul>
 </div>
   </div>
 </div>
