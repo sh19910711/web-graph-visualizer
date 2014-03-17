@@ -6,6 +6,8 @@ requirejs(
     "graph/models/graph_model"
     # ここから下側にParserクラスを記述する
     "parser/graph/graph_parser_example"
+    "parser/graph/adjacent_list_parser"
+    "parser/graph/adjacent_matrix_parser"
   ]
   (
     $
