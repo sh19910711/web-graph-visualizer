@@ -12,7 +12,7 @@ module.exports = (grunt)->
           layout:         'byComponent'
           install:        true
           verbose:        true
-          cleanTargetDir: true
+          cleanTargetDir: false
           cleanBowerDir:  false
           production:     false
 
