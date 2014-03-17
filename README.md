@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/sh19910711/graph-visualizer.png?branch=develop)](https://travis-ci.org/sh19910711/graph-visualizer)
 [![Gitter chat](https://badges.gitter.im/sh19910711/graph-visualizer.png)](https://gitter.im/sh19910711/graph-visualizer)
 [![waffle.io](https://badge.waffle.io/sh19910711/graph-visualizer.png)](https://waffle.io/sh19910711/graph-visualizer)
+[![Dependency Status](https://gemnasium.com/sh19910711/graph-visualizer.png)](https://gemnasium.com/sh19910711/graph-visualizer)
 
 ## 概要
 
