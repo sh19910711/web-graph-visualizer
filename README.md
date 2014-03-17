@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/sh19910711/graph-visualizer.png?branch=develop)](https://travis-ci.org/sh19910711/graph-visualizer)
 [![Gitter chat](https://badges.gitter.im/sh19910711/graph-visualizer.png)](https://gitter.im/sh19910711/graph-visualizer)
+[![waffle.io](https://badge.waffle.io/sh19910711/graph-visualizer.png)](https://waffle.io/sh19910711/graph-visualizer)
 
 ## 概要
 
@@ -48,4 +49,5 @@ A[k] B[k]
 * [sh19910711](https://github.com/sh19910711)
 * [ixxa](https://github.com/ixxa)
 * [sune2](https://github.com/sune2)
-
+* [MiSawa](https://github.com/MiSawa)
+* [arosh](https://github.com/arosh)
