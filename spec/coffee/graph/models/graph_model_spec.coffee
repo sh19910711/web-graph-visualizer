@@ -39,3 +39,6 @@ describe "graph/models/graph_model", ->
           @graph.remove_edge 0, 1
           expect(@graph.check_edge(0, 1)).to.be.false
 
+      context "辺0-1(既に存在する辺)を追加したとき、", =>
+        it "should have one edge", =>
+          expect(@graph.get_num_edges()).to.equals 1
