@@ -39,10 +39,10 @@ gemfile:
 notifications:
   webhooks:
     urls:
-      - https://webhooks.gitter.im/e/ecc9c266d5c4e7d4d2b7
-    on_success: change
+      - https://webhooks.gitter.im/e/527b7a6c9b55ca110000
+    on_success: always
     on_failure: always
-    on_start: false
+    on_start: always
 deploy:
   provider: heroku
   api_key:
