@@ -10,3 +10,4 @@ define(
       parse: (text)->
         throw new Error "ERROR_RV7F04: TODO: Implement"
 )
+
