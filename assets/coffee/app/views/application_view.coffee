@@ -1,10 +1,12 @@
 define(
   [
     "backbone"
+    "jquery"
     "graph/views/graph_view"
   ]
   (
     Backbone
+    $
     GraphView
   )->
     class ApplicationView extends Backbone.View
