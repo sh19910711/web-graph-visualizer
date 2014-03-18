@@ -1,3 +1,7 @@
+# ドキュメント作成
+bundle exec rake doc
+npm run-script doc
+
 if [ "${TRAVIS_PULL_REQUEST}" == false ] && [ "${TRAVIS_BRANCH}" == "develop" ]; then
   git clone --quiet --single-branch -b gh-pages git://github.com/sh19910711/web-graph-visualizer.git tmp/gh-pages \
     && cp -r doc tmp/gh-pages/ \
