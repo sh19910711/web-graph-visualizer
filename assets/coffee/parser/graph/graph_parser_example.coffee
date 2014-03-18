@@ -9,6 +9,11 @@ define(
   )->
     # パーサー実装のサンプル
     class GraphParserExample extends ParserBase
+      # デフォルトオプション
+      options:
+        key1: "value1"
+        key2: "value2"
+
       # 固定の結果を返す
       parse: ->
         graph = new GraphModel
