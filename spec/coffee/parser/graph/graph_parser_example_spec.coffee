@@ -15,72 +15,72 @@ describe "parser/graph/graph_parser_example", ->
     beforeEach =>
       @parser = new @ParserClass
 
-    context "何もしないとき", =>
-      context "key1を取得すると", =>
+    context "何もせず", =>
+      context "key1を取得したとき", =>
         beforeEach =>
           @ret = @parser.get_option "key1"
 
         it "should return value1", =>
           expect(@ret).to.equals "value1"
 
-      context "key2を取得すると", =>
+      context "key2を取得したとき", =>
         beforeEach =>
           @ret = @parser.get_option "key2"
 
         it "should return value2", =>
           expect(@ret).to.equals "value2"
 
-      context "key3を取得すると", =>
+      context "key3を取得したとき", =>
         beforeEach =>
           @ret = @parser.get_option "key3"
 
         it "should return undefined", =>
           expect(@ret).to.equals undefined
 
-    context "set_option key1, new_value1を実行したとき", =>
+    context "set_option key1, new_value1を実行して", =>
       beforeEach =>
         @parser.set_option "key1", "new_value1"
 
-      context "key1を取得すると", =>
+      context "key1を取得したとき", =>
         beforeEach =>
           @ret = @parser.get_option "key1"
 
         it "should return new_value1", =>
           expect(@ret).to.equals "new_value1"
 
-      context "key2を取得すると", =>
+      context "key2を取得したとき", =>
         beforeEach =>
           @ret = @parser.get_option "key2"
 
         it "should return value2", =>
           expect(@ret).to.equals "value2"
 
-      context "key3を取得すると", =>
+      context "key3を取得したとき", =>
         beforeEach =>
           @ret = @parser.get_option "key3"
 
         it "should return undefined", =>
           expect(@ret).to.equals undefined
 
-    context "set_option key3, new_value3を実行したとき", =>
+    context "set_option key3, new_value3を実行して", =>
       beforeEach =>
         @parser.set_option "key3", "new_value3"
 
-      context "key1を取得すると", =>
+      context "key1を取得したとき", =>
         beforeEach =>
           @ret = @parser.get_option "key1"
 
         it "should return value1", =>
           expect(@ret).to.equals "value1"
 
-      context "key2を取得すると", =>
+      context "key2を取得したとき", =>
         beforeEach =>
           @ret = @parser.get_option "key2"
 
         it "should return value2", =>
           expect(@ret).to.equals "value2"
 
-      context "key3を取得すると", =>
+      context "key3を取得したとき", =>
         beforeEach =>
           @ret = @parser.get_option "key3"
 
