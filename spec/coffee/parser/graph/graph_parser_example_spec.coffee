@@ -14,7 +14,6 @@ describe "parser/graph/graph_parser_example", ->
   context "get_optionについて", =>
     beforeEach =>
       @parser = new @ParserClass
-      console.log @parser.__options
 
     context "何もしないとき", =>
       context "key1を取得すると", =>
