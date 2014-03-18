@@ -45,8 +45,48 @@
         <a href='../class/AdjacentMatrixParser.html'>AdjacentMatrixParser</a>
         <a href='../class/GraphParserExample.html'>GraphParserExample</a>
       </p>
+      <h2>Variables Summary</h2>
+      <dl class='constants'>
+  <dt id='__options-variable'>
+    __options
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>{}</code></pre>
+    <div class='docstring'>
+  <p>パーサーのオプション</p>
+</div>
+<div class='tags'>
+</div>
+  </dd>
+</dl>
       <h2>Instance Method Summary</h2>
       <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#set_option-dynamic'>
+        #
+(void)
+<b>set_option</b><span>(key, value)</span>
+      </a>
+    </span>
+    <span class='desc'>
+      オプションを設定する @param value オプションに設定する値
+
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#get_option-dynamic'>
+        #
+(?)
+<b>get_option</b><span>(key)</span>
+      </a>
+    </span>
+    <span class='desc'>
+      オプションを取得する 
+    </span>
+  </li>
   <li>
     <span class='signature'>
       <a href='#parse-dynamic'>
@@ -60,8 +100,82 @@
     </span>
   </li>
 </ul>
+      <h2>Constructor Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='constructor-dynamic'>
+      #
+(void)
+<b>constructor</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>コンストラクタ</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+</div>
       <h2>Instance Method Details</h2>
       <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='set_option-dynamic'>
+      #
+(void)
+<b>set_option</b><span>(key, value)</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>オプションを設定する
+@param value オプションに設定する値</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>key</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>オプションを指定するID </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='get_option-dynamic'>
+      #
+(?)
+<b>get_option</b><span>(key)</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>オプションを取得する</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>key</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>オプションを指定するID </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>?</tt>)
+      &mdash;
+      <span class='desc'>オプションに設定されている値 </span>
+    </li>
+  </ul>
+</div>
+  </div>
   <div class='method_details'>
     <p class='signature' id='parse-dynamic'>
       #
@@ -89,7 +203,7 @@
 </div>
     </div>
     <div id='footer'>
-  March 17, 14 10:06:53 by
+  March 18, 14 07:06:09 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
