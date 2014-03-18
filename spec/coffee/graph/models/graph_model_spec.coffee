@@ -101,15 +101,19 @@ describe "graph/models/graph_model", ->
           expect(@data.graph.check_edge(0, 1)).to.be.true
 
       context "辺0-1を削除したとき、", ->
-        it "should have no edge", ->
+        beforeEach ->
           @data.graph.remove_edge 0, 1
+          
+        it "should have no edge", ->
           expect(@data.graph.get_num_edges()).to.equals 0
 
         it "should exist edge 0-1", ->
-          @data.graph.remove_edge 0, 1
           expect(@data.graph.check_edge(0, 1)).to.be.false
 
       context "辺0-1(既に存在する辺)を追加したとき、", ->
+        beforeEach ->
+          @data.graph.add_edge 0, 1
+          
         it "should have one edge", ->
           expect(@data.graph.get_num_edges()).to.equals 1
 
