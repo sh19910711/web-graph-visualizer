@@ -111,5 +111,5 @@ describe "graph/models/graph_model", ->
 
       context "辺0-1(既に存在する辺)を追加したとき、", ->
         it "should have one edge", ->
-          expect(@graph.get_num_edges()).to.equals 1
+          expect(@data.graph.get_num_edges()).to.equals 1
 
