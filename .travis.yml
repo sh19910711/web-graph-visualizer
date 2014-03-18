@@ -9,28 +9,11 @@ branches:
 rvm:
   - 2.1.0
 before_script:
-  - bundle install
-  - npm install
-  - mkdir -p tmp/test
+  - bash scripts/before_script.bash
 script:
-  - bundle exec rake test > tmp/test/result-ruby.txt
-  - npm run-script test
-  - for RESULT_PATH in `ls tmp/test/result-*.txt`; do cat ${RESULT_PATH} | sed -e "s/\[TODO\]/# TODO/" > `echo ${RESULT_PATH}`; done
-  - prove tmp/test/result-*.txt --exec "cat"
-  - bundle exec rake doc
-  - npm run-script doc
+  - bash scripts/test.bash
 after_script:
-  - 
-    if [ "${TRAVIS_PULL_REQUEST}" == false ] && [ "${TRAVIS_BRANCH}" == "develop" ]; then
-      git clone --quiet --single-branch -b gh-pages git://github.com/sh19910711/web-graph-visualizer.git tmp/gh-pages ;
-      cp -r doc tmp/gh-pages/ ;
-      cd tmp/gh-pages/ ;
-      git config --global user.email "sh19910711+ynkkowrv0b14@gmail.com" ;
-      git config --global user.name "Mr. Bot" ;
-      git add doc &&
-        git commit -m 'Update Document' &&
-        git push --quiet https://${GITHUB_TOKEN}@github.com/sh19910711/web-graph-visualizer.git gh-pages ;
-    fi
+  - bash scripts/after_script.bash
 env:
   global:
     - secure: "E7jPQ/LyZFl8l3/Zg3CPCrMM6WcAUFE7mfOObP36xLfTmkZWMA+QOFjxZsvgcHNEbaJdlsCRqN9vsSkobbt07G4YGbXOHojI/O8XA9oCfaGsKfiMt08l/kOsuJyQRe/fsn4MmfpxnQbPLs4zMtZxpqI6KR+fvYx3WIpvkl5mMyo="
