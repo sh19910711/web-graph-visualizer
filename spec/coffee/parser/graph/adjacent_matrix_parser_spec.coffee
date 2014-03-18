@@ -1,5 +1,5 @@
 describe "coffee/parser/graph/adjacent_matrix_parser", ->
-  beforeEach (done)=>
+  beforeEach (done)->
     requirejs(
       [
         "parser/graph/adjacent_matrix_parser"
