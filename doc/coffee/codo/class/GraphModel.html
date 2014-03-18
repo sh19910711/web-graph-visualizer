@@ -63,7 +63,7 @@
     <span class='signature'>
       <a href='#initialize-dynamic'>
         #
-(void)
+(GraphModel)
 <b>initialize</b><span>()</span>
       </a>
     </span>
@@ -76,7 +76,7 @@
     <span class='signature'>
       <a href='#init-dynamic'>
         #
-(void)
+(GraphModel)
 <b>init</b><span>(num_vertices)</span>
       </a>
     </span>
@@ -88,7 +88,7 @@
     <span class='signature'>
       <a href='#get_num_vertices-dynamic'>
         #
-(void)
+(Number)
 <b>get_num_vertices</b><span>()</span>
       </a>
     </span>
@@ -100,7 +100,7 @@
     <span class='signature'>
       <a href='#get_num_edges-dynamic'>
         #
-(void)
+(Number)
 <b>get_num_edges</b><span>()</span>
       </a>
     </span>
@@ -112,7 +112,7 @@
     <span class='signature'>
       <a href='#add_edge-dynamic'>
         #
-(void)
+(GraphModel)
 <b>add_edge</b><span>(from, to)</span>
       </a>
     </span>
@@ -124,7 +124,7 @@
     <span class='signature'>
       <a href='#remove_edge-dynamic'>
         #
-(void)
+(GraphModel)
 <b>remove_edge</b><span>(from, to)</span>
       </a>
     </span>
@@ -163,7 +163,7 @@
   <div class='method_details'>
     <p class='signature' id='initialize-dynamic'>
       #
-(void)
+(GraphModel)
 <b>initialize</b><span>()</span>
       <br>
     </p>
@@ -172,12 +172,21 @@
 newされたときに呼ばれるメソッド</p>
 </div>
 <div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>GraphModel</tt>)
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='init-dynamic'>
       #
-(void)
+(GraphModel)
 <b>init</b><span>(num_vertices)</span>
       <br>
     </p>
@@ -196,12 +205,21 @@ newされたときに呼ばれるメソッド</p>
       <span class='desc'>頂点数を指定する </span>
     </li>
   </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>GraphModel</tt>)
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='get_num_vertices-dynamic'>
       #
-(void)
+(Number)
 <b>get_num_vertices</b><span>()</span>
       <br>
     </p>
@@ -209,12 +227,21 @@ newされたときに呼ばれるメソッド</p>
   <p>頂点数を返す</p>
 </div>
 <div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Number</tt>)
+      &mdash;
+      <span class='desc'>頂点数 </span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='get_num_edges-dynamic'>
       #
-(void)
+(Number)
 <b>get_num_edges</b><span>()</span>
       <br>
     </p>
@@ -222,12 +249,21 @@ newされたときに呼ばれるメソッド</p>
   <p>辺の本数を返す</p>
 </div>
 <div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Number</tt>)
+      &mdash;
+      <span class='desc'>辺の本数 </span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='add_edge-dynamic'>
       #
-(void)
+(GraphModel)
 <b>add_edge</b><span>(from, to)</span>
       <br>
     </p>
@@ -254,12 +290,21 @@ newされたときに呼ばれるメソッド</p>
       <span class='desc'>終点 </span>
     </li>
   </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>GraphModel</tt>)
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='remove_edge-dynamic'>
       #
-(void)
+(GraphModel)
 <b>remove_edge</b><span>(from, to)</span>
       <br>
     </p>
@@ -284,6 +329,15 @@ newされたときに呼ばれるメソッド</p>
       </span>
       &mdash;
       <span class='desc'>終点 </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>GraphModel</tt>)
+      &mdash;
+      <span class='desc'>void </span>
     </li>
   </ul>
 </div>
@@ -332,7 +386,7 @@ newされたときに呼ばれるメソッド</p>
 </div>
     </div>
     <div id='footer'>
-  March 18, 14 11:58:23 by
+  March 18, 14 12:02:40 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
