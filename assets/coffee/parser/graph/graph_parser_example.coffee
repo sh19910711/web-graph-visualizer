@@ -10,7 +10,7 @@ define(
     # パーサー実装のサンプル
     class GraphParserExample extends ParserBase
       # デフォルトオプション
-      options:
+      defaults:
         key1: "value1"
         key2: "value2"
 

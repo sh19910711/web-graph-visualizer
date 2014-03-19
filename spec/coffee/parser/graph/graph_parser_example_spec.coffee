@@ -17,78 +17,78 @@ describe "parser/graph/graph_parser_example", ->
   afterEach ->
     delete @data
 
-  context "get_optionについて", ->
+  context "getについて", ->
     beforeEach ->
       @data.parser = new @ParserClass
 
     context "何もせず", ->
       context "key1を取得したとき", ->
         beforeEach ->
-          @data.ret = @data.parser.get_option "key1"
+          @data.ret = @data.parser.get "key1"
 
         it "should return value1", ->
           expect(@data.ret).to.equals "value1"
 
       context "key2を取得したとき", ->
         beforeEach ->
-          @data.ret = @data.parser.get_option "key2"
+          @data.ret = @data.parser.get "key2"
 
         it "should return value2", ->
           expect(@data.ret).to.equals "value2"
 
       context "key3を取得したとき", ->
         beforeEach ->
-          @data.ret = @data.parser.get_option "key3"
+          @data.ret = @data.parser.get "key3"
 
         it "should return undefined", ->
           expect(@data.ret).to.equals undefined
 
-    context "set_option key1, new_value1を実行して", ->
+    context "set key1, new_value1を実行して", ->
       beforeEach ->
-        @data.parser.set_option "key1", "new_value1"
+        @data.parser.set "key1", "new_value1"
 
       context "key1を取得したとき", ->
         beforeEach ->
-          @data.ret = @data.parser.get_option "key1"
+          @data.ret = @data.parser.get "key1"
 
         it "should return new_value1", ->
           expect(@data.ret).to.equals "new_value1"
 
       context "key2を取得したとき", ->
         beforeEach ->
-          @data.ret = @data.parser.get_option "key2"
+          @data.ret = @data.parser.get "key2"
 
         it "should return value2", ->
           expect(@data.ret).to.equals "value2"
 
       context "key3を取得したとき", ->
         beforeEach ->
-          @data.ret = @data.parser.get_option "key3"
+          @data.ret = @data.parser.get "key3"
 
         it "should return undefined", ->
           expect(@data.ret).to.equals undefined
 
-    context "set_option key3, new_value3を実行して", ->
+    context "set key3, new_value3を実行して", ->
       beforeEach ->
-        @data.parser.set_option "key3", "new_value3"
+        @data.parser.set "key3", "new_value3"
 
       context "key1を取得したとき", ->
         beforeEach ->
-          @data.ret = @data.parser.get_option "key1"
+          @data.ret = @data.parser.get "key1"
 
         it "should return value1", ->
           expect(@data.ret).to.equals "value1"
 
       context "key2を取得したとき", ->
         beforeEach ->
-          @data.ret = @data.parser.get_option "key2"
+          @data.ret = @data.parser.get "key2"
 
         it "should return value2", ->
           expect(@data.ret).to.equals "value2"
 
       context "key3を取得したとき", ->
         beforeEach ->
-          @data.ret = @data.parser.get_option "key3"
+          @data.ret = @data.parser.get "key3"
 
         it "should return new_value3", ->
           expect(@data.ret).to.equals "new_value3"
