@@ -6,9 +6,6 @@ define(
     Backbone
   )->
     class SelectView extends Backbone.View
-      # select
-      tagName: "div"
-
       # DOM Events
       events:
         "change select": "change_select"
