@@ -32,6 +32,12 @@
           <td>Defined in:</td>
           <td>assets&#47;coffee&#47;parser&#47;parser_base.coffee</td>
         </tr>
+        <tr>
+          <td>Inherits:</td>
+          <td>
+            Backbone.Model
+          </td>
+        </tr>
       </table>
       <h2>Overview</h2>
       <div class='docstring'>
@@ -45,46 +51,18 @@
         <a href='../class/AdjacentMatrixParser.html'>AdjacentMatrixParser</a>
         <a href='../class/GraphParserExample.html'>GraphParserExample</a>
       </p>
-      <h2>Variables Summary</h2>
-      <dl class='constants'>
-  <dt id='__options-variable'>
-    __options
-    =
-  </dt>
-  <dd>
-    <pre><code class='coffeescript'>{}</code></pre>
-    <div class='docstring'>
-  <p>パーサーのオプション</p>
-</div>
-<div class='tags'>
-</div>
-  </dd>
-</dl>
       <h2>Instance Method Summary</h2>
       <ul class='summary'>
   <li>
     <span class='signature'>
-      <a href='#set_option-dynamic'>
+      <a href='#initialize-dynamic'>
         #
 (void)
-<b>set_option</b><span>(key, value)</span>
+<b>initialize</b><span>()</span>
       </a>
     </span>
     <span class='desc'>
-      オプションを設定する @param value オプションに設定する値
-
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#get_option-dynamic'>
-        #
-(?)
-<b>get_option</b><span>(key)</span>
-      </a>
-    </span>
-    <span class='desc'>
-      オプションを取得する 
+      初期化 
     </span>
   </li>
   <li>
@@ -100,80 +78,19 @@
     </span>
   </li>
 </ul>
-      <h2>Constructor Details</h2>
-      <div class='methods'>
-  <div class='method_details'>
-    <p class='signature' id='constructor-dynamic'>
-      #
-(void)
-<b>constructor</b><span>()</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>コンストラクタ</p>
-</div>
-<div class='tags'>
-</div>
-  </div>
-</div>
       <h2>Instance Method Details</h2>
       <div class='methods'>
   <div class='method_details'>
-    <p class='signature' id='set_option-dynamic'>
+    <p class='signature' id='initialize-dynamic'>
       #
 (void)
-<b>set_option</b><span>(key, value)</span>
+<b>initialize</b><span>()</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>オプションを設定する
-@param value オプションに設定する値</p>
+  <p>初期化</p>
 </div>
 <div class='tags'>
-  <h3>Parameters:</h3>
-  <ul class='param'>
-    <li>
-      <span class='name'>key</span>
-      <span class='type'>
-        (<tt>String</tt>)
-      </span>
-      &mdash;
-      <span class='desc'>オプションを指定するID </span>
-    </li>
-  </ul>
-</div>
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='get_option-dynamic'>
-      #
-(?)
-<b>get_option</b><span>(key)</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>オプションを取得する</p>
-</div>
-<div class='tags'>
-  <h3>Parameters:</h3>
-  <ul class='param'>
-    <li>
-      <span class='name'>key</span>
-      <span class='type'>
-        (<tt>String</tt>)
-      </span>
-      &mdash;
-      <span class='desc'>オプションを指定するID </span>
-    </li>
-  </ul>
-  <h3>Returns:</h3>
-  <ul class='return'>
-    <li>
-      <span class='type'></span>
-      (<tt>?</tt>)
-      &mdash;
-      <span class='desc'>オプションに設定されている値 </span>
-    </li>
-  </ul>
 </div>
   </div>
   <div class='method_details'>
@@ -203,7 +120,7 @@
 </div>
     </div>
     <div id='footer'>
-  March 18, 14 12:20:38 by
+  March 19, 14 03:59:35 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
