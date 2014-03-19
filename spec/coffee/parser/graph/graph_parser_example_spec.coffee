@@ -3,11 +3,14 @@ describe "parser/graph/graph_parser_example", ->
     requirejs(
       [
         "parser/graph/graph_parser_example"
+        "misc/models/select_model"
       ]
       (
         GraphParserExample
+        SelectModel
       )=>
         @ParserClass = GraphParserExample
+        @SelectModel = SelectModel
         done()
     )
 
@@ -16,6 +19,13 @@ describe "parser/graph/graph_parser_example", ->
 
   afterEach ->
     delete @data
+
+  context "graph_typeについて", ->
+    beforeEach ->
+      @data.parser = new @ParserClass
+
+    it "should be defined as SelectModel", ->
+      expect(@data.parser.graph_type instanceof @SelectModel)
 
   context "getについて", ->
     beforeEach ->
