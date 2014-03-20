@@ -1,15 +1,7 @@
 describe "graph/models/graph_model", ->
-  beforeEach (done)->
-    requirejs(
-      [
-        "graph/models/graph_model"
-      ]
-      (
-        GraphModel
-      )=>
-        @GraphModel = GraphModel
-        done()
-    )
+  SpecHelpers.load_modules(
+    "graph/models/graph_model"
+  )
 
   beforeEach ->
     @data = {}
@@ -22,7 +14,7 @@ describe "graph/models/graph_model", ->
     context "頂点数を", ->
       context "0個指定したとき", ->
         beforeEach ->
-          @data.graph = new @GraphModel
+          @data.graph = new @modules.GraphModel
             num_vertices: 0
 
         it "should have no vertex", ->
@@ -33,7 +25,7 @@ describe "graph/models/graph_model", ->
 
       context "1個指定したとき", ->
         beforeEach ->
-          @data.graph = new @GraphModel
+          @data.graph = new @modules.GraphModel
             num_vertices: 1
 
         it "should have a vertex", ->
@@ -45,7 +37,7 @@ describe "graph/models/graph_model", ->
     context "頂点数を3個に指定して", ->
       context "辺を0本指定したとき", ->
         beforeEach ->
-          @data.graph = new @GraphModel
+          @data.graph = new @modules.GraphModel
             num_vertices: 3
             edges: []
 
@@ -57,7 +49,7 @@ describe "graph/models/graph_model", ->
 
       context "辺を2本（0-1, 1-2）指定したとき", ->
         beforeEach ->
-          @data.graph = new @GraphModel
+          @data.graph = new @modules.GraphModel
             num_vertices: 3
             edges: [
               {
@@ -85,7 +77,7 @@ describe "graph/models/graph_model", ->
 
   context "辺の操作について、", ->
     beforeEach ->
-      @data.graph = new @GraphModel
+      @data.graph = new @modules.GraphModel
 
     context "2つの頂点を1つの辺0-1で結び、", ->
       beforeEach ->
