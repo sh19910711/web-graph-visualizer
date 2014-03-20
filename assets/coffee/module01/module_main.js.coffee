@@ -15,7 +15,6 @@ define(
     # 諸々確認用のダミーモジュール（CoffeeScript）
     class Module01 extends Backbone.Model
       initialize: ->
-        console.log "@Module01#initialize"
 
       # 1を返す
       #
