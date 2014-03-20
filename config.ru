@@ -52,7 +52,6 @@ if ENV['RACK_ENV'] == 'development'
 
         script_tag = ""
         script_tag += "function load_script(path) {\n"
-        script_tag += "  console.log('load_script', path);"
         script_tag += "  var deferred = new $.Deferred;\n"
         script_tag += "  var head= document.getElementsByTagName('head')[0];\n"
         script_tag += "  var script= document.createElement('script');\n"
