@@ -1,18 +1,8 @@
 describe "parser/graph/graph_parser_example", ->
-  beforeEach (done)->
-    requirejs(
-      [
-        "parser/graph/graph_parser_example"
-        "misc/models/select_model"
-      ]
-      (
-        GraphParserExample
-        SelectModel
-      )=>
-        @ParserClass = GraphParserExample
-        @SelectModel = SelectModel
-        done()
-    )
+  SpecHelpers.load_modules(
+    "parser/graph/graph_parser_example"
+    "misc/models/select_model"
+  )
 
   beforeEach ->
     @data = {}
@@ -22,14 +12,14 @@ describe "parser/graph/graph_parser_example", ->
 
   context "graph_typeについて", ->
     beforeEach ->
-      @data.parser = new @ParserClass
+      @data.parser = new @modules.GraphParserExample
 
     it "should be defined as SelectModel", ->
-      expect(@data.parser.graph_type instanceof @SelectModel)
+      expect(@data.parser.graph_type instanceof @modules.SelectModel)
 
   context "getについて", ->
     beforeEach ->
-      @data.parser = new @ParserClass
+      @data.parser = new @modules.GraphParserExample
 
     context "何もせず", ->
       context "key1を取得したとき", ->
@@ -105,7 +95,7 @@ describe "parser/graph/graph_parser_example", ->
   
   context "parseメソッドについて", ->
     beforeEach ->
-      @data.parser = new @ParserClass
+      @data.parser = new @modules.GraphParserExample
       
     context "parse(this is test)したとき", ->
       beforeEach ->
