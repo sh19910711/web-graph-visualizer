@@ -74,6 +74,12 @@ describe "graph/models/graph_model", ->
         it "should exist edge 1-2", ->
           expect(@data.graph.check_edge(1, 2)).to.be.true
 
+        it "should return list", ->
+          expect(@data.graph.get_edges("source", "target")).to.eql [
+              { source: 0, target: 1 }
+              { source: 1, target: 2 }
+            ]
+
 
   context "辺の操作について、", ->
     beforeEach ->
