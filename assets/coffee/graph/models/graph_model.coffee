@@ -21,6 +21,12 @@ define(
       # newされたときに呼ばれるメソッド
       # @return [GraphModel] void
       initialize: ->
+        if @get "num_vertices"
+          @init(@get "num_vertices")
+
+        if @get "edges"
+          _(@get "edges").each((edge) => @add_edge(edge.from, edge.to))
+
         @
         
       # 初期化
