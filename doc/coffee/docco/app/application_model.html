@@ -48,6 +48,21 @@
                 application_view.coffee
               </a>
             
+              
+              <a class="source" href="contents_view.html">
+                contents_view.coffee
+              </a>
+            
+              
+              <a class="source" href="controllers_view.html">
+                controllers_view.coffee
+              </a>
+            
+              
+              <a class="source" href="header_view.html">
+                header_view.coffee
+              </a>
+            
           </div>
         </li>
       </ul>
@@ -74,13 +89,23 @@
             <div class="content"><div class='highlight'><pre>define(
   [
     <span class="hljs-string">"backbone"</span>
+    <span class="hljs-string">"underscore"</span>
     <span class="hljs-string">"graph/models/graph_model"</span>
+    <span class="hljs-string">"misc/models/select_model"</span>
+    <span class="hljs-string">"misc/models/item_model"</span>
+    <span class="hljs-string">"misc/collections/item_collection"</span>
   ]
   (
     Backbone
+    _
     GraphModel
+    SelectModel
+    ItemModel
+    ItemCollection
   )<span class="hljs-function">-&gt;</span>
-    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationModel</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Backbone</span>.<span class="hljs-title">Model</span></span></pre></div></div>
+    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationModel</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Backbone</span>.<span class="hljs-title">Model</span></span>
+      <span class="hljs-attribute">defaults</span>:<span class="hljs-function"> -&gt;</span>
+        <span class="hljs-attribute">parsers</span>: {}</pre></div></div>
             
         </li>
         
@@ -112,7 +137,12 @@
             </div>
             
             <div class="content"><div class='highlight'><pre>        graph = <span class="hljs-keyword">new</span> GraphModel
-        <span class="hljs-property">@set</span> <span class="hljs-string">"graph"</span>, graph</pre></div></div>
+        <span class="hljs-property">@set</span> <span class="hljs-string">"graph"</span>, graph
+
+        parser_keys = <span class="hljs-keyword">new</span> ItemCollection []
+        parser_select = <span class="hljs-keyword">new</span> SelectModel
+          <span class="hljs-attribute">items</span>: parser_keys
+        <span class="hljs-property">@set</span> <span class="hljs-string">"parser_select"</span>, parser_select</pre></div></div>
             
         </li>
         
@@ -122,6 +152,66 @@
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>パーサーの読み込み</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        requirejs(
+          [
+            <span class="hljs-string">"parser/graph/graph_parser_example"</span>
+            <span class="hljs-string">"parser/graph/adjacent_list_parser"</span>
+            <span class="hljs-string">"parser/graph/adjacent_matrix_parser"</span>
+          ]<span class="hljs-function">
+          =&gt;</span>
+            parsers = _(arguments).reduce(
+              <span class="hljs-function"><span class="hljs-params">(prev, ParserClass)</span>-&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>キーを登録</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                parser_keys.add
+                  <span class="hljs-attribute">id</span>: ParserClass.name
+                  <span class="hljs-attribute">value</span>: ParserClass.name</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                obj = {}
+                obj[ParserClass.name] = ParserClass
+                _(prev).extend obj
+              {}
+            )
+            <span class="hljs-property">@set</span> <span class="hljs-string">"parsers"</span>, parsers
+        )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>ダミーのデータを入れておく
 TODO: 入力文字列から受け取れるようにする

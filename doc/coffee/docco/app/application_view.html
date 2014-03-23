@@ -48,6 +48,21 @@
                 application_view.coffee
               </a>
             
+              
+              <a class="source" href="contents_view.html">
+                contents_view.coffee
+              </a>
+            
+              
+              <a class="source" href="controllers_view.html">
+                controllers_view.coffee
+              </a>
+            
+              
+              <a class="source" href="header_view.html">
+                header_view.coffee
+              </a>
+            
           </div>
         </li>
       </ul>
@@ -75,12 +90,16 @@
   [
     "backbone"
     "jquery"
-    "graph/views/graph_view"
+    "app/views/header_view"
+    "app/views/contents_view"
+    "app/views/controllers_view"
   ]
   (
     Backbone
     $
-    GraphView
+    HeaderView
+    ContentsView
+    ControllersView
   )-&gt;
     class ApplicationView extends Backbone.View
       tagName: "div"
@@ -128,9 +147,8 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@header</span> = $(<span class="hljs-string">'&lt;div id="header" class="container"&gt;&lt;/div&gt;'</span>)
-        <span class="hljs-property">@header</span>.append <span class="hljs-string">"&lt;h1&gt;<span class="hljs-subst">#{<span class="hljs-property">@model</span>.get <span class="hljs-string">"page.title"</span>}</span>&lt;/h1&gt;"</span>
-        <span class="hljs-property">@header</span>.append <span class="hljs-string">"&lt;p class=\"lead\"&gt;<span class="hljs-subst">#{<span class="hljs-property">@model</span>.get <span class="hljs-string">"page.desc"</span>}</span>&lt;/p&gt;"</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@header_view</span> = <span class="hljs-keyword">new</span> HeaderView
+          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span></pre></div></div>
             
         </li>
         
@@ -145,11 +163,8 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@contents</span> = $(<span class="hljs-string">'&lt;div id="contents" class="container"&gt;&lt;/div&gt;'</span>)
-        <span class="hljs-property">@graph_view</span> = <span class="hljs-keyword">new</span> GraphView
-          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>.get <span class="hljs-string">"graph"</span>
-        <span class="hljs-property">@contents</span>.append <span class="hljs-string">'&lt;p class="bg-info"&gt;visualizer&lt;/p&gt;'</span>
-        <span class="hljs-property">@contents</span>.append <span class="hljs-property">@graph_view</span>.render().el</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@contents_view</span> = <span class="hljs-keyword">new</span> ContentsView
+          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span></pre></div></div>
             
         </li>
         
@@ -164,30 +179,8 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@controllers</span> = $(<span class="hljs-string">'&lt;div id="controllers" class="container"&gt;&lt;/div&gt;'</span>)
-
-        left = $(<span class="hljs-string">'&lt;div class="col-sm-6"&gt;&lt;/div&gt;'</span>)
-        left.append <span class="hljs-string">'&lt;p class="bg-info"&gt;textarea&lt;/p&gt;'</span>
-        textarea = $(<span class="hljs-string">'&lt;textarea disabled class="form-control" placeholder="input text..." rows="7"&gt;&lt;/textarea&gt;'</span>)
-        textarea.append <span class="hljs-string">"# dummy\n"</span>
-        textarea.append <span class="hljs-string">"5 3\n"</span>
-        textarea.append <span class="hljs-string">"1 2\n"</span>
-        textarea.append <span class="hljs-string">"2 3\n"</span>
-        textarea.append <span class="hljs-string">"4 5\n"</span>
-        left.append textarea
-
-        right = $(<span class="hljs-string">'&lt;div class="col-sm-6"&gt;&lt;/div&gt;'</span>)
-        well = $(<span class="hljs-string">'&lt;div class="well"&gt;&lt;/div&gt;'</span>)
-        well.append <span class="hljs-string">'&lt;p class="bg-info"&gt;options&lt;/p&gt;'</span>
-        well.append <span class="hljs-string">'&lt;p class="bg-info"&gt;actions&lt;/p&gt;'</span>
-        well.append <span class="hljs-string">'&lt;button disabled class="btn btn-lg btn-primary btn-block"&gt;Visualize&lt;/button&gt;'</span>
-        well.append <span class="hljs-string">'&lt;button disabled class="btn btn-lg btn-default btn-block"&gt;Save as Image&lt;/button&gt;'</span>
-        right.append well
-
-        row = $(<span class="hljs-string">'&lt;div class="row"&gt;&lt;/div&gt;'</span>)
-        row.append left
-        row.append right
-        <span class="hljs-property">@controllers</span>.append row
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@controllers_view</span> = <span class="hljs-keyword">new</span> ControllersView
+          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>
 
         @</pre></div></div>
             
@@ -206,9 +199,9 @@
             
             <div class="content"><div class='highlight'><pre>      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
         <span class="hljs-property">@$el</span>.empty()
-        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@header</span>
-        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@contents</span>
-        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@controllers</span>
+        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@header_view</span>.render().el
+        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@contents_view</span>.render().el
+        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@controllers_view</span>.render().el
         @
 
 )</pre></div></div>

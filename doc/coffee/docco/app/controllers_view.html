@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>controllers_view.coffee</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="application.js.html">
+                application.js.coffee
+              </a>
+            
+              
+              <a class="source" href="main.js.html">
+                main.js.coffee
+              </a>
+            
+              
+              <a class="source" href="application_model.html">
+                application_model.coffee
+              </a>
+            
+              
+              <a class="source" href="requirejs_config.js.html">
+                requirejs_config.js.coffee
+              </a>
+            
+              
+              <a class="source" href="application_router.html">
+                application_router.coffee
+              </a>
+            
+              
+              <a class="source" href="application_view.html">
+                application_view.coffee
+              </a>
+            
+              
+              <a class="source" href="contents_view.html">
+                contents_view.coffee
+              </a>
+            
+              
+              <a class="source" href="controllers_view.html">
+                controllers_view.coffee
+              </a>
+            
+              
+              <a class="source" href="header_view.html">
+                header_view.coffee
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>controllers_view.coffee</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>define(
+  [
+    <span class="hljs-string">"backbone"</span>
+    <span class="hljs-string">"underscore"</span>
+    <span class="hljs-string">"misc/views/select_view"</span>
+  ]
+  (
+    Backbone
+    _
+    SelectView
+  )<span class="hljs-function">-&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>textarea</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    class TextAreaView extends Backbone.View
+      tagName: "textarea"
+      className: "form-control"
+
+      initialize: -&gt;
+        @$el.css
+          maxWidth: "100%"
+          width: "100%"
+        @
+
+      render: -&gt;
+        @</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>入力欄</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    class ControllersTextAreaView extends Backbone.View
+      className: "form-group"
+
+      initialize: -&gt;
+        @textarea = new TextAreaView
+          model: @model
+        @textarea.$el.attr "rows", "7"
+        @textarea.$el.attr "placeholder", "input text..."
+        @textarea.$el.attr "disabled", ""
+        @textarea.$el.append "# dummy 20140323\n"
+        @textarea.$el.append "5 3\n"
+        @textarea.$el.append "1 2\n"
+        @textarea.$el.append "2 3\n"
+        @textarea.$el.append "4 5\n"
+        @
+
+      render: -&gt;
+        @$el.empty()
+        @$el.append @textarea.render().el
+        @</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>左側</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ControllersLeftView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Backbone</span>.<span class="hljs-title">View</span></span>
+      <span class="hljs-attribute">initialize</span>:<span class="hljs-function"> -&gt;</span>
+        <span class="hljs-property">@textarea</span> = <span class="hljs-keyword">new</span> ControllersTextAreaView
+          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>
+
+      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
+        <span class="hljs-property">@$el</span>.empty()
+        <span class="hljs-property">@$el</span>.append <span class="hljs-string">'&lt;p class="bg-info"&gt;textarea&lt;/p&gt;'</span>
+        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@textarea</span>.render().el
+        @</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>well</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    class WellView extends Backbone.View
+      className: "well"</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>パーサーの選択</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ControllersParserSelectView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WellView</span></span>
+      <span class="hljs-attribute">initialize</span>:<span class="hljs-function"> -&gt;</span>
+        <span class="hljs-property">@parser_select_view</span> = <span class="hljs-keyword">new</span> SelectView
+          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>.get <span class="hljs-string">"parser_select"</span>
+        <span class="hljs-property">@update</span>()
+        <span class="hljs-property">@model</span>.<span class="hljs-literal">on</span> <span class="hljs-string">"change:parsers"</span>,<span class="hljs-function"> =&gt;</span>
+          <span class="hljs-property">@update</span>()
+        @
+
+      <span class="hljs-attribute">update</span>:<span class="hljs-function"> -&gt;</span>
+        parsers = <span class="hljs-property">@model</span>.get <span class="hljs-string">"parsers"</span>
+        parser_select = <span class="hljs-property">@model</span>.get <span class="hljs-string">"parser_select"</span>
+        parser_keys = _(parsers).keys()
+        items = parser_select.get(<span class="hljs-string">"items"</span>)
+        _<span class="hljs-function"><span class="hljs-params">(parser_keys)</span>.<span class="hljs-title">each</span> <span class="hljs-params">(parser_key)</span>=&gt;</span>
+          items.add
+            <span class="hljs-attribute">id</span>: parser_key
+            <span class="hljs-attribute">value</span>: parser_key
+
+      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
+        <span class="hljs-property">@$el</span>.empty()
+        <span class="hljs-property">@$el</span>.append <span class="hljs-string">'&lt;p class="bg-info"&gt;parsers&lt;/p&gt;'</span>
+        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@parser_select_view</span>.render().el
+        @</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>オプション</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ControllersOptionsView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WellView</span></span>
+      <span class="hljs-attribute">initialize</span>:<span class="hljs-function"> -&gt;</span>
+        @
+
+      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
+        <span class="hljs-property">@$el</span>.empty()
+        <span class="hljs-property">@$el</span>.append <span class="hljs-string">'&lt;p class="bg-info"&gt;options&lt;/p&gt;'</span>
+        @</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>アクション</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ControllersActionsView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WellView</span></span>
+      <span class="hljs-attribute">initialize</span>:<span class="hljs-function"> -&gt;</span>
+        @
+
+      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
+        <span class="hljs-property">@$el</span>.empty()
+        <span class="hljs-property">@$el</span>.append <span class="hljs-string">'&lt;p class="bg-info"&gt;actions&lt;/p&gt;'</span>
+        <span class="hljs-property">@$el</span>.append <span class="hljs-string">'&lt;button disabled class="btn btn-lg btn-primary btn-block"&gt;Visualize&lt;/button&gt;'</span>
+        <span class="hljs-property">@$el</span>.append <span class="hljs-string">'&lt;button disabled class="btn btn-lg btn-default btn-block"&gt;Save as Image&lt;/button&gt;'</span>
+        @</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>右側</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ControllersRightView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Backbone</span>.<span class="hljs-title">View</span></span>
+      <span class="hljs-attribute">initialize</span>:<span class="hljs-function"> -&gt;</span>
+        <span class="hljs-property">@parser_select</span> = <span class="hljs-keyword">new</span> ControllersParserSelectView
+          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>
+        <span class="hljs-property">@options</span> = <span class="hljs-keyword">new</span> ControllersOptionsView
+          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>
+        <span class="hljs-property">@actions</span> = <span class="hljs-keyword">new</span> ControllersActionsView
+          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>
+
+      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
+        <span class="hljs-property">@$el</span>.empty()
+        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@parser_select</span>.render().el
+        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@options</span>.render().el
+        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@actions</span>.render().el
+        @</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>入力などの各種操作を行う</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    class ControllersView extends Backbone.View
+      className: "controllers container"</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>初期化</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-attribute">initialize</span>:<span class="hljs-function"> -&gt;</span>
+        <span class="hljs-property">@left</span> = <span class="hljs-keyword">new</span> ControllersLeftView
+          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>
+        <span class="hljs-property">@left</span>.$el.addClass <span class="hljs-string">"col-sm-6"</span>
+
+        <span class="hljs-property">@right</span> = <span class="hljs-keyword">new</span> ControllersRightView
+          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>
+        <span class="hljs-property">@right</span>.$el.addClass <span class="hljs-string">"col-sm-6"</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>DOMの描画</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
+        <span class="hljs-property">@$el</span>.empty()
+        <span class="hljs-property">@$el</span>.append <span class="hljs-string">'&lt;div class="row"&gt;&lt;/div&gt;'</span>
+        row = <span class="hljs-property">@$el</span>.children(<span class="hljs-string">'.row'</span>)
+        row.append <span class="hljs-property">@left</span>.render().el
+        row.append <span class="hljs-property">@right</span>.render().el
+        <span class="hljs-property">@$el</span>.append row
+        @
+)</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
