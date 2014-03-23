@@ -17,9 +17,15 @@ define(
       # @param [String] text 入力文字列
       # @return [GraphModel] parse後のグラフ
       parse: (text)->
-        graph = new GraphModel
-          num_vertices: 1
-          edges: []
         # TODO: 実装
+
+        lines = text.split("\n")
+        firstLine = lines[0].split(" ")
+        num_vertices = parseInt(firstLine[0])
+        num_edges = parseInt(firstLine[1])
+
+        graph = new GraphModel
+        graph.init(num_vertices)
+
         graph
 )
