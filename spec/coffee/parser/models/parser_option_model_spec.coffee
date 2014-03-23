@@ -9,6 +9,30 @@ describe "parser/models/parser_option_model", ->
   afterEach ->
     delete @data
 
+  context "typeがhiddenのときについて", ->
+    beforeEach ->
+      @data.option = new @modules.ParserOptionModel
+        type: "hidden"
+
+    context "何もせずに", ->
+      context "get_Value()を実行すると", ->
+        beforeEach ->
+          @data.ret = @data.option.get_value()
+
+        it "should not exist", ->
+          expect(@data.ret).to.not.exist
+
+    context "set_value(aiueo)を実行して", ->
+      beforeEach ->
+        @data.option.set_value "aiueo"
+
+      context "get_value()を実行すると", ->
+        beforeEach ->
+          @data.ret = @data.option.get_value()
+
+        it "should return aiueo", ->
+          expect(@data.ret).to.eql "aiueo"
+
   context "typeがflagのときについて", ->
     beforeEach ->
       @data.option = new @modules.ParserOptionModel
