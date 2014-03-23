@@ -9,6 +9,228 @@ describe "parser/models/parser_option_model", ->
   afterEach ->
     delete @data
 
+  context "typeがmultiselectのときについて", ->
+    context "何もオプションを持たないとき", ->
+      beforeEach ->
+        @data.option = new @modules.ParserOptionModel
+          type: "multiselect"
+          options: []
+
+      context "何も操作せずに", ->
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should exist", ->
+            expect(@data.ret).to.exist
+
+          it "should be empty", ->
+            expect(@data.ret.length).to.eql 0
+
+      context "存在しないオプションを選択すると", ->
+        beforeEach ->
+          @data.func = =>
+            @data.ret = @data.option.set_value "option 1"
+
+        it "should throw Error", ->
+          expect(@data.func).to.throw Error
+
+    context "1つのオプションを持つとき", ->
+      beforeEach ->
+        @data.option = new @modules.ParserOptionModel
+          type: "multiselect"
+          options: [
+            "option 1"
+          ]
+
+      context "何も操作せずに", ->
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should exist", ->
+            expect(@data.ret).to.exist
+
+          it "should have no element", ->
+            expect(@data.ret.length).to.eql 0
+
+
+      context "option 1を選択したとき", ->
+        beforeEach ->
+          @data.option.set_value "option 1"
+
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should have one element", ->
+            expect(@data.ret.length).to.eql 1
+
+          it "should include option 1", ->
+            expect(@data.ret).to.include "option 1"
+
+      context "存在しないオプションを選択すると", ->
+        beforeEach ->
+          @data.func = =>
+            @data.option.set_value "option 2"
+
+        it "should throw Error", ->
+          expect(@data.func).to.throw Error
+
+    context "3つのオプションを持つとき", ->
+      beforeEach ->
+        @data.option = new @modules.ParserOptionModel
+          type: "multiselect"
+          options: [
+            "option 1"
+            "option 2"
+            "option 3"
+          ]
+
+      context "何も操作をしないとき", ->
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.options.get_value()
+
+          it "should exist", ->
+            expect(@data.ret).to.exist
+
+      context "option 1を選択したとき", ->
+        beforeEach ->
+          @data.options.set_value "option 1"
+
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.options.get_value()
+
+          it "should have one element", ->
+            expect(@data.ret.length).to.eql 1
+
+          it "should include option 1" ,->
+            expect(@data.ret).to.include "option 1"
+
+      context "option 3を選択したとき", ->
+        beforeEach ->
+          @data.option.set_value "option 1"
+
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.options.get_value()
+
+          it "should have one element", ->
+            expect(@data.ret.length).to.eql 1
+
+          it "should include option 3", ->
+            expect(@data.ret).to.include "option 3"
+
+
+      context "option 1とoption2を選択したとき", ->
+        beforeEach ->
+          @data.option.set_value "option 1"
+          @data.option.set_value "option 2"
+
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.options.get_value()
+
+          it "should have two elements", ->
+            expect(@data.ret.length).to.eql 2
+
+          it "should include option 1", ->
+            expect(@data.ret).to.include "option 1"
+
+          it "should include option 2", ->
+            expect(@data.ret).to.include "option 2"
+
+      context "option 1とoption 3を選択したとき", ->
+        beforeEach ->
+          @data.option.set_value "option 1"
+          @data.option.set_value "option 2"
+
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.options.get_value()
+
+          it "should have two elements", ->
+            expect(@data.ret.length).to.eql 2
+
+          it "should include option 1", ->
+            expect(@data.ret).to.include "option 1"
+
+          it "should include option 3", ->
+            expect(@data.ret).to.include "option 3"
+
+      context "すべてのオプションを選択して", ->
+        beforeEach ->
+          @data.option.set_value "option 1"
+          @data.option.set_value "option 2"
+          @data.option.set_value "option 3"
+
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.options.get_value()
+
+          it "should have three elements", ->
+            expect(@data.ret.length).to.eql 3
+
+          it "should include option 1", ->
+            expect(@data.ret).to.include "option 1"
+
+          it "should include option 2", ->
+            expect(@data.ret).to.include "option 2"
+
+          it "should include option 3", ->
+            expect(@data.ret).to.include "option 3"
+
+        context "option 1を選択して", ->
+          beforeEach ->
+            @data.option.set_value "option 1"
+
+          context "get_value()を実行すると", ->
+            beforeEach ->
+              @data.ret = @data.options.get_value()
+
+            it "should have two elements", ->
+              expect(@data.ret.length).to.eql 2
+
+            it "should not include option 1", ->
+              expect(@data.ret).to.not.include "option 1"
+
+            it "should include option 2", ->
+              expect(@data.ret).to.include "option 2"
+
+            it "should include option 3", ->
+              expect(@data.ret).to.include "option 3"
+
+        context "option 1とoption 3を選択して", ->
+          beforeEach ->
+            @data.option.set_value "option 1"
+            @data.option.set_value "option 3"
+
+          context "get_value()を実行すると", ->
+            beforeEach ->
+              @data.ret = @data.options.get_value()
+
+            it "should have one element", ->
+              expect(@data.ret.length).to.eql 1
+
+            it "should not include option 1", ->
+              expect(@data.ret).to.not.include "option 1"
+
+            it "should include option 2", ->
+              expect(@data.ret).to.include "option 2"
+
+            it "should not include option 3", ->
+              expect(@data.ret).to.not.include "option 3"
+
+      context "存在しないオプションを選択したとき", ->
+        beforeEach ->
+          @data.func = =>
+            @data.option.set_value "option 4"
+
+        it "should throw Error", ->
+          expect(@data.func).to.throw Error
+
   context "typeがselectのときについて", ->
     context "何もオプションを持たないとき", ->
       beforeEach ->
