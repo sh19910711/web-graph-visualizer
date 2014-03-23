@@ -18,6 +18,8 @@ define(
       # @return [GraphModel] parse後のグラフ
       parse: (text)->
         graph = new GraphModel
+          num_vertices: 1
+          edges: []
         # TODO: 実装
         graph
 )
