@@ -13,7 +13,6 @@ define(
       # 初期化
       # @return [SelectView] void
       initialize: (options)->
-        @items = options.items
         @select_tag = $('<select class="form-control"></select>')
         @model.on "create", @update_select_tag
         @model.on "change:items", @update_select_tag
@@ -24,9 +23,8 @@ define(
       # @return [SelectView] void
       update_select_tag: =>
         @select_tag.empty()
-        items = @model.get "items"
         selected_id = @model.get "selected_id"
-        items.each (item, key)=>
+        @model.get("items").each (item, key)=>
           @select_tag.append "<option value=\"#{item.id}\">#{item.get("value")}</option>"
         @
 

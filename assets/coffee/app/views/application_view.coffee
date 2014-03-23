@@ -35,6 +35,7 @@ define(
 
         # 各種操作用
         @controllers_view = new ControllersView
+          model: @model
 
         @
 

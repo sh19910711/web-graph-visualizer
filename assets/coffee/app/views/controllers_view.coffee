@@ -1,9 +1,13 @@
 define(
   [
     "backbone"
+    "underscore"
+    "misc/views/select_view"
   ]
   (
     Backbone
+    _
+    SelectView
   )->
     # textarea
     class TextAreaView extends Backbone.View
@@ -57,6 +61,32 @@ define(
     class WellView extends Backbone.View
       className: "well"
 
+    # パーサーの選択
+    class ControllersParserSelectView extends WellView
+      initialize: ->
+        @parser_select_view = new SelectView
+          model: @model.get "parser_select"
+        @update()
+        @model.on "change:parsers", =>
+          @update()
+        @
+
+      update: ->
+        parsers = @model.get "parsers"
+        parser_select = @model.get "parser_select"
+        parser_keys = _(parsers).keys()
+        items = parser_select.get("items")
+        _(parser_keys).each (parser_key)=>
+          items.add
+            id: parser_key
+            value: parser_key
+
+      render: ->
+        @$el.empty()
+        @$el.append '<p class="bg-info">parsers</p>'
+        @$el.append @parser_select_view.render().el
+        @
+
     # オプション
     class ControllersOptionsView extends WellView
       initialize: ->
@@ -82,6 +112,8 @@ define(
     # 右側
     class ControllersRightView extends Backbone.View
       initialize: ->
+        @parser_select = new ControllersParserSelectView
+          model: @model
         @options = new ControllersOptionsView
           model: @model
         @actions = new ControllersActionsView
@@ -89,6 +121,7 @@ define(
 
       render: ->
         @$el.empty()
+        @$el.append @parser_select.render().el
         @$el.append @options.render().el
         @$el.append @actions.render().el
         @
@@ -100,9 +133,11 @@ define(
       # 初期化
       initialize: ->
         @left = new ControllersLeftView
+          model: @model
         @left.$el.addClass "col-sm-6"
 
         @right = new ControllersRightView
+          model: @model
         @right.$el.addClass "col-sm-6"
 
       # DOMの描画
