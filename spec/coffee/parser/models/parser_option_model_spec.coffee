@@ -9,7 +9,124 @@ describe "parser/models/parser_option_model", ->
   afterEach ->
     delete @data
 
-  context "typeがtextのときについて"
+  context "typeがselectのときについて", ->
+    context "何もオプションを持たないとき", ->
+      beforeEach ->
+        @data.option = new @modules.ParserOptionModel
+          type: "select"
+          options: []
+
+      context "何も操作せずに", ->
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should not exist", ->
+            expect(@data.ret).to.not.exist
+
+      context "存在しないオプションを選択すると", ->
+        beforeEach ->
+          @data.func = =>
+            @data.option.set_value "option 1"
+
+        it "should throw Error", ->
+          expect(@data.func).to.throw Error
+
+    context "1つのオプションを持つとき", ->
+      beforeEach ->
+        @data.option = new @modules.ParserOptionModel
+          type: "select"
+          options: [
+            "option 1"
+          ]
+
+      context "何もせずに", ->
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should return option 1", ->
+            expect(@data.ret).to.eql "option 1"
+
+      context "option 1を選択して", ->
+        beforeEach ->
+          @data.option.set_value "option 1"
+
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should return option 1", ->
+            expect(@data.ret).to.eql "option 1"
+
+      context "存在しないオプションを選択すると", ->
+        beforeEach ->
+          @data.func = =>
+            @data.set_value "option 2"
+
+        it "should throw Error", ->
+          expect(@data.func).to.throw Error
+
+    context "3つのオプションを持つとき", ->
+      beforeEach ->
+        @data.option = new @modules.ParserOptionModel
+          type: "select"
+          options: [
+            "option 1"
+            "option 2"
+            "option 3"
+          ]
+
+      context "何もせずに", ->
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should return option 1", ->
+            expect(@data.ret).to.eql "option 1"
+
+      context "option 1を選択して", ->
+        beforeEach ->
+          @data.option.set_value "option 1"
+
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should return option 1", ->
+            expect(@data.ret).to.eql "option 1"
+
+      context "option 2を選択して", ->
+        beforeEach ->
+          @data.option.set_value "option 2"
+
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should return option 2", ->
+            expect(@data.ret).to.eql "option 2"
+
+      context "option 3を選択して", ->
+        beforeEach ->
+          @data.option.set_value "option 3"
+
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should return option 3", ->
+            expect(@data.ret).to.eql "option 3"
+
+      context "存在しないオプションoption 4を選択すると", ->
+        beforeEach ->
+          @data.func = =>
+            @data.option.set_value "option 4"
+
+        it "should throw Error", ->
+          expect(@data.func).to.throw Error
+
+  context "typeがtextのときについて", ->
     context "get_value()について", ->
       context "適当なvalueを持つとき", ->
         beforeEach ->
