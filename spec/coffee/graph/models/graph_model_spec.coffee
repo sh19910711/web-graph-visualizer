@@ -166,20 +166,21 @@ describe "graph/models/graph_model", ->
 
           it "should return list of {from, to}", ->
             expect(@ret).to.eql [
-                { source: 0, target: 1 }
+                { from: 0, to: 1 }
               ]
 
-      context "get_edges(source, target)を実行したとき", ->
-        beforeEach ->
-          @ret = @data.graph.get_edges("source", "target")
-
-        it "should return empty list", ->
-          expect(@ret).to.eql []
-
-      context "get_edges()を実行したとき", ->
-        beforeEach ->
-          @ret = @data.graph.get_edges()
-
-        it "should return empty", ->
-          expect(@ret).to.eql []
+      context "何もせずに", ->
+        context "get_edges(source, target)を実行したとき", ->
+          beforeEach ->
+            @ret = @data.graph.get_edges("source", "target")
+  
+          it "should return empty list", ->
+            expect(@ret).to.eql []
+  
+        context "get_edges()を実行したとき", ->
+          beforeEach ->
+            @ret = @data.graph.get_edges()
+  
+          it "should return empty", ->
+            expect(@ret).to.eql []
 
