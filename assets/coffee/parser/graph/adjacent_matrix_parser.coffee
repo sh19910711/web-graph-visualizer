@@ -18,8 +18,15 @@ define(
       # @return [GraphModel] parse後のグラフ
       parse: (text)->
         # TODO: 実装
+
+        lines = text.split("\n")
+        num_lines = lines.length
+
+        first_line = lines[0]
+        num_vertices = parseInt(first_line, 10)
+
         graph = new GraphModel
-          num_vertices: 1
-          edges: []
+        graph.init(num_vertices)
+
         graph
 )
