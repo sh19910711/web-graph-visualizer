@@ -4,12 +4,14 @@ define(
     "jquery"
     "app/views/header_view"
     "app/views/contents_view"
+    "app/views/controllers_view"
   ]
   (
     Backbone
     $
     HeaderView
     ContentsView
+    ControllersView
   )->
     class ApplicationView extends Backbone.View
       tagName: "div"
@@ -32,30 +34,7 @@ define(
           model: @model
 
         # 各種操作用
-        @controllers = $('<div id="controllers" class="container"></div>')
-
-        left = $('<div class="col-sm-6"></div>')
-        left.append '<p class="bg-info">textarea</p>'
-        textarea = $('<textarea disabled class="form-control" placeholder="input text..." rows="7"></textarea>')
-        textarea.append "# dummy\n"
-        textarea.append "5 3\n"
-        textarea.append "1 2\n"
-        textarea.append "2 3\n"
-        textarea.append "4 5\n"
-        left.append textarea
-
-        right = $('<div class="col-sm-6"></div>')
-        well = $('<div class="well"></div>')
-        well.append '<p class="bg-info">options</p>'
-        well.append '<p class="bg-info">actions</p>'
-        well.append '<button disabled class="btn btn-lg btn-primary btn-block">Visualize</button>'
-        well.append '<button disabled class="btn btn-lg btn-default btn-block">Save as Image</button>'
-        right.append well
-
-        row = $('<div class="row"></div>')
-        row.append left
-        row.append right
-        @controllers.append row
+        @controllers_view = new ControllersView
 
         @
 
@@ -64,7 +43,7 @@ define(
         @$el.empty()
         @$el.append @header_view.render().el
         @$el.append @contents_view.render().el
-        @$el.append @controllers
+        @$el.append @controllers_view.render().el
         @
 
 )
