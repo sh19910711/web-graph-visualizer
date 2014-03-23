@@ -2,11 +2,13 @@ define(
   [
     "backbone"
     "jquery"
+    "app/views/header_view"
     "graph/views/graph_view"
   ]
   (
     Backbone
     $
+    HeaderView
     GraphView
   )->
     class ApplicationView extends Backbone.View
@@ -22,9 +24,8 @@ define(
         #
 
         # ヘッダ
-        @header = $('<div id="header" class="container"></div>')
-        @header.append "<h1>#{@model.get "page.title"}</h1>"
-        @header.append "<p class=\"lead\">#{@model.get "page.desc"}</p>"
+        @header_view = new HeaderView
+          model: @model
 
         # Graph View
         @contents = $('<div id="contents" class="container"></div>')
@@ -64,7 +65,7 @@ define(
       # 描画
       render: ->
         @$el.empty()
-        @$el.append @header
+        @$el.append @header_view.render().el
         @$el.append @contents
         @$el.append @controllers
         @
