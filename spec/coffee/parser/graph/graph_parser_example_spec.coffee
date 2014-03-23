@@ -2,6 +2,7 @@ describe "parser/graph/graph_parser_example", ->
   SpecHelpers.load_modules(
     "parser/graph/graph_parser_example"
     "misc/models/select_model"
+    "parser/models/parser_option_model"
   )
 
   beforeEach ->
@@ -14,8 +15,8 @@ describe "parser/graph/graph_parser_example", ->
     beforeEach ->
       @data.parser = new @modules.GraphParserExample
 
-    it "should be defined as SelectModel", ->
-      expect(@data.parser.graph_type instanceof @modules.SelectModel)
+    it "should be defined as ParserOptionModel", ->
+      expect(@data.parser.get_option("graph_type") instanceof @modules.ParserOptionModel)
 
   context "getについて", ->
     beforeEach ->

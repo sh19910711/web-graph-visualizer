@@ -3,41 +3,46 @@ define(
     "parser/parser_base"
     "graph/models/graph_model"
     "misc/models/select_model"
+    "parser/models/parser_option_model"
   ]
   (
     ParserBase
     GraphModel
     SelectModel
+    ParserOptionModel
   )->
     # パーサー実装のサンプル
     class GraphParserExample extends ParserBase
       # デフォルトオプション
-      defaults:
+      defaults: ->
         key1: "value1"
         key2: "value2"
-
-      # 初期化
-      initialize: ->
-        # 出力するグラフの種類
-        @graph_type = new SelectModel
-          items: [
+        "option/graph_type": new ParserOptionModel
+          type: "select"
+          options: [
             "GRAPH_TYPE_0"
             "GRAPH_TYPE_1"
           ]
-          selected_key: 0
+        "option/dummy_1": new ParserOptionModel
+          type: "text"
+          value: "this is dummy"
+
+      # 初期化
+      initialize: ->
+        @
 
       # 固定の結果を返す
       parse: ->
         graph = new GraphModel
-        switch @graph_type.get "selected_key"
-          when 0
+        switch @graph_type.get_option_value "graph_type"
+          when "GRAPH_TYPE_0"
             # 5個の頂点と3本の辺
             graph.init 5
             graph.add_edge 0, 1
             graph.add_edge 1, 2
             graph.add_edge 3, 4
 
-          when 1
+          when "GRAPH_TYPE_1"
             # 10個の頂点と8本の辺
             graph.init 10
             graph.add_edge 0, 1
