@@ -1,9 +1,11 @@
 define(
   [
     "backbone"
+    "misc/collections/item_collection"
   ]
   (
     Backbone
+    ItemCollection
   )->
     # 選択可能なアイテムのリスト
     class SelectModel extends Backbone.Model
@@ -16,6 +18,19 @@ define(
 
       # 初期化
       # @return [SelectModel] void
-      initialize: ->
+      initialize: (options)->
+        items = @get "items"
+        # itemsがItemCollectionじゃないときに初期化する
+        unless items instanceof ItemCollection
+          if items instanceof Array
+            items = new ItemCollection items
+          else
+            throw new Error "ERROR_DQXE6Q: Invalid Items"
+        #
+        items.on "add", =>
+          @trigger "change:items"
+        items.on "remove", =>
+          @trigger "change:items"
+        @set "items", items
         @
 )

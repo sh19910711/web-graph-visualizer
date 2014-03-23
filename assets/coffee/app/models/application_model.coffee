@@ -1,13 +1,24 @@
 define(
   [
     "backbone"
+    "underscore"
     "graph/models/graph_model"
+    "misc/models/select_model"
+    "misc/models/item_model"
+    "misc/collections/item_collection"
   ]
   (
     Backbone
+    _
     GraphModel
+    SelectModel
+    ItemModel
+    ItemCollection
   )->
     class ApplicationModel extends Backbone.Model
+      defaults: ->
+        parsers: {}
+
       # 初期化
       initialize: ->
         console.log "@ApplicationModel#initialize"
@@ -15,6 +26,34 @@ define(
         # GraphModelの初期化
         graph = new GraphModel
         @set "graph", graph
+
+        parser_keys = new ItemCollection []
+        parser_select = new SelectModel
+          items: parser_keys
+        @set "parser_select", parser_select
+
+        # パーサーの読み込み
+        requirejs(
+          [
+            "parser/graph/graph_parser_example"
+            "parser/graph/adjacent_list_parser"
+            "parser/graph/adjacent_matrix_parser"
+          ]
+          =>
+            parsers = _(arguments).reduce(
+              (prev, ParserClass)->
+                # キーを登録
+                parser_keys.add
+                  id: ParserClass.name
+                  value: ParserClass.name
+                # 
+                obj = {}
+                obj[ParserClass.name] = ParserClass
+                _(prev).extend obj
+              {}
+            )
+            @set "parsers", parsers
+        )
 
         # ダミーのデータを入れておく
         # TODO: 入力文字列から受け取れるようにする

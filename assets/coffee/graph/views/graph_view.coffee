@@ -56,8 +56,7 @@ define(
         @svg = d3
           .select @visualizer[0]
           .append 'svg'
-          .attr 'width', DEFAULT_WIDTH
-          .attr 'height', DEFAULT_HEIGHT
+          .attr 'style', "width: 100%; height: #{DEFAULT_HEIGHT}px;"
 
         # 何か力学的なものを働かせる
         @force = d3.layout
