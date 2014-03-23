@@ -9,6 +9,68 @@ describe "parser/models/parser_option_model", ->
   afterEach ->
     delete @data
 
+  context "typeがflagのときについて", ->
+    beforeEach ->
+      @data.option = new @modules.ParserOptionModel
+        type: "flag"
+
+    context "何も操作せずに", ->
+      context "get_value()を実行すると", ->
+        beforeEach ->
+          @data.ret = @data.option.get_value()
+
+        it "should be false", ->
+          expect(@data.ret).to.be.false
+
+    context "set_value()を実行して", ->
+      beforeEach ->
+        @data.option.set_value()
+
+      context "さらにset_value()を実行して", ->
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should be true", ->
+            expect(@data.ret).to.be.false
+
+      context "get_value()を実行すると", ->
+        beforeEach ->
+          @data.ret = @data.option.get_value()
+
+        it "should be true", ->
+          expect(@data.ret).to.be.true
+
+    context "set_value(true)を実行して", ->
+      beforeEach ->
+        @data.option.set_value true
+
+      context "さらにset_value()を実行して", ->
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should be true", ->
+            expect(@data.ret).to.be.false
+
+      context "get_value()を実行すると", ->
+        beforeEach ->
+          @data.ret = @data.option.get_value()
+
+        it "should be true", ->
+          expect(@data.ret).to.be.true
+
+    context "set_value(false)を実行して", ->
+      beforeEach ->
+        @data.option.set_value false
+
+      context "get_value()を実行すると", ->
+        beforeEach ->
+          @data.ret = @data.option.get_value()
+
+        it "should be false", ->
+          expect(@data.ret).to.be.false
+
   context "typeがmultiselectのときについて", ->
     context "何もオプションを持たないとき", ->
       beforeEach ->
