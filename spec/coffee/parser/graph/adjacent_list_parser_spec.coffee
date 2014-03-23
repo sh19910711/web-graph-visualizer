@@ -30,5 +30,18 @@ describe "coffee/parser/graph/adjacent_list_parser", ->
       it "graph should have two vertices", ->
         expect(@data.graph.get_num_vertices()).to.eql 2
 
-      it "graph should have twi edges", ->
+      it "graph should have no edges", ->
         expect(@data.graph.get_num_edges()).to.eql 0
+
+    context 'parse("2 1\\n1 2")したとき', ->
+      beforeEach ->
+        @data.graph = @data.parser.parse("2 1\n1 2")
+
+      it "graph should have two vertices", ->
+        expect(@data.graph.get_num_vertices()).to.eql 2
+
+      it "graph should have a edges", ->
+        expect(@data.graph.get_num_edges()).to.eql 1
+
+      it "graph should have a edge from 0 to 1", ->
+        expect(@data.graph.check_edge(0, 1)).to.be.true
