@@ -3,13 +3,13 @@ define(
     "backbone"
     "jquery"
     "app/views/header_view"
-    "graph/views/graph_view"
+    "app/views/contents_view"
   ]
   (
     Backbone
     $
     HeaderView
-    GraphView
+    ContentsView
   )->
     class ApplicationView extends Backbone.View
       tagName: "div"
@@ -28,11 +28,8 @@ define(
           model: @model
 
         # Graph View
-        @contents = $('<div id="contents" class="container"></div>')
-        @graph_view = new GraphView
-          model: @model.get "graph"
-        @contents.append '<p class="bg-info">visualizer</p>'
-        @contents.append @graph_view.render().el
+        @contents_view = new ContentsView
+          model: @model
 
         # 各種操作用
         @controllers = $('<div id="controllers" class="container"></div>')
@@ -66,7 +63,7 @@ define(
       render: ->
         @$el.empty()
         @$el.append @header_view.render().el
-        @$el.append @contents
+        @$el.append @contents_view.render().el
         @$el.append @controllers
         @
 
