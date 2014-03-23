@@ -21,6 +21,12 @@ define(
       # newされたときに呼ばれるメソッド
       # @return [GraphModel] void
       initialize: ->
+        if @get "num_vertices"
+          @init(@get "num_vertices")
+
+        if @get "edges"
+          _(@get "edges").each((edge) => @add_edge(edge.from, edge.to))
+
         @
         
       # 初期化
@@ -91,4 +97,19 @@ define(
         # 辺が存在するかどうか調べる
         _(@get("adj_list")[from]).indexOf(to) != -1
 
+      # D3.jsで利用できる形式で、辺のリストを取得する
+      # @param [String] from_key 始点を表すキー
+      # @param [String] to_key 終点を表すキー
+      # @return [Array] 辺のリスト
+      get_edges: (from_key, to_key)->
+        links = []
+
+        for from_id in _.range(@get "num_vertices")
+          for to_id in @get("adj_list")[from_id]
+            tmp = {}
+            tmp[from_key] = from_id
+            tmp[to_key] = to_id
+            links.push tmp
+
+        links
 )
