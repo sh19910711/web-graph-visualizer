@@ -176,18 +176,18 @@ describe "parser/models/parser_option_model", ->
       context "何も操作をしないとき", ->
         context "get_value()を実行すると", ->
           beforeEach ->
-            @data.ret = @data.options.get_value()
+            @data.ret = @data.option.get_value()
 
           it "should exist", ->
             expect(@data.ret).to.exist
 
       context "option 1を選択したとき", ->
         beforeEach ->
-          @data.options.set_value "option 1"
+          @data.option.set_value "option 1"
 
         context "get_value()を実行すると", ->
           beforeEach ->
-            @data.ret = @data.options.get_value()
+            @data.ret = @data.option.get_value()
 
           it "should have one element", ->
             expect(@data.ret.length).to.eql 1
@@ -197,11 +197,11 @@ describe "parser/models/parser_option_model", ->
 
       context "option 3を選択したとき", ->
         beforeEach ->
-          @data.option.set_value "option 1"
+          @data.option.set_value "option 3"
 
         context "get_value()を実行すると", ->
           beforeEach ->
-            @data.ret = @data.options.get_value()
+            @data.ret = @data.option.get_value()
 
           it "should have one element", ->
             expect(@data.ret.length).to.eql 1
@@ -217,7 +217,7 @@ describe "parser/models/parser_option_model", ->
 
         context "get_value()を実行すると", ->
           beforeEach ->
-            @data.ret = @data.options.get_value()
+            @data.ret = @data.option.get_value()
 
           it "should have two elements", ->
             expect(@data.ret.length).to.eql 2
@@ -231,11 +231,11 @@ describe "parser/models/parser_option_model", ->
       context "option 1とoption 3を選択したとき", ->
         beforeEach ->
           @data.option.set_value "option 1"
-          @data.option.set_value "option 2"
+          @data.option.set_value "option 3"
 
         context "get_value()を実行すると", ->
           beforeEach ->
-            @data.ret = @data.options.get_value()
+            @data.ret = @data.option.get_value()
 
           it "should have two elements", ->
             expect(@data.ret.length).to.eql 2
@@ -254,7 +254,7 @@ describe "parser/models/parser_option_model", ->
 
         context "get_value()を実行すると", ->
           beforeEach ->
-            @data.ret = @data.options.get_value()
+            @data.ret = @data.option.get_value()
 
           it "should have three elements", ->
             expect(@data.ret.length).to.eql 3
@@ -274,7 +274,7 @@ describe "parser/models/parser_option_model", ->
 
           context "get_value()を実行すると", ->
             beforeEach ->
-              @data.ret = @data.options.get_value()
+              @data.ret = @data.option.get_value()
 
             it "should have two elements", ->
               expect(@data.ret.length).to.eql 2
@@ -295,7 +295,7 @@ describe "parser/models/parser_option_model", ->
 
           context "get_value()を実行すると", ->
             beforeEach ->
-              @data.ret = @data.options.get_value()
+              @data.ret = @data.option.get_value()
 
             it "should have one element", ->
               expect(@data.ret.length).to.eql 1
