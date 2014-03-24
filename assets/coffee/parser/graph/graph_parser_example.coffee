@@ -34,7 +34,7 @@ define(
       # 固定の結果を返す
       parse: ->
         graph = new GraphModel
-        switch @graph_type.get_option_value "graph_type"
+        switch @get_option_value "graph_type"
           when "GRAPH_TYPE_0"
             # 5個の頂点と3本の辺
             graph.init 5
