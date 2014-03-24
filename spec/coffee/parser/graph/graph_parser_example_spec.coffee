@@ -2,6 +2,7 @@ describe "parser/graph/graph_parser_example", ->
   SpecHelpers.load_modules(
     "parser/graph/graph_parser_example"
     "misc/models/select_model"
+    "parser/models/parser_option_model"
   )
 
   beforeEach ->
@@ -14,10 +15,10 @@ describe "parser/graph/graph_parser_example", ->
     beforeEach ->
       @data.parser = new @modules.GraphParserExample
 
-    it "should be defined as SelectModel", ->
-      expect(@data.parser.graph_type instanceof @modules.SelectModel)
+    it "should be defined as ParserOptionModel", ->
+      expect(@data.parser.get_option("graph_type") instanceof @modules.ParserOptionModel)
 
-  context "getについて", ->
+  context "getについて [TODO] remove?", ->
     beforeEach ->
       @data.parser = new @modules.GraphParserExample
 
@@ -96,27 +97,85 @@ describe "parser/graph/graph_parser_example", ->
   context "parseメソッドについて", ->
     beforeEach ->
       @data.parser = new @modules.GraphParserExample
-      
-    context "parse(this is test)したとき", ->
-      beforeEach ->
-        @data.graph = @data.parser.parse("this is test")
-      
-      it "should return fixed value", ->
-        expect(@data.graph.get_num_vertices()).to.equals 5
-        expect(@data.graph.get_num_edges()).to.equals 3
     
-    context "parse(1 2 3 4 5)したとき", ->
-      beforeEach ->
-        @data.graph = @data.parser.parse("1 2 3 4 5")
+    context "何もせずに", ->
+      context "parse(this is test)したとき", ->
+        beforeEach ->
+          @data.graph = @data.parser.parse("this is test")
         
-      it "should return fixed value", ->
-        expect(@data.graph.get_num_vertices()).to.equals 5
-        expect(@data.graph.get_num_edges()).to.equals 3
+        it "should return fixed value", ->
+          expect(@data.graph.get_num_vertices()).to.equals 5
+          expect(@data.graph.get_num_edges()).to.equals 3
+      
+      context "parse(1 2 3 4 5)したとき", ->
+        beforeEach ->
+          @data.graph = @data.parser.parse("1 2 3 4 5")
+          
+        it "should return fixed value", ->
+          expect(@data.graph.get_num_vertices()).to.equals 5
+          expect(@data.graph.get_num_edges()).to.equals 3
+      
+      context "parse(aaaaaa)したとき", ->
+        beforeEach ->
+          @data.graph = @data.parser.parse("aaaaaa")
+          
+        it "should return fixed value", ->
+          expect(@data.graph.get_num_vertices()).to.equals 5
+          expect(@data.graph.get_num_edges()).to.equals 3
     
-    context "parse(aaaaaa)したとき", ->
+    context "graph_typeをGRAPH_TYPE_0に設定して", ->
       beforeEach ->
-        @data.graph = @data.parser.parse("aaaaaa")
+        @data.parser.get_option("graph_type").set_value "GRAPH_TYPE_0"
+
+      context "parse(this is test)したとき", ->
+        beforeEach ->
+          @data.graph = @data.parser.parse("this is test")
         
-      it "should return fixed value", ->
-        expect(@data.graph.get_num_vertices()).to.equals 5
-        expect(@data.graph.get_num_edges()).to.equals 3
+        it "should return fixed value", ->
+          expect(@data.graph.get_num_vertices()).to.equals 5
+          expect(@data.graph.get_num_edges()).to.equals 3
+      
+      context "parse(1 2 3 4 5)したとき", ->
+        beforeEach ->
+          @data.graph = @data.parser.parse("1 2 3 4 5")
+          
+        it "should return fixed value", ->
+          expect(@data.graph.get_num_vertices()).to.equals 5
+          expect(@data.graph.get_num_edges()).to.equals 3
+      
+      context "parse(aaaaaa)したとき", ->
+        beforeEach ->
+          @data.graph = @data.parser.parse("aaaaaa")
+          
+        it "should return fixed value", ->
+          expect(@data.graph.get_num_vertices()).to.equals 5
+          expect(@data.graph.get_num_edges()).to.equals 3
+
+    context "graph_typeをGRAPH_TYPE_1に設定して", ->
+      beforeEach ->
+        @data.parser.get_option("graph_type").set_value "GRAPH_TYPE_1"
+
+      context "parse(this is test)したとき", ->
+        beforeEach ->
+          @data.graph = @data.parser.parse("this is test")
+        
+        it "should return fixed value", ->
+          expect(@data.graph.get_num_vertices()).to.equals 10
+          expect(@data.graph.get_num_edges()).to.equals 8
+      
+      context "parse(1 2 3 4 5)したとき", ->
+        beforeEach ->
+          @data.graph = @data.parser.parse("1 2 3 4 5")
+          
+        it "should return fixed value", ->
+          expect(@data.graph.get_num_vertices()).to.equals 10
+          expect(@data.graph.get_num_edges()).to.equals 8
+      
+      context "parse(aaaaaa)したとき", ->
+        beforeEach ->
+          @data.graph = @data.parser.parse("aaaaaa")
+          
+        it "should return fixed value", ->
+          expect(@data.graph.get_num_vertices()).to.equals 10
+          expect(@data.graph.get_num_edges()).to.equals 8
+
