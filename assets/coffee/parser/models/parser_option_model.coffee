@@ -23,6 +23,8 @@ define(
             select_id_list = @get "select_id_list"
             _(select_id_list).map (select_id)=>
               @get("options")[select_id]
+          when "flag"
+            @get "value"
           else
             throw new Error "ERROR_SGRVQ6: Unknown Parser Option Type"
 
@@ -56,6 +58,13 @@ define(
               select_id_list.push index_of
 
             @set "select_id_list", select_id_list
+          when "flag"
+            if arguments.length == 0
+              @set "value", !(@get "value")
+            else if arguments.length == 1
+              @set "value", value
+            else
+              throw new Error "ERROR_OX1A9Y: Unknown Number of Parameters"
           else
             throw new Error "ERROR_29LRAC: Unknown Parser Option Type"
         @
@@ -72,6 +81,10 @@ define(
           when "multiselect"
             # リストを初期化
             @set "select_id_list", []
+          when "flag"
+            @set "value", @get("value") || false
+          else
+            throw new Error "ERROR_AT8YQ4: Unknown Parser Option Type"
         @
 
 )

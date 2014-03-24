@@ -51,6 +51,9 @@ describe "parser/models/parser_option_model", ->
         @data.option.set_value()
 
       context "さらにset_value()を実行して", ->
+        beforeEach ->
+          @data.option.set_value()
+
         context "get_value()を実行すると", ->
           beforeEach ->
             @data.ret = @data.option.get_value()
@@ -70,6 +73,9 @@ describe "parser/models/parser_option_model", ->
         @data.option.set_value true
 
       context "さらにset_value()を実行して", ->
+        beforeEach ->
+          @data.option.set_value()
+
         context "get_value()を実行すると", ->
           beforeEach ->
             @data.ret = @data.option.get_value()
