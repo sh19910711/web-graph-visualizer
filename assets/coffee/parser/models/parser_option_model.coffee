@@ -25,6 +25,8 @@ define(
               @get("options")[select_id]
           when "flag"
             @get "value"
+          when "hidden"
+            @get "value"
           else
             throw new Error "ERROR_SGRVQ6: Unknown Parser Option Type"
 
@@ -65,6 +67,8 @@ define(
               @set "value", value
             else
               throw new Error "ERROR_OX1A9Y: Unknown Number of Parameters"
+          when "hidden"
+            @set "value", "" + value
           else
             throw new Error "ERROR_29LRAC: Unknown Parser Option Type"
         @
@@ -74,7 +78,7 @@ define(
         switch @get "type"
           when "text"
             # 値をStringに正規化
-            @set "value", "" + @get("value")
+            @set "value", "" + @get("value") if @get("value")
           when "select"
             # 1つ以上のオプションが与えられたときは先頭の要素を選択状態にしておく
             @set "select_id", 0 if @get("options").length > 0
@@ -83,6 +87,9 @@ define(
             @set "select_id_list", []
           when "flag"
             @set "value", @get("value") || false
+          when "hidden"
+            # 値をStringに正規化
+            @set "value", "" + @get("value") if @get("value")
           else
             throw new Error "ERROR_AT8YQ4: Unknown Parser Option Type"
         @

@@ -15,7 +15,7 @@ describe "parser/models/parser_option_model", ->
         type: "hidden"
 
     context "何もせずに", ->
-      context "get_Value()を実行すると", ->
+      context "get_value()を実行すると", ->
         beforeEach ->
           @data.ret = @data.option.get_value()
 
