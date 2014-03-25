@@ -19,18 +19,18 @@
       Index
     </a>
     &raquo;
-    <span class='title'>GraphView</span>
+    <span class='title'>ContentsView</span>
   </div>
 </div>
     <div id='content'>
       <h1>
         Class:
-        GraphView
+        ContentsView
       </h1>
       <table class='box'>
         <tr>
           <td>Defined in:</td>
-          <td>assets&#47;coffee&#47;graph&#47;views&#47;graph_view.coffee</td>
+          <td>assets&#47;coffee&#47;app&#47;views&#47;contents_view.coffee</td>
         </tr>
         <tr>
           <td>Inherits:</td>
@@ -39,26 +39,15 @@
           </td>
         </tr>
       </table>
-      <h2>Overview</h2>
-      <div class='docstring'>
-  <p>GraphModelのView
-divタグの中で、svg/canvasタグを操作する</p>
-</div>
-<div class='tags'>
-</div>
       <h2>Variables Summary</h2>
       <dl class='constants'>
-  <dt id='tagName-variable'>
-    tagName
+  <dt id='className-variable'>
+    className
     =
   </dt>
   <dd>
-    <pre><code class='coffeescript'>&quot;div&quot;</code></pre>
-    <div class='docstring'>
-  <p>HTMLタグ</p>
-</div>
-<div class='tags'>
-</div>
+    <pre><code class='coffeescript'>&quot;contents container&quot;</code></pre>
+    
   </dd>
 </dl>
       <h2>Instance Method Summary</h2>
@@ -67,37 +56,12 @@ divタグの中で、svg/canvasタグを操作する</p>
     <span class='signature'>
       <a href='#initialize-dynamic'>
         #
-(void)
+(ContentsView)
 <b>initialize</b><span>()</span>
       </a>
     </span>
     <span class='desc'>
       初期化 
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#tick_visualizer-dynamic'>
-        #
-(void)
-<b>tick_visualizer</b><span>()</span>
-      </a>
-    </span>
-    <span class='bound note title'>Bound</span>
-    <span class='desc'>
-      位置などの更新 
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#update_visualizer-dynamic'>
-        #
-(void)
-<b>update_visualizer</b><span>()</span>
-      </a>
-    </span>
-    <span class='desc'>
-      ビジュアライザに関するDOMの更新 
     </span>
   </li>
   <li>
@@ -109,7 +73,7 @@ divタグの中で、svg/canvasタグを操作する</p>
       </a>
     </span>
     <span class='desc'>
-      描画 
+      DOMの描画 
     </span>
   </li>
 </ul>
@@ -118,7 +82,7 @@ divタグの中で、svg/canvasタグを操作する</p>
   <div class='method_details'>
     <p class='signature' id='initialize-dynamic'>
       #
-(void)
+(ContentsView)
 <b>initialize</b><span>()</span>
       <br>
     </p>
@@ -126,33 +90,17 @@ divタグの中で、svg/canvasタグを操作する</p>
   <p>初期化</p>
 </div>
 <div class='tags'>
-</div>
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='tick_visualizer-dynamic'>
-      #
-(void)
-<b>tick_visualizer</b><span>()</span>
-      <span class='bound note'>Bound</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>位置などの更新</p>
-</div>
-<div class='tags'>
-</div>
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='update_visualizer-dynamic'>
-      #
-(void)
-<b>update_visualizer</b><span>()</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>ビジュアライザに関するDOMの更新</p>
-</div>
-<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ContentsView.html'>ContentsView</a></tt>
+      )
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
@@ -163,7 +111,7 @@ divタグの中で、svg/canvasタグを操作する</p>
       <br>
     </p>
     <div class='docstring'>
-  <p>描画</p>
+  <p>DOMの描画</p>
 </div>
 <div class='tags'>
 </div>

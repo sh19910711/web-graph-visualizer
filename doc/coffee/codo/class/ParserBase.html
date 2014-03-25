@@ -57,7 +57,7 @@
     <span class='signature'>
       <a href='#initialize-dynamic'>
         #
-(void)
+(ParserBase)
 <b>initialize</b><span>()</span>
       </a>
     </span>
@@ -74,7 +74,79 @@
       </a>
     </span>
     <span class='desc'>
-      継承先で実装する 
+      与えられた文字列を解析して結果を返す（インターフェース） 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#get_name-dynamic'>
+        #
+(String)
+<b>get_name</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      パーサーの名称を取得する（インターフェース） 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#get_example_input-dynamic'>
+        #
+(String)
+<b>get_example_input</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      パーサーのサンプル入力を取得する（インターフェース） 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#get_option_value-dynamic'>
+        #
+(Any)
+<b>get_option_value</b><span>(key)</span>
+      </a>
+    </span>
+    <span class='desc'>
+      指定したオプションの値を取得する 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#set_option_value-dynamic'>
+        #
+(ParserBase)
+<b>set_option_value</b><span>(key, value)</span>
+      </a>
+    </span>
+    <span class='desc'>
+      指定したオプションの値を設定する 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#get_option-dynamic'>
+        #
+(ParserOptionModel)
+<b>get_option</b><span>(key)</span>
+      </a>
+    </span>
+    <span class='desc'>
+      指定したオプションを取得する 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#get_options-dynamic'>
+        #
+(Array of ParserOptionModel)
+<b>get_options</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      すべてのオプションを取得する 
     </span>
   </li>
 </ul>
@@ -83,7 +155,7 @@
   <div class='method_details'>
     <p class='signature' id='initialize-dynamic'>
       #
-(void)
+(ParserBase)
 <b>initialize</b><span>()</span>
       <br>
     </p>
@@ -91,6 +163,17 @@
   <p>初期化</p>
 </div>
 <div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ParserBase.html'>ParserBase</a></tt>
+      )
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
@@ -101,7 +184,7 @@
       <br>
     </p>
     <div class='docstring'>
-  <p>継承先で実装する</p>
+  <p>与えられた文字列を解析して結果を返す（インターフェース）</p>
 </div>
 <div class='tags'>
   <h3>Parameters:</h3>
@@ -119,10 +202,193 @@
   </ul>
 </div>
   </div>
+  <div class='method_details'>
+    <p class='signature' id='get_name-dynamic'>
+      #
+(String)
+<b>get_name</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>パーサーの名称を取得する（インターフェース）</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>String</tt>
+      )
+      &mdash;
+      <span class='desc'>パーサーの名称 </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='get_example_input-dynamic'>
+      #
+(String)
+<b>get_example_input</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>パーサーのサンプル入力を取得する（インターフェース）</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>String</tt>
+      )
+      &mdash;
+      <span class='desc'>パーサーのサンプル入力 </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='get_option_value-dynamic'>
+      #
+(Any)
+<b>get_option_value</b><span>(key)</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>指定したオプションの値を取得する</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>key</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>オプションのID </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Any</tt>
+      )
+      &mdash;
+      <span class='desc'>オプションの値 </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='set_option_value-dynamic'>
+      #
+(ParserBase)
+<b>set_option_value</b><span>(key, value)</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>指定したオプションの値を設定する</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>key</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>オプションのID </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ParserBase.html'>ParserBase</a></tt>
+      )
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='get_option-dynamic'>
+      #
+(ParserOptionModel)
+<b>get_option</b><span>(key)</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>指定したオプションを取得する</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>key</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>オプションのID </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ParserOptionModel.html'>ParserOptionModel</a></tt>
+      )
+      &mdash;
+      <span class='desc'>取得されたオプション </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='get_options-dynamic'>
+      #
+(Array of ParserOptionModel)
+<b>get_options</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>すべてのオプションを取得する</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Array of ParserOptionModel</tt>
+      )
+      &mdash;
+      <span class='desc'>すべてのオプション </span>
+    </li>
+  </ul>
+</div>
+  </div>
 </div>
     </div>
     <div id='footer'>
-  March 23, 14 05:11:36 by
+  March 25, 14 04:52:40 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
