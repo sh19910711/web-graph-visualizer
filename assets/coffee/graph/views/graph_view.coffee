@@ -44,13 +44,7 @@ define(
         #   {source: 0, target: 1}
         #   {source: 1, target: 2}
         # ]
-        @links = []
-        for s_id in [0 .. num_vertices - 1]
-          for t_id in [0 .. num_vertices - 1]
-            if @model.check_edge s_id, t_id
-              @links.push
-                source: s_id
-                target: t_id
+        @links = @model.get_edges("source", "target")
 
         # svg要素
         @svg = d3
@@ -86,13 +80,9 @@ define(
           for v_id in [0 .. num_vertices - 1]
             @nodes.push
               name: "test #{v_id}"
-          @links = []
-          for s_id in [0 .. num_vertices - 1]
-            for t_id in [0 .. num_vertices - 1]
-              if @model.check_edge s_id, t_id
-                @links.push
-                  source: s_id
-                  target: t_id
+
+          @links = @model.get_edges("source", "target")
+
           # DOMを更新する
           @update_visualizer()
 
@@ -104,13 +94,9 @@ define(
           for v_id in [0 .. num_vertices - 1]
             @nodes.push
               name: "test #{v_id}"
-          @links = []
-          for s_id in [0 .. num_vertices - 1]
-            for t_id in [0 .. num_vertices - 1]
-              if @model.check_edge s_id, t_id
-                @links.push
-                  source: s_id
-                  target: t_id
+
+          @links = @model.get_edges("source", "target")
+
           # DOMを更新する
           @update_visualizer()
 
