@@ -40,10 +40,10 @@ describe "parser/views/parser_option_view", ->
         it "should be abcde", ->
           expect(@data.ret).to.eql "abcde"
 
-  context "typeがflagのときについて", ->
+  context "typeがhiddenのときについて", ->
     beforeEach ->
       @data.option = new @modules.ParserOptionModel
-        type: "flag"
+        type: "hidden"
       @data.view = new @modules.ParserOptionView
         model: @data.option
       @data.view.render()
@@ -157,8 +157,9 @@ describe "parser/views/parser_option_view", ->
 
         context "$(.multiselect-option:checked)を実行すると", ->
           beforeEach ->
-            @data.ret = @data.view.$el.find(".multiselect-option:checked").map ->
-              $(@).val()
+            @data.ret = []
+            @data.view.$el.find(".multiselect-option:checked").each (k, element)=>
+              @data.ret.push $(element).val()
 
           it "should have option 1", ->
             expect(@data.ret).to.include "option 1"
@@ -173,8 +174,9 @@ describe "parser/views/parser_option_view", ->
 
         context "$(.multiselect-option:checked)を実行すると", ->
           beforeEach ->
-            @data.ret = @data.view.$el.find(".multiselect-option:checked").map ->
-              $(@).val()
+            @data.ret = []
+            @data.view.$el.find(".multiselect-option:checked").each (k, element)=>
+              @data.ret.push $(element).val()
 
           it "should have option 1", ->
             expect(@data.ret).to.include "option 1"
@@ -187,22 +189,22 @@ describe "parser/views/parser_option_view", ->
 
       context "[value=option 1]をチェックして", ->
         beforeEach ->
-          @data.view.$el.find('.multiselect-option[value="option 1"]').prop "checked", true
+          @data.view.$el.find('.multiselect-option[value="option 1"]').prop("checked", true).trigger "change"
 
         context "option.get_value()を実行すると", ->
           beforeEach ->
             @data.ret = @data.option.get_value()
 
           it "should have one element", ->
-            expect(@data.ret).to.eql 1
+            expect(@data.ret.length).to.eql 1
 
           it "should have option 1", ->
             expect(@data.ret).to.include "option 1"
 
       context "[value=option 1]と[value=option 3]をチェックして", ->
         beforeEach ->
-          @data.view.$el.find('.multiselect-option[value="option 1"]').prop "checked", true
-          @data.view.$el.find('.multiselect-option[value="option 3"]').prop "checked", true
+          @data.view.$el.find('.multiselect-option[value="option 1"]').prop("checked", true).trigger "change"
+          @data.view.$el.find('.multiselect-option[value="option 3"]').prop("checked", true).trigger "change"
 
         context "option.get_value()を実行すると", ->
           beforeEach ->

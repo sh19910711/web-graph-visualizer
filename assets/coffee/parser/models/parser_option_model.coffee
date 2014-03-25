@@ -60,6 +60,7 @@ define(
               select_id_list.push index_of
 
             @set "select_id_list", select_id_list
+            @trigger "change"
           when "flag"
             if arguments.length == 0
               @set "value", !(@get "value")
