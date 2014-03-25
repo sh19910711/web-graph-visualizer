@@ -91,11 +91,13 @@
     <span class="hljs-string">"backbone"</span>
     <span class="hljs-string">"underscore"</span>
     <span class="hljs-string">"misc/views/select_view"</span>
+    <span class="hljs-string">"parser/views/parser_option_view"</span>
   ]
   (
     Backbone
     _
     SelectView
+    ParserOptionView
   )<span class="hljs-function">-&gt;</span></pre></div></div>
             
         </li>
@@ -251,12 +253,7 @@
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ControllersOptionsView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WellView</span></span>
       <span class="hljs-attribute">initialize</span>:<span class="hljs-function"> -&gt;</span>
-        @
-
-      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
-        <span class="hljs-property">@$el</span>.empty()
-        <span class="hljs-property">@$el</span>.append <span class="hljs-string">'&lt;p class="bg-info"&gt;options&lt;/p&gt;'</span>
-        @</pre></div></div>
+        <span class="hljs-property">@parser_options</span> = $ <span class="hljs-string">'&lt;div&gt;&lt;/div&gt;'</span></pre></div></div>
             
         </li>
         
@@ -266,6 +263,48 @@
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>パーサーの種類が変更されたとき</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@model</span>.<span class="hljs-literal">on</span> <span class="hljs-string">"change:parser"</span>,<span class="hljs-function"> =&gt;</span>
+          parser = <span class="hljs-property">@model</span>.get <span class="hljs-string">"parser"</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>オプションのリストを更新する</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          <span class="hljs-property">@parser_options</span>.empty()
+          _<span class="hljs-function"><span class="hljs-params">(parser.get_options())</span>.<span class="hljs-title">each</span> <span class="hljs-params">(parser_option)</span>=&gt;</span>
+            parser_option_view = <span class="hljs-keyword">new</span> ParserOptionView
+              <span class="hljs-attribute">model</span>: parser_option
+            <span class="hljs-property">@parser_options</span>.append parser_option_view.render().el
+        @
+
+      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
+        <span class="hljs-property">@$el</span>.empty()
+        <span class="hljs-property">@$el</span>.append <span class="hljs-string">'&lt;p class="bg-info"&gt;options&lt;/p&gt;'</span>
+        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@parser_options</span>
+        @</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>アクション</p>
 
@@ -285,11 +324,11 @@
         </li>
         
         
-        <li id="section-9">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>右側</p>
 
@@ -314,11 +353,11 @@
         </li>
         
         
-        <li id="section-10">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>入力などの各種操作を行う</p>
 
@@ -330,11 +369,11 @@
         </li>
         
         
-        <li id="section-11">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p>初期化</p>
 
@@ -352,11 +391,11 @@
         </li>
         
         
-        <li id="section-12">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>DOMの描画</p>
 

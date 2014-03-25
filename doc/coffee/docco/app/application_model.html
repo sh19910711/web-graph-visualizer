@@ -142,7 +142,8 @@
         parser_keys = <span class="hljs-keyword">new</span> ItemCollection []
         parser_select = <span class="hljs-keyword">new</span> SelectModel
           <span class="hljs-attribute">items</span>: parser_keys
-        <span class="hljs-property">@set</span> <span class="hljs-string">"parser_select"</span>, parser_select</pre></div></div>
+        <span class="hljs-property">@set</span> <span class="hljs-string">"parser_select"</span>, parser_select
+        <span class="hljs-property">@set</span> <span class="hljs-string">"parser"</span>, <span class="hljs-literal">undefined</span></pre></div></div>
             
         </li>
         
@@ -152,6 +153,24 @@
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>パーサーが選択されたらパーサーのインスタンスを作り直す</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        parser_select.<span class="hljs-literal">on</span> <span class="hljs-string">"change:selected_id"</span>,<span class="hljs-function"> =&gt;</span>
+          parsers = <span class="hljs-property">@get</span> <span class="hljs-string">"parsers"</span>
+          selected_id = parser_select.get <span class="hljs-string">"selected_id"</span>
+          <span class="hljs-property">@set</span> <span class="hljs-string">"parser"</span>, <span class="hljs-keyword">new</span> parsers[selected_id]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>パーサーの読み込み</p>
 
@@ -170,11 +189,11 @@
         </li>
         
         
-        <li id="section-5">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>キーを登録</p>
 
@@ -188,17 +207,18 @@
                 _(prev).extend obj
               {}
             )
+            <span class="hljs-property">@set</span> <span class="hljs-string">"parser"</span>, <span class="hljs-keyword">new</span> arguments[<span class="hljs-number">0</span>] <span class="hljs-keyword">if</span> arguments.length &gt; <span class="hljs-number">0</span>
             <span class="hljs-property">@set</span> <span class="hljs-string">"parsers"</span>, parsers
         )</pre></div></div>
             
         </li>
         
         
-        <li id="section-6">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>ダミーのデータを入れておく
 TODO: 入力文字列から受け取れるようにする
