@@ -16,14 +16,17 @@ describe "parser/views/parser_option_view", ->
         type: "text"
       @data.view = new @modules.ParserOptionView
         model: @data.option
+      @data.view.render()
 
     context ".input-textにabcdeを設定して", ->
       beforeEach ->
-        @data.view.$el.find(".input-text").val "abcde"
+        @data.view.$el.find(".input-text").val("abcde").change()
+        console.log @data.view.$el.find(".input-text").val()
 
       context "option.get_value()を実行すると", ->
         beforeEach ->
           @data.ret = @data.option.get_value()
+          console.log @data.option.attributes
 
         it "should be abcde", ->
           expect(@data.ret).to.eql "abcde"
