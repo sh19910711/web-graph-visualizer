@@ -49,7 +49,7 @@ describe "misc/views/select_view", ->
 
     context "test-1を選択したとき", ->
       beforeEach ->
-        @data.view.$el.find("select").val("test-1")
+        @data.view.$el.find("select").val("test-1").trigger("change")
 
       context "Modelについて", ->
         it "should select test-1", ->
@@ -61,7 +61,7 @@ describe "misc/views/select_view", ->
 
     context "test-2を選択したとき", ->
       beforeEach ->
-        @data.view.$el.find("select").val("test-2")
+        @data.view.$el.find("select").val("test-2").trigger("change")
 
       context "Modelについて", ->
         it "should select test-2", ->
@@ -109,7 +109,7 @@ describe "misc/views/select_view", ->
 
     context "test-1を選択したとき", ->
       beforeEach ->
-        @data.view.$el.find("select").val("test-1")
+        @data.view.$el.find("select").val("test-1").trigger("change")
 
       context "Modelについて", ->
         it "should select test-1", ->
@@ -121,7 +121,7 @@ describe "misc/views/select_view", ->
 
     context "test-2を選択したとき", ->
       beforeEach ->
-        @data.view.$el.find("select").val("test-2")
+        @data.view.$el.find("select").val("test-2").trigger("change")
 
       context "Modelについて", ->
         it "should select test-2", ->
