@@ -57,7 +57,7 @@ define(
       get_options: ->
         options = []
         keys = _(@attributes).keys()
-        _(keys).each (key)->
+        _(keys).each (key)=>
           options.push @get key if /^option\//.test key
         options
 )

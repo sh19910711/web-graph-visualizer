@@ -41,7 +41,7 @@ define(
             # 検索
             index_of = _(@get "options").indexOf value
             # 存在しないときは例外を投げる
-            throw new Error "ERROR_JH5XQ9: Unknown Select Option" if index_of == -1
+            throw new Error "ERROR_JH5XQ9: Unknown Select Option: #{value}" if index_of == -1
             # 設定
             @set "select_id", index_of
           when "multiselect"
@@ -60,6 +60,7 @@ define(
               select_id_list.push index_of
 
             @set "select_id_list", select_id_list
+            @trigger "change"
           when "flag"
             if arguments.length == 0
               @set "value", !(@get "value")
@@ -80,8 +81,7 @@ define(
             # 値をStringに正規化
             @set "value", "" + @get("value") if @get("value")
           when "select"
-            # 1つ以上のオプションが与えられたときは先頭の要素を選択状態にしておく
-            @set "select_id", 0 if @get("options").length > 0
+            @set_select_options @get("options")
           when "multiselect"
             # リストを初期化
             @set "select_id_list", []
@@ -93,5 +93,13 @@ define(
           else
             throw new Error "ERROR_AT8YQ4: Unknown Parser Option Type"
         @
+
+      # selectで使うオプションを設定する
+      set_select_options: (options)->
+        # optionsが未定義の場合は空の配列で初期化
+        @set "options", options || []
+        # 1つ以上のオプションが与えられたときは先頭の要素を選択状態にしておく
+        @set "select_id", 0 if @get("options").length > 0
+
 
 )
