@@ -44,56 +44,147 @@ describe "parser/views/parser_option_view", ->
     beforeEach ->
       @data.option = new @modules.ParserOptionModel
         type: "select"
-        options: [
-          "option 1"
-          "option 2"
-          "option 3"
-        ]
       @data.view = new @modules.ParserOptionView
         model: @data.option
       @data.view.render()
 
-    context ".select-optionにoption 1を設定して", ->
+    context "3つのオプションを持つとき", ->
       beforeEach ->
-        @data.view.$el.find(".select-option").val("option 1").change()
+        @data.option.set(
+          "options"
+          [
+            "option 1"
+            "option 2"
+            "option 3"
+          ]
+        )
 
-      context "option.get_value()を実行すると", ->
+      context ".select-optionにoption 1を設定して", ->
         beforeEach ->
-          @data.ret = @data.option.get_value()
+          @data.view.$el.find(".select-option").val("option 1").change()
 
-        it "should be option 1", ->
-          expect(@data.ret).to.eql "option 1"
+        context "option.get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
 
-    context ".select-optionにoption 2を設定して", ->
+          it "should be option 1", ->
+            expect(@data.ret).to.eql "option 1"
+
+      context ".select-optionにoption 2を設定して", ->
+        beforeEach ->
+          @data.view.$el.find(".select-option").val("option 2").change()
+
+        context "option.get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should be option 2", ->
+            expect(@data.ret).to.eql "option 2"
+
+      context "option.set_value option 1を実行して", ->
+        beforeEach ->
+          @data.option.set_value "option 1"
+
+        context "(.select-option).val()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.view.$el.find(".select-option").val()
+
+          it "should be option 1", ->
+            expect(@data.ret).to.eql "option 1"
+
+      context "option.set_value option 2を実行して", ->
+        beforeEach ->
+          @data.option.set_value "option 2"
+
+        context "(.select-option).val()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.view.$el.find(".select-option").val()
+
+          it "should be option 2", ->
+            expect(@data.ret).to.eql "option 2"
+
+  context "typeがmultiselectのときについて", ->
+    beforeEach ->
+      @data.option = new @modules.ParserOptionModel
+        type: "multiselect"
+      @data.view = new @modules.ParserOptionView
+        model: @data.option
+
+    context "3つのオプションを持つとき", ->
       beforeEach ->
-        @data.view.$el.find(".select-option").val("option 2").change()
+        @data.option.set(
+          "options"
+          [
+            "option 1"
+            "option 2"
+            "option 3"
+          ]
+        )
 
-      context "option.get_value()を実行すると", ->
+      context "option.set_value(option 1)を実行して", ->
         beforeEach ->
-          @data.ret = @data.option.get_value()
+          @data.option.set_value "option 1"
 
-        it "should be option 2", ->
-          expect(@data.ret).to.eql "option 2"
+        context "$(.multiselect-option:checked)を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.view.$el.find(".multiselect-option:checked").map ->
+              $(@).val()
 
-    context "option.set_value option 1を実行して", ->
-      beforeEach ->
-        @data.option.set_value "option 1"
+          it "should have option 1", ->
+            expect(@data.ret).to.include "option 1"
 
-      context "(.select-option).val()を実行すると", ->
+          it "should have one element", ->
+            expect(@data.ret.length).to.eql 1
+
+      context "option.set_value(option 1)とoption.set_value(option 2)を実行して", ->
         beforeEach ->
-          @data.ret = @data.view.$el.find(".select-option").val()
+          @data.option.set_value "option 1"
+          @data.option.set_value "option 2"
 
-        it "should be option 1", ->
-          expect(@data.ret).to.eql "option 1"
+        context "$(.multiselect-option:checked)を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.view.$el.find(".multiselect-option:checked").map ->
+              $(@).val()
 
-    context "option.set_value option 2を実行して", ->
-      beforeEach ->
-        @data.option.set_value "option 2"
+          it "should have option 1", ->
+            expect(@data.ret).to.include "option 1"
 
-      context "(.select-option).val()を実行すると", ->
+          it "should have option 2", ->
+            expect(@data.ret).to.include "option 2"
+
+          it "should have two elements", ->
+            expect(@data.ret.length).to.eql 2
+
+      context "[value=option 1]をチェックして", ->
         beforeEach ->
-          @data.ret = @data.view.$el.find(".select-option").val()
+          @data.view.$el.find('.multiselect-option[value="option 1"]').prop "checked", true
 
-        it "should be option 2", ->
-          expect(@data.ret).to.eql "option 2"
+        context "option.get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should have one element", ->
+            expect(@data.ret).to.eql 1
+
+          it "should have option 1", ->
+            expect(@data.ret).to.include "option 1"
+
+      context "[value=option 1]と[value=option 3]をチェックして", ->
+        beforeEach ->
+          @data.view.$el.find('.multiselect-option[value="option 1"]').prop "checked", true
+          @data.view.$el.find('.multiselect-option[value="option 3"]').prop "checked", true
+
+        context "option.get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should have two elements", ->
+            expect(@data.ret.length).to.eql 2
+
+          it "should have option 1", ->
+            expect(@data.ret).to.include "option 1"
+
+          it "should have option 3", ->
+            expect(@data.ret).to.include "option 3"
+
 
