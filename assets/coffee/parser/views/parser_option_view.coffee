@@ -25,8 +25,11 @@ define(
           when "select"
             # type=select
             select_tag = @$el.find(".select-option")
+            select_tag.empty()
+            _(@model.get "options").each (option)->
+              select_tag.append "<option value=\"#{option}\">#{option}</option>"
             model_value = @model.get_value()
-            select_tag.val(model_value).trigger("change") unless model_value == select_tag.find("option:checked").val()
+            select_tag.val(model_value).trigger("change") unless model_value == select_tag.val()
           else
             throw new Error "ERROR_B90Z1Q: Unknown Parser Option Type"
 
