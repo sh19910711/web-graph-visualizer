@@ -3,6 +3,46 @@ module.exports = (grunt)->
   path   = require 'path'
   config = grunt.config()
 
+  # CoffeeScriptのテストコード読み込みを自動化する
+  load_spec_files = (req, res, next)->
+    url  = require 'url'
+    glob = require 'glob'
+    pathname = url.parse(req.url).pathname
+    if req.method == 'GET' && pathname == '/test/load_spec_files.js'
+      res_text = ''
+      glob 'spec/coffee/{,**/}*_spec.coffee', {}, (error, files)->
+        files = _(files).map (filepath)->
+          filepath.replace /\.coffee$/, '.js'
+        files = _(files).map (filepath)->
+          filepath.replace /^spec\//, ''
+
+        script_tag = ""
+        script_tag += "function load_script(path) {\n"
+        script_tag += "  var deferred = new $.Deferred;\n"
+        script_tag += "  var head= document.getElementsByTagName('head')[0];\n"
+        script_tag += "  var script= document.createElement('script');\n"
+        script_tag += "  script.type= 'text/javascript';\n"
+        script_tag += "  script.onreadystatechange= function () {\n"
+        script_tag += "    if (this.readyState == 'complete') deferred.resolve();\n"
+        script_tag += "  }\n"
+        script_tag += "  script.onload = deferred.resolve;\n"
+        script_tag += "  script.src = path;\n"
+        script_tag += "  head.appendChild(script);\n"
+        script_tag += "  return deferred;\n"
+        script_tag += "}\n"
+        script_tag += "var deferreds = [];\n"
+        res_text += script_tag
+
+        _(files).each (filepath)->
+          res_text += "deferreds.push(load_script('/test/#{filepath}'));\n"
+
+        res_text += "$.when.apply(this, deferreds).done(function() { mocha_run(); });\n"
+        res.setHeader 'Content-Type', 'application/x-javascript'
+        res.setHeader 'Content-Length', res_text.length
+        res.end res_text
+    else
+      next()
+
   # bower:test
   _(config).merge
     bower:
@@ -12,7 +52,7 @@ module.exports = (grunt)->
           layout:         'byComponent'
           install:        true
           verbose:        true
-          cleanTargetDir: true
+          cleanTargetDir: false
           cleanBowerDir:  false
           production:     false
 
@@ -43,8 +83,10 @@ module.exports = (grunt)->
         options:
           port: 39000
           hostname: 'localhost'
+          keepalive: process.env['CONNECT_KEEPALIVE'] == 'true'
           middleware: (connect)->
             [
+              load_spec_files
               connect.static path.resolve('spec/')
               connect.static path.resolve('dist/')
             ]
