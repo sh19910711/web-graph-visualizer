@@ -34,6 +34,7 @@ define(
             model_value = @model.get_value()
             select_tag.val(model_value).trigger("change") unless model_value == select_tag.val()
           when "multiselect"
+            # type=multiselect
             multiselect = @$el.find '.multiselect'
             multiselect.empty()
             select_id_list = @model.get "select_id_list"
@@ -47,6 +48,11 @@ define(
                 multiselect_option_tag.find('input:checked').each (k, element)=>
                   @model.set_value $(element).val()
               multiselect.append multiselect_option_tag
+          when "flag"
+            # type=flag
+            checkbox = @$el.find('.flag')
+            model_value = @model.get_value()
+            checkbox.prop 'checked', model_value unless checkbox.prop('checked') == model_value
           else
             throw new Error "ERROR_B90Z1Q: Unknown Parser Option Type"
 
@@ -70,6 +76,11 @@ define(
             # type=multiselect
             multiselect = $ '<div class="multiselect"></div>'
             @$el.append multiselect
+          when "flag"
+            checkbox = $ '<div class="checkbox"><label><input type="checkbox" value="' + @model.get('name') + '" class="flag checkbox">' + @model.get('name') + '</label></div>'
+            checkbox.on "change", =>
+              @model.set_value checkbox.find('.flag').prop('checked')
+            @$el.append checkbox
           else
             throw new Error "ERROR_EHRPOZ: Unknown Parser Option Type: #{@model.get "type"}"
         @update()

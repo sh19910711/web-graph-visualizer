@@ -34,6 +34,7 @@ define(
           ]
         "option/dummy_3": new ParserOptionModel
           type: "flag"
+          name: "dummy flag"
 
       # 初期化
       initialize: ->
