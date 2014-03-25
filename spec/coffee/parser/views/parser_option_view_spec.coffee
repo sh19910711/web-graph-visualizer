@@ -40,6 +40,36 @@ describe "parser/views/parser_option_view", ->
         it "should be abcde", ->
           expect(@data.ret).to.eql "abcde"
 
+  context "typeがflagのときについて", ->
+    beforeEach ->
+      @data.option = new @modules.ParserOptionModel
+        type: "flag"
+      @data.view = new @modules.ParserOptionView
+        model: @data.option
+      @data.view.render()
+
+    context ".input-textにabcdeを設定して", ->
+      beforeEach ->
+        @data.view.$el.find(".input-text").val("abcde").change()
+
+      context "option.get_value()を実行すると", ->
+        beforeEach ->
+          @data.ret = @data.option.get_value()
+
+        it "should be abcde", ->
+          expect(@data.ret).to.eql "abcde"
+
+    context "option.set_value abcdeを設定して", ->
+      beforeEach ->
+        @data.option.set_value "abcde"
+
+      context ".input-textの値を取得すると", ->
+        beforeEach ->
+          @data.ret = @data.view.$el.find(".input-text").val()
+
+        it "should be abcde", ->
+          expect(@data.ret).to.eql "abcde"
+
   context "typeがselectのときについて", ->
     beforeEach ->
       @data.option = new @modules.ParserOptionModel
@@ -109,6 +139,7 @@ describe "parser/views/parser_option_view", ->
         type: "multiselect"
       @data.view = new @modules.ParserOptionView
         model: @data.option
+      @data.view.render()
 
     context "3つのオプションを持つとき", ->
       beforeEach ->
