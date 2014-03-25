@@ -35,7 +35,7 @@ define(
 
         # selected_idが設定されていない時はitemsの最初の要素のidで初期化する
         unless @get "selected_id"
-          @set "selected_id", @get("items").first().id
+          @set "selected_id", @get("items").first().id if @get("items").length
 
         @
 )
