@@ -28,5 +28,12 @@ define(
         graph = new GraphModel
         graph.init(num_vertices)
 
+        for i in [0 ... num_vertices]
+          line = lines[1 + i].split(" ")
+          for j in [0 ... num_vertices]
+            c = line[j]
+            if c == "1"
+              graph.add_edge(i, j)
+
         graph
 )
