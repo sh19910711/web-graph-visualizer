@@ -26,11 +26,16 @@ define(
             items = new ItemCollection items
           else
             throw new Error "ERROR_DQXE6Q: Invalid Items"
-        #
+
         items.on "add", =>
           @trigger "change:items"
         items.on "remove", =>
           @trigger "change:items"
         @set "items", items
+
+        # selected_idが設定されていない時はitemsの最初の要素のidで初期化する
+        unless @get "selected_id"
+          @set "selected_id", @get("items").first().id
+
         @
 )
