@@ -53,6 +53,13 @@ define(
             checkbox = @$el.find('.flag')
             model_value = @model.get_value()
             checkbox.prop 'checked', model_value unless checkbox.prop('checked') == model_value
+          when "hidden"
+            # type=hidden
+            input_tag = @$el.find(".input-text")
+            model_value = @model.get_value()
+            # モデルとDOMの値が異なるときはDOMの値を設定しなおし
+            # changeイベントを発火させる
+            input_tag.val(model_value).trigger("change") unless model_value == input_tag.val()
           else
             throw new Error "ERROR_B90Z1Q: Unknown Parser Option Type"
 
@@ -81,6 +88,12 @@ define(
             checkbox.on "change", =>
               @model.set_value checkbox.find('.flag').prop('checked')
             @$el.append checkbox
+          when "hidden"
+            # type=hidden
+            input_tag = $ '<input type="hidden" class="input-text">'
+            @$el.append input_tag
+            input_tag.on "change", =>
+              @model.set_value input_tag.val()
           else
             throw new Error "ERROR_EHRPOZ: Unknown Parser Option Type: #{@model.get "type"}"
         @update()
