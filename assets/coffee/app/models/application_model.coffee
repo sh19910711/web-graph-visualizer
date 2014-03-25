@@ -46,7 +46,6 @@ define(
                 parser_keys.add
                   id: ParserClass.name
                   value: ParserClass.name
-                # 
                 obj = {}
                 obj[ParserClass.name] = ParserClass
                 _(prev).extend obj

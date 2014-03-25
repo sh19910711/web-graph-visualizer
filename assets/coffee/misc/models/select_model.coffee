@@ -26,7 +26,6 @@ define(
             items = new ItemCollection items
           else
             throw new Error "ERROR_DQXE6Q: Invalid Items"
-        #
         items.on "add", =>
           @trigger "change:items"
         items.on "remove", =>
