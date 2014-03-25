@@ -95,7 +95,7 @@ define(
       # @return [Boolean] 辺が存在するときにtrueを返す
       check_edge: (from, to)->
         # 辺が存在するかどうか調べる
-        _(@get("adj_list")[from]).indexOf(to) != -1
+        _(@get("adj_list")[from]).include(to)
 
       # D3.jsで利用できる形式で、辺のリストを取得する
       # @param [String] from_key 始点を表すキー
