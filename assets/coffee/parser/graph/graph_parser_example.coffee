@@ -26,6 +26,14 @@ define(
         "option/dummy_1": new ParserOptionModel
           type: "text"
           value: "this is dummy"
+        "option/dummy_2": new ParserOptionModel
+          type: "multiselect"
+          options: [
+            "option 1"
+            "option 2"
+          ]
+        "option/dummy_3": new ParserOptionModel
+          type: "flag"
 
       # 初期化
       initialize: ->

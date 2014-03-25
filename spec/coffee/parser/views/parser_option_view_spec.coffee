@@ -20,7 +20,7 @@ describe "parser/views/parser_option_view", ->
 
     context ".input-textにabcdeを設定して", ->
       beforeEach ->
-        @data.view.$el.find(".input-text").val("abcde").change()
+        @data.view.$el.find(".input-text").val("abcde").trigger("change")
 
       context "option.get_value()を実行すると", ->
         beforeEach ->
@@ -50,7 +50,7 @@ describe "parser/views/parser_option_view", ->
 
     context ".input-textにabcdeを設定して", ->
       beforeEach ->
-        @data.view.$el.find(".input-text").val("abcde").change()
+        @data.view.$el.find(".input-text").val("abcde").trigger("change")
 
       context "option.get_value()を実行すると", ->
         beforeEach ->
@@ -80,8 +80,7 @@ describe "parser/views/parser_option_view", ->
 
     context "3つのオプションを持つとき", ->
       beforeEach ->
-        @data.option.set(
-          "options"
+        @data.option.set_select_options(
           [
             "option 1"
             "option 2"
@@ -91,7 +90,7 @@ describe "parser/views/parser_option_view", ->
 
       context ".select-optionにoption 1を設定して", ->
         beforeEach ->
-          @data.view.$el.find(".select-option").val("option 1").change()
+          @data.view.$el.find(".select-option").val("option 1").trigger("change")
 
         context "option.get_value()を実行すると", ->
           beforeEach ->
@@ -102,7 +101,7 @@ describe "parser/views/parser_option_view", ->
 
       context ".select-optionにoption 2を設定して", ->
         beforeEach ->
-          @data.view.$el.find(".select-option").val("option 2").change()
+          @data.view.$el.find(".select-option").val("option 2").trigger("change")
 
         context "option.get_value()を実行すると", ->
           beforeEach ->
