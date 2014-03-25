@@ -101,7 +101,7 @@ define(
       # @param [String] from_key 始点を表すキー
       # @param [String] to_key 終点を表すキー
       # @return [Array] 辺のリスト
-      get_edges: (from_key, to_key)->
+      get_edges: (from_key = "from", to_key = "to")->
         links = []
 
         for from_id in _.range(@get "num_vertices")
