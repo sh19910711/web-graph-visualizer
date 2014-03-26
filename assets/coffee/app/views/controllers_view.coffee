@@ -3,11 +3,13 @@ define(
     "backbone"
     "underscore"
     "misc/views/select_view"
+    "parser/views/parser_option_view"
   ]
   (
     Backbone
     _
     SelectView
+    ParserOptionView
   )->
     # textarea
     class TextAreaView extends Backbone.View
@@ -30,14 +32,22 @@ define(
       initialize: ->
         @textarea = new TextAreaView
           model: @model
-        @textarea.$el.attr "rows", "7"
-        @textarea.$el.attr "placeholder", "input text..."
-        @textarea.$el.attr "disabled", ""
-        @textarea.$el.append "# dummy 20140323\n"
-        @textarea.$el.append "5 3\n"
-        @textarea.$el.append "1 2\n"
-        @textarea.$el.append "2 3\n"
-        @textarea.$el.append "4 5\n"
+        @textarea.$el.attr "rows", "14"
+
+        # 内容が変更されたらモデルに送信
+        @textarea.on "change", =>
+          @model.set "input_text", @textarea.val()
+
+        # パーサーの種類が変更されたとき
+        @model.on "change:parser", =>
+          parser = @model.get "parser"
+          # サンプル入力があればそれをplaceholderに設定する
+          try
+            example_input = parser.get_example_input()
+            @textarea.$el.attr "placeholder", example_input
+          catch
+            @textarea.$el.attr "placeholder", "input text"
+
         @
 
       render: ->
@@ -90,11 +100,22 @@ define(
     # オプション
     class ControllersOptionsView extends WellView
       initialize: ->
+        @parser_options = $ '<div></div>'
+        # パーサーの種類が変更されたとき
+        @model.on "change:parser", =>
+          parser = @model.get "parser"
+          # オプションのリストを更新する
+          @parser_options.empty()
+          _(parser.get_options()).each (parser_option)=>
+            parser_option_view = new ParserOptionView
+              model: parser_option
+            @parser_options.append parser_option_view.render().el
         @
 
       render: ->
         @$el.empty()
         @$el.append '<p class="bg-info">options</p>'
+        @$el.append @parser_options
         @
 
     # アクション
@@ -102,11 +123,25 @@ define(
       initialize: ->
         @
 
+      # DOMイベント
+      events:
+        'click .action-btn[data-action="run-visualize"]': "visualize"
+
+      # 視覚化
+      visualize: =>
+        parser = @model.get "parser"
+        input_text = @model.get("input_text") || ""
+
+        # parse()を実行して得られたグラフをモデルに送信
+        graph = parser.parse input_text
+        @model.set "graph", graph
+
+      # DOMの描画
       render: ->
         @$el.empty()
         @$el.append '<p class="bg-info">actions</p>'
-        @$el.append '<button disabled class="btn btn-lg btn-primary btn-block">Visualize</button>'
-        @$el.append '<button disabled class="btn btn-lg btn-default btn-block">Save as Image</button>'
+        @$el.append '<button data-action="run-visualize" class="action-btn btn btn-lg btn-primary btn-block">Visualize</button>'
+        @$el.append '<button disabled class="action-btn btn btn-lg btn-default btn-block">Save as Image</button>'
         @
 
     # 右側

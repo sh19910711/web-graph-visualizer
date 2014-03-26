@@ -23,9 +23,12 @@ define(
       # @return [SelectView] void
       update_select_tag: =>
         @select_tag.empty()
-        selected_id = @model.get "selected_id"
         @model.get("items").each (item, key)=>
           @select_tag.append "<option value=\"#{item.id}\">#{item.get("value")}</option>"
+
+        selected_id = @model.get "selected_id"
+        @select_tag.val(selected_id)
+
         @
 
       # アイテムが選択されたとき

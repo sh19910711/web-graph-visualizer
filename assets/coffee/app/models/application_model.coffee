@@ -31,6 +31,12 @@ define(
         parser_select = new SelectModel
           items: parser_keys
         @set "parser_select", parser_select
+        @set "parser", undefined
+        # パーサーが選択されたらパーサーのインスタンスを作り直す
+        parser_select.on "change:selected_id", =>
+          parsers = @get "parsers"
+          selected_id = parser_select.get "selected_id"
+          @set "parser", new parsers[selected_id]
 
         # パーサーの読み込み
         requirejs(
@@ -46,12 +52,12 @@ define(
                 parser_keys.add
                   id: ParserClass.name
                   value: ParserClass.name
-                # 
                 obj = {}
                 obj[ParserClass.name] = ParserClass
                 _(prev).extend obj
               {}
             )
+            @set "parser", new arguments[0] if arguments.length > 0
             @set "parsers", parsers
         )
 
