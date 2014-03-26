@@ -128,8 +128,7 @@
             </div>
             
             <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@graph_view</span> = <span class="hljs-keyword">new</span> GraphView
-          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>.get <span class="hljs-string">"graph"</span>
-        @</pre></div></div>
+          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>.get <span class="hljs-string">"graph"</span></pre></div></div>
             
         </li>
         
@@ -139,6 +138,27 @@
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>グラフが変更されたとき</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@model</span>.<span class="hljs-literal">on</span> <span class="hljs-string">"change:graph"</span>,<span class="hljs-function"> =&gt;</span>
+          <span class="hljs-built_in">console</span>.log <span class="hljs-string">"change graph"</span>
+          <span class="hljs-property">@graph_view</span> = <span class="hljs-keyword">new</span> GraphView
+            <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>.get <span class="hljs-string">"graph"</span>
+          <span class="hljs-property">@render</span>()
+
+        @</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>DOMの描画</p>
 
