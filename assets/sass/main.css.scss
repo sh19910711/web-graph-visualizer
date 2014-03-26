@@ -2,8 +2,14 @@ svg {
   & {
     border: 3px solid rgba(0, 0, 0, 0.5);
   }
-  circle {
-    cursor: move;
+  .node {
+    circle {
+      cursor: move;
+    }
+    text {
+      cursor: move;
+      fill: rgba(204, 51, 51, 1);
+    }
   }
 }
 

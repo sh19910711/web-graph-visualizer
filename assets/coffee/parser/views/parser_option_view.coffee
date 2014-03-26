@@ -84,7 +84,7 @@ define(
             multiselect = $ '<div class="multiselect"></div>'
             @$el.append multiselect
           when "flag"
-            checkbox = $ '<div class="checkbox"><label><input type="checkbox" value="' + @model.get('name') + '" class="flag checkbox">' + @model.get('name') + '</label></div>'
+            checkbox = $ '<div class="checkbox"><label><input type="checkbox" value="' + @model.get('name') + '" class="flag">' + @model.get('name') + '</label></div>'
             checkbox.on "change", =>
               @model.set_value checkbox.find('.flag').prop('checked')
             @$el.append checkbox
