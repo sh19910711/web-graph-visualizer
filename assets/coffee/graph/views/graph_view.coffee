@@ -37,7 +37,7 @@ define(
         num_vertices = @model.get_num_vertices()
         for v_id in [0 .. num_vertices - 1]
           @nodes.push
-            name: "test #{v_id}"
+            name: "##{v_id}"
 
         # @linksのサンプル
         # @links = [
@@ -79,7 +79,7 @@ define(
           @nodes = []
           for v_id in [0 .. num_vertices - 1]
             @nodes.push
-              name: "test #{v_id}"
+              name: "##{v_id}"
 
           @links = @model.get_edges("source", "target")
 
@@ -93,7 +93,7 @@ define(
           @nodes = []
           for v_id in [0 .. num_vertices - 1]
             @nodes.push
-              name: "test #{v_id}"
+              name: "##{v_id}"
 
           @links = @model.get_edges("source", "target")
 
@@ -110,8 +110,9 @@ define(
           .attr 'x2', (d)-> d.target.x
           .attr 'y2', (d)-> d.target.y
         @node
-          .attr 'cx', (d)-> d.x
-          .attr 'cy', (d)-> d.y
+          .attr 'x', (d)-> d.x
+          .attr 'y', (d)-> d.y
+          .attr "transform", (d)-> "translate(#{d.x},#{d.y})"
         @
 
       # ビジュアライザに関するDOMの更新
@@ -140,19 +141,31 @@ define(
           .remove()
 
         @node = @svg
-          .selectAll 'circle'
+          .selectAll '.node'
           .data @nodes
 
-        @node
+        # .node
+        node_groups = @node
           .enter()
+          .append 'g'
+          .attr 'class', 'node'
+          .attr 'x', "#{DEFAULT_WIDTH/2}px"
+          .call @force.drag
+
+        # .node circle
+        node_groups
           .append 'circle'
           .style 'fill', '#FFFFFF'
           .style 'stroke', '#FF9999'
           .style 'stroke-width', '3px'
           .attr 'r', 16
-          .attr 'cx', "#{DEFAULT_WIDTH / 2}px"
-          .attr 'cy', "#{DEFAULT_HEIGHT / 2}px"
-          .call @force.drag
+
+        # .node text
+        node_groups
+          .append 'text'
+          .attr 'dx', '-8px'
+          .attr 'dy', '6px'
+          .text (d)-> d.name
 
         @node
           .exit()
