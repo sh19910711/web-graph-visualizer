@@ -41,9 +41,9 @@ define(
             _(@model.get "options").each (option, index_of_option)=>
               multiselect_option_tag = undefined
               if _(select_id_list).include index_of_option
-                multiselect_option_tag = $ '<div class="checkbox"><label><input value="' + option + '" checked="checked" type="checkbox" class="multiselect-option checkbox">' + option + '</label></div>'
+                multiselect_option_tag = $ '<div class="checkbox"><label><input value="' + option + '" checked="checked" type="checkbox" class="multiselect-option">' + option + '</label></div>'
               else
-                multiselect_option_tag = $ '<div class="checkbox"><label><input value="' + option + '" type="checkbox" class="multiselect-option checkbox">' + option + '</label></div>'
+                multiselect_option_tag = $ '<div class="checkbox"><label><input value="' + option + '" type="checkbox" class="multiselect-option">' + option + '</label></div>'
               multiselect_option_tag.on "change", =>
                 multiselect_option_tag.find('input:checked').each (k, element)=>
                   @model.set_value $(element).val()
@@ -84,7 +84,7 @@ define(
             multiselect = $ '<div class="multiselect"></div>'
             @$el.append multiselect
           when "flag"
-            checkbox = $ '<div class="checkbox"><label><input type="checkbox" value="' + @model.get('name') + '" class="flag checkbox">' + @model.get('name') + '</label></div>'
+            checkbox = $ '<div class="checkbox"><label><input type="checkbox" value="' + @model.get('name') + '" class="flag">' + @model.get('name') + '</label></div>'
             checkbox.on "change", =>
               @model.set_value checkbox.find('.flag').prop('checked')
             @$el.append checkbox
