@@ -16,6 +16,14 @@ define(
         # GraphView
         @graph_view = new GraphView
           model: @model.get "graph"
+
+        # グラフが変更されたとき
+        @model.on "change:graph", =>
+          console.log "change graph"
+          @graph_view = new GraphView
+            model: @model.get "graph"
+          @render()
+
         @
 
       # DOMの描画
