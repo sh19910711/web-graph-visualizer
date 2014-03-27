@@ -1,11 +1,9 @@
 define(
   [
-    "backbone"
     "misc/views/select_view"
     "./well_view"
   ]
   (
-    Backbone
     SelectView
     WellView
   )->

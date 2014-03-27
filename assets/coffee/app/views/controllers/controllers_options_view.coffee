@@ -1,11 +1,9 @@
 define(
   [
-    "backbone"
     "parser/views/parser_option_view"
     "./well_view"
   ]
   (
-    Backbone
     ParserOptionView
     WellView
   )->
