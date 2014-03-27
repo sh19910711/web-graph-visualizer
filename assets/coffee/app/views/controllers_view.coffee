@@ -3,34 +3,14 @@ define(
     "backbone"
     "underscore"
     "./controllers/controllers_left_view"
-    "./controllers/controllers_parser_select_view"
-    "./controllers/controllers_options_view"
-    "./controllers/controllers_actions_view"
+    "./controllers/controllers_right_view"
   ]
   (
     Backbone
     _
     ControllersLeftView
-    ControllersParserSelectView
-    ControllersOptionsView
-    ControllersActionsView
+    ControllersRightView
   )->
-    # 右側
-    class ControllersRightView extends Backbone.View
-      initialize: ->
-        @parser_select = new ControllersParserSelectView
-          model: @model
-        @options = new ControllersOptionsView
-          model: @model
-        @actions = new ControllersActionsView
-          model: @model
-
-      render: ->
-        @$el.empty()
-        @$el.append @parser_select.render().el
-        @$el.append @options.render().el
-        @$el.append @actions.render().el
-        @
 
     # 入力などの各種操作を行う
     class ControllersView extends Backbone.View
