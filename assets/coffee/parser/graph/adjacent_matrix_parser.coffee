@@ -17,8 +17,6 @@ define(
       # @param [String] text 入力文字列
       # @return [GraphModel] parse後のグラフ
       parse: (text)->
-        # TODO: 実装
-
         lines = text.split("\n")
         num_lines = lines.length
 
