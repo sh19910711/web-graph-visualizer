@@ -94,7 +94,16 @@ define(
             throw new Error "ERROR_AT8YQ4: Unknown Parser Option Type"
         @
 
-      # selectで使うオプションを設定する
+      # type=select/multiselectで使うオプションを追加する
+      # @param [String] option 追加するオプション
+      add_option: (option)->
+        options = @get("options") || []
+        # 存在しないときに追加する
+        options.push option unless _(options).include option
+        @set "options", options
+
+      # type=select/multiselectで使うオプションを設定する
+      # @param [Array] options 指定するオプション
       set_select_options: (options)->
         # optionsが未定義の場合は空の配列で初期化
         @set "options", options || []

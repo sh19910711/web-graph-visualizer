@@ -127,6 +127,100 @@ describe "parser/models/parser_option_model", ->
         it "should throw Error", ->
           expect(@data.func).to.throw Error
 
+      context "オプションoption 1を追加して", ->
+        beforeEach ->
+          @data.option.add_option "option 1"
+
+        context "何もせずに", ->
+          context "get_value()を実行すると", ->
+            beforeEach ->
+              @data.ret = @data.option.get_value()
+
+            it "should have no element", ->
+              expect(@data.ret.length).to.eql 0
+
+        context "オプションoption 2を追加して", ->
+          beforeEach ->
+            @data.option.add_option "option 2"
+
+          context "何もせずに", ->
+            context "get_value()を実行すると", ->
+              beforeEach ->
+                @data.ret = @data.option.get_value()
+
+              it "should return empty array", ->
+                expect(@data.ret.length).to.eql 0
+
+          context "set_value(option 1)を実行して", ->
+            beforeEach ->
+              @data.option.set_value("option 1")
+
+            context "get_value()を実行すると", ->
+              beforeEach ->
+                @data.ret = @data.option.get_value()
+
+              it "should have one element", ->
+                expect(@data.ret.length).to.eql 1
+
+              it "should have option 1", ->
+                expect(@data.ret).to.include "option 1"
+
+          context "set_value(option 2)を実行して", ->
+            beforeEach ->
+              @data.option.set_value "option 2"
+
+            context "get_value()を実行すると", ->
+              beforeEach ->
+                @data.ret = @data.option.get_value()
+
+              it "should have one element", ->
+                expect(@data.ret.length).to.eql 1
+
+              it "should have option 2", ->
+                expect(@data.ret).to.include "option 2"
+
+            context "set_value(option 1)を実行して", ->
+              beforeEach ->
+                @data.option.set_value "option 1"
+
+              context "get_value()を実行すると", ->
+                beforeEach ->
+                  @data.ret = @data.option.get_value()
+
+                it "should have two elements", ->
+                  expect(@data.ret.length).to.eql 2
+
+                it "should have option 1", ->
+                  expect(@data.ret).to.include "option 1"
+
+                it "should have option 2", ->
+                  expect(@data.ret).to.include "option 2"
+
+              context "set_value(option 2)を実行して", ->
+                beforeEach ->
+                  @data.option.set_value "option 2"
+
+                context "get_value()を実行すると", ->
+                  beforeEach ->
+                    @data.ret = @data.option.get_value()
+
+                  it "should have one element", ->
+                    expect(@data.ret.length).to.eql 1
+
+                  it "should have option 1", ->
+                    expect(@data.ret).to.include "option 1"
+
+                context "set_value(option 1)を実行して", ->
+                  beforeEach ->
+                    @data.option.set_value "option 1"
+
+                  context "get_value()を実行すると", ->
+                    beforeEach ->
+                      @data.ret = @data.option.get_value()
+
+                    it "should have no element", ->
+                      expect(@data.ret.length).to.eql 0
+
     context "1つのオプションを持つとき", ->
       beforeEach ->
         @data.option = new @modules.ParserOptionModel
@@ -346,6 +440,54 @@ describe "parser/models/parser_option_model", ->
         it "should throw Error", ->
           expect(@data.func).to.throw Error
 
+      context "option 1を追加して", ->
+        beforeEach ->
+          @data.option.add_option "option 1"
+
+        context "何もせずに", ->
+          context "get_value()を実行したとき", ->
+            beforeEach ->
+              expect(@data.ret).to.eql "option 1"
+
+        context "set_value(option 1)を実行して", ->
+          beforeEach ->
+            @data.option.set_value "option 1"
+
+          context "get_value()を実行したとき", ->
+            beforeEach ->
+              expect(@data.ret).to.eql "option 1"
+
+        context "option 2を追加して", ->
+          beforeEach ->
+            @data.option.add_option "option 2"
+
+          context "何もせずに", ->
+            context "get_value()を実行したとき", ->
+              beforeEach ->
+                expect(@data.ret).to.eql "option 1"
+
+          context "set_value(option 1)を実行して", ->
+            beforeEach ->
+              @data.option.set_value "option 1"
+
+            context "get_value()を実行したとき", ->
+              beforeEach ->
+                @data.ret = @data.option.get_value()
+
+              it "should equal option 1", ->
+                expect(@data.ret).to.eql "option 1"
+
+          context "set_value(option 2)を実行して", ->
+            beforeEach ->
+              @data.option.set_value "option 2"
+
+            context "get_value()を実行したとき", ->
+              beforeEach ->
+                @data.ret = @data.option.get_value()
+
+              it "should equal option 2", ->
+                expect(@data.ret).to.eql "option 2"
+
     context "1つのオプションを持つとき", ->
       beforeEach ->
         @data.option = new @modules.ParserOptionModel
@@ -380,6 +522,40 @@ describe "parser/models/parser_option_model", ->
 
         it "should throw Error", ->
           expect(@data.func).to.throw Error
+
+      context "option 2を追加して", ->
+        beforeEach ->
+          @data.option.add_option "option 2"
+
+        context "何もせずに", ->
+          context "get_value()を実行すると", ->
+            beforeEach ->
+              @data.ret = @data.option.get_value()
+
+            it "should return option 1", ->
+              expect(@data.ret).to.eql "option 1"
+
+        context "set_value(option 1)を実行して", ->
+          beforeEach ->
+            @data.option.set_value "option 1"
+
+          context "get_value()を実行したとき", ->
+            beforeEach ->
+              @data.ret = @data.option.get_value()
+
+            it "should return option 1", ->
+              expect(@data.ret).to.eql "option 1"
+
+        context "set_value(option 2)を実行して", ->
+          beforeEach ->
+            @data.option.set_value "option 2"
+
+          context "get_value()を実行したとき", ->
+            beforeEach ->
+              @data.ret = @data.option.get_value()
+
+            it "should return option 2", ->
+              expect(@data.ret).to.eql "option 2"
 
     context "3つのオプションを持つとき", ->
       beforeEach ->
