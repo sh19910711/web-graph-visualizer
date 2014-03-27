@@ -4,26 +4,15 @@ define(
     "underscore"
     "misc/views/select_view"
     "parser/views/parser_option_view"
-    "./controllers/controllers_text_area_view"
+    "./controllers/controllers_left_view"
   ]
   (
     Backbone
     _
     SelectView
     ParserOptionView
-    ControllersTextAreaView
+    ControllersLeftView
   )->
-    # 左側
-    class ControllersLeftView extends Backbone.View
-      initialize: ->
-        @textarea = new ControllersTextAreaView
-          model: @model
-
-      render: ->
-        @$el.empty()
-        @$el.append '<p class="bg-info">textarea</p>'
-        @$el.append @textarea.render().el
-        @
 
     # well
     class WellView extends Backbone.View
