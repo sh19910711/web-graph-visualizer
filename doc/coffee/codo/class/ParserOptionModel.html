@@ -96,6 +96,18 @@
   </li>
   <li>
     <span class='signature'>
+      <a href='#add_option-dynamic'>
+        #
+(void)
+<b>add_option</b><span>(option)</span>
+      </a>
+    </span>
+    <span class='desc'>
+      type=select/multiselectで使うオプションを追加する 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
       <a href='#set_select_options-dynamic'>
         #
 (void)
@@ -103,7 +115,7 @@
       </a>
     </span>
     <span class='desc'>
-      selectで使うオプションを設定する 
+      type=select/multiselectで使うオプションを設定する 
     </span>
   </li>
 </ul>
@@ -191,6 +203,32 @@
 </div>
   </div>
   <div class='method_details'>
+    <p class='signature' id='add_option-dynamic'>
+      #
+(void)
+<b>add_option</b><span>(option)</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>type=select/multiselectで使うオプションを追加する</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>option</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>追加するオプション </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
     <p class='signature' id='set_select_options-dynamic'>
       #
 (void)
@@ -198,15 +236,28 @@
       <br>
     </p>
     <div class='docstring'>
-  <p>selectで使うオプションを設定する</p>
+  <p>type=select/multiselectで使うオプションを設定する</p>
 </div>
 <div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>options</span>
+      <span class='type'>
+        (
+          <tt>Array</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>指定するオプション </span>
+    </li>
+  </ul>
 </div>
   </div>
 </div>
     </div>
     <div id='footer'>
-  March 26, 14 04:19:33 by
+  March 27, 14 03:03:20 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
