@@ -2,39 +2,19 @@ define(
   [
     "backbone"
     "underscore"
-    "parser/views/parser_option_view"
     "./controllers/controllers_left_view"
     "./controllers/well_view"
     "./controllers/controllers_parser_select_view"
+    "./controllers/controllers_options_view"
   ]
   (
     Backbone
     _
-    ParserOptionView
     ControllersLeftView
     WellView
     ControllersParserSelectView
+    ControllersOptionsView
   )->
-    # オプション
-    class ControllersOptionsView extends WellView
-      initialize: ->
-        @parser_options = $ '<div></div>'
-        # パーサーの種類が変更されたとき
-        @model.on "change:parser", =>
-          parser = @model.get "parser"
-          # オプションのリストを更新する
-          @parser_options.empty()
-          _(parser.get_options()).each (parser_option)=>
-            parser_option_view = new ParserOptionView
-              model: parser_option
-            @parser_options.append parser_option_view.render().el
-        @
-
-      render: ->
-        @$el.empty()
-        @$el.append '<p class="bg-info">options</p>'
-        @$el.append @parser_options
-        @
 
     # アクション
     class ControllersActionsView extends WellView
