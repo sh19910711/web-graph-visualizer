@@ -247,6 +247,56 @@ describe "parser/views/parser_option_view", ->
         model: @data.option
       @data.view.render()
 
+    context "2つのオプションoption 1 / option 2を追加したとき", ->
+      beforeEach ->
+        @data.option.add_option "option 1"
+        @data.option.add_option "option 2"
+
+      context ".select-option.val(option 1).val(option 2).val(option 1).val(option 1)を実行して", ->
+        beforeEach ->
+          option_1 = @data.view.$el.find('.multiselect-option[value="option 1"]')
+          option_2 = @data.view.$el.find('.multiselect-option[value="option 2"]')
+          option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
+          option_2.prop("checked", ! option_2.prop("checked")).trigger("change")
+          option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
+          option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
+
+        context "option.get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should have two elements", ->
+            expect(@data.ret.length).to.eql 2
+
+          it "should have option 1", ->
+            expect(@data.ret).to.include "option 1"
+
+          it "should have option 2", ->
+            expect(@data.ret).to.include "option 2"
+
+      context ".select-option.val(option 1).val(option 2).val(option 1).val(option 1).val(option 1)を実行して", ->
+        beforeEach ->
+          option_1 = @data.view.$el.find('.multiselect-option[value="option 1"]')
+          option_2 = @data.view.$el.find('.multiselect-option[value="option 2"]')
+          option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
+          option_2.prop("checked", ! option_2.prop("checked")).trigger("change")
+          option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
+          option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
+          option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
+
+        context "option.get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should have two elements", ->
+            expect(@data.ret.length).to.eql 1
+
+          it "should not have option 1", ->
+            expect(@data.ret).to.not.include "option 1"
+
+          it "should have option 2", ->
+            expect(@data.ret).to.include "option 2"
+
     context "3つのオプションを1つずつ追加したとき", ->
       beforeEach ->
         @data.option.add_option "option 1"
