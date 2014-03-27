@@ -35,7 +35,7 @@ define(
         @textarea.$el.attr "rows", "14"
 
         # 内容が変更されたらモデルに送信
-        @textarea.on "change", =>
+        @textarea.$el.on "change", =>
           @model.set "input_text", @textarea.val()
 
         # パーサーの種類が変更されたとき
