@@ -252,7 +252,7 @@ describe "parser/views/parser_option_view", ->
         @data.option.add_option "option 1"
         @data.option.add_option "option 2"
 
-      context ".select-option.val(option 1).val(option 2).val(option 1).val(option 1)を実行して", ->
+      context "option 1 -> option 2 -> option 1 x 2を順に切り替えて", ->
         beforeEach ->
           option_1 = @data.view.$el.find('.multiselect-option[value="option 1"]')
           option_2 = @data.view.$el.find('.multiselect-option[value="option 2"]')
@@ -274,7 +274,7 @@ describe "parser/views/parser_option_view", ->
           it "should have option 2", ->
             expect(@data.ret).to.include "option 2"
 
-      context ".select-option.val(option 1).val(option 2).val(option 1).val(option 1).val(option 1)を実行して", ->
+      context "option 1 -> option 2 -> option 1 x 3を順に切り替えて", ->
         beforeEach ->
           option_1 = @data.view.$el.find('.multiselect-option[value="option 1"]')
           option_2 = @data.view.$el.find('.multiselect-option[value="option 2"]')
