@@ -3,45 +3,18 @@ define(
     "backbone"
     "underscore"
     "./controllers/controllers_left_view"
-    "./controllers/well_view"
     "./controllers/controllers_parser_select_view"
     "./controllers/controllers_options_view"
+    "./controllers/controllers_actions_view"
   ]
   (
     Backbone
     _
     ControllersLeftView
-    WellView
     ControllersParserSelectView
     ControllersOptionsView
+    ControllersActionsView
   )->
-
-    # アクション
-    class ControllersActionsView extends WellView
-      initialize: ->
-        @
-
-      # DOMイベント
-      events:
-        'click .action-btn[data-action="run-visualize"]': "visualize"
-
-      # 視覚化
-      visualize: =>
-        parser = @model.get "parser"
-        input_text = @model.get("input_text") || ""
-
-        # parse()を実行して得られたグラフをモデルに送信
-        graph = parser.parse input_text
-        @model.set "graph", graph
-
-      # DOMの描画
-      render: ->
-        @$el.empty()
-        @$el.append '<p class="bg-info">actions</p>'
-        @$el.append '<button data-action="run-visualize" class="action-btn btn btn-lg btn-primary btn-block">Visualize</button>'
-        @$el.append '<button disabled class="action-btn btn btn-lg btn-default btn-block">Save as Image</button>'
-        @
-
     # 右側
     class ControllersRightView extends Backbone.View
       initialize: ->
