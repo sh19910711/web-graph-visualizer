@@ -4,26 +4,15 @@ define(
     "underscore"
     "misc/views/select_view"
     "parser/views/parser_option_view"
+    "./controllers/textarea_view"
   ]
   (
     Backbone
     _
     SelectView
     ParserOptionView
+    TextAreaView
   )->
-    # textarea
-    class TextAreaView extends Backbone.View
-      tagName: "textarea"
-      className: "form-control"
-
-      initialize: ->
-        @$el.css
-          maxWidth: "100%"
-          width: "100%"
-        @
-
-      render: ->
-        @
 
     # 入力欄
     class ControllersTextAreaView extends Backbone.View
