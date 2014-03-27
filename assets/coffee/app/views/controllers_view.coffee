@@ -5,6 +5,7 @@ define(
     "misc/views/select_view"
     "parser/views/parser_option_view"
     "./controllers/controllers_left_view"
+    "./controllers/well_view"
   ]
   (
     Backbone
@@ -12,12 +13,8 @@ define(
     SelectView
     ParserOptionView
     ControllersLeftView
+    WellView
   )->
-
-    # well
-    class WellView extends Backbone.View
-      className: "well"
-
     # パーサーの選択
     class ControllersParserSelectView extends WellView
       initialize: ->
