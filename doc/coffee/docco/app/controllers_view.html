@@ -54,6 +54,46 @@
               </a>
             
               
+              <a class="source" href="controllers_actions_view.html">
+                controllers_actions_view.coffee
+              </a>
+            
+              
+              <a class="source" href="controllers_left_view.html">
+                controllers_left_view.coffee
+              </a>
+            
+              
+              <a class="source" href="controllers_options_view.html">
+                controllers_options_view.coffee
+              </a>
+            
+              
+              <a class="source" href="controllers_parser_select_view.html">
+                controllers_parser_select_view.coffee
+              </a>
+            
+              
+              <a class="source" href="controllers_right_view.html">
+                controllers_right_view.coffee
+              </a>
+            
+              
+              <a class="source" href="controllers_text_area_view.html">
+                controllers_text_area_view.coffee
+              </a>
+            
+              
+              <a class="source" href="textarea_view.html">
+                textarea_view.coffee
+              </a>
+            
+              
+              <a class="source" href="well_view.html">
+                well_view.coffee
+              </a>
+            
+              
               <a class="source" href="controllers_view.html">
                 controllers_view.coffee
               </a>
@@ -90,14 +130,14 @@
   [
     <span class="hljs-string">"backbone"</span>
     <span class="hljs-string">"underscore"</span>
-    <span class="hljs-string">"misc/views/select_view"</span>
-    <span class="hljs-string">"parser/views/parser_option_view"</span>
+    <span class="hljs-string">"./controllers/controllers_left_view"</span>
+    <span class="hljs-string">"./controllers/controllers_right_view"</span>
   ]
   (
     Backbone
     _
-    SelectView
-    ParserOptionView
+    ControllersLeftView
+    ControllersRightView
   )<span class="hljs-function">-&gt;</span></pre></div></div>
             
         </li>
@@ -109,363 +149,6 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>textarea</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    class TextAreaView extends Backbone.View
-      tagName: "textarea"
-      className: "form-control"
-
-      initialize: -&gt;
-        @$el.css
-          maxWidth: "100%"
-          width: "100%"
-        @
-
-      render: -&gt;
-        @</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>入力欄</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    class ControllersTextAreaView extends Backbone.View
-      className: "form-group"
-
-      initialize: -&gt;
-        @textarea = new TextAreaView
-          model: @model
-        @textarea.$el.attr "rows", "14"</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-4">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
-              </div>
-              <p>内容が変更されたらモデルに送信</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@textarea</span>.$el.<span class="hljs-literal">on</span> <span class="hljs-string">"change"</span>,<span class="hljs-function"> =&gt;</span>
-          <span class="hljs-property">@model</span>.set <span class="hljs-string">"input_text"</span>, <span class="hljs-property">@textarea</span>.$el.val()</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-5">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
-              </div>
-              <p>パーサーの種類が変更されたとき</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@model</span>.<span class="hljs-literal">on</span> <span class="hljs-string">"change:parser"</span>,<span class="hljs-function"> =&gt;</span>
-          parser = <span class="hljs-property">@model</span>.get <span class="hljs-string">"parser"</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-6">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
-              </div>
-              <p>サンプル入力があればそれをplaceholderに設定する</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">try</span>
-            example_input = parser.get_example_input()
-            <span class="hljs-property">@textarea</span>.$el.attr <span class="hljs-string">"placeholder"</span>, example_input
-          <span class="hljs-keyword">catch</span>
-            <span class="hljs-property">@textarea</span>.$el.attr <span class="hljs-string">"placeholder"</span>, <span class="hljs-string">"input text"</span>
-
-        @
-
-      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
-        <span class="hljs-property">@$el</span>.empty()
-        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@textarea</span>.render().el
-        @</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-7">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
-              </div>
-              <p>左側</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ControllersLeftView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Backbone</span>.<span class="hljs-title">View</span></span>
-      <span class="hljs-attribute">initialize</span>:<span class="hljs-function"> -&gt;</span>
-        <span class="hljs-property">@textarea</span> = <span class="hljs-keyword">new</span> ControllersTextAreaView
-          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>
-
-      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
-        <span class="hljs-property">@$el</span>.empty()
-        <span class="hljs-property">@$el</span>.append <span class="hljs-string">'&lt;p class="bg-info"&gt;textarea&lt;/p&gt;'</span>
-        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@textarea</span>.render().el
-        @</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-8">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
-              </div>
-              <p>well</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    class WellView extends Backbone.View
-      className: "well"</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-9">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
-              </div>
-              <p>パーサーの選択</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ControllersParserSelectView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WellView</span></span>
-      <span class="hljs-attribute">initialize</span>:<span class="hljs-function"> -&gt;</span>
-        <span class="hljs-property">@parser_select_view</span> = <span class="hljs-keyword">new</span> SelectView
-          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>.get <span class="hljs-string">"parser_select"</span>
-        <span class="hljs-property">@update</span>()
-        <span class="hljs-property">@model</span>.<span class="hljs-literal">on</span> <span class="hljs-string">"change:parsers"</span>,<span class="hljs-function"> =&gt;</span>
-          <span class="hljs-property">@update</span>()
-        @
-
-      <span class="hljs-attribute">update</span>:<span class="hljs-function"> -&gt;</span>
-        parsers = <span class="hljs-property">@model</span>.get <span class="hljs-string">"parsers"</span>
-        parser_select = <span class="hljs-property">@model</span>.get <span class="hljs-string">"parser_select"</span>
-        parser_keys = _(parsers).keys()
-        items = parser_select.get(<span class="hljs-string">"items"</span>)
-        _<span class="hljs-function"><span class="hljs-params">(parser_keys)</span>.<span class="hljs-title">each</span> <span class="hljs-params">(parser_key)</span>=&gt;</span>
-          items.add
-            <span class="hljs-attribute">id</span>: parser_key
-            <span class="hljs-attribute">value</span>: parser_key
-
-      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
-        <span class="hljs-property">@$el</span>.empty()
-        <span class="hljs-property">@$el</span>.append <span class="hljs-string">'&lt;p class="bg-info"&gt;parsers&lt;/p&gt;'</span>
-        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@parser_select_view</span>.render().el
-        @</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-10">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
-              </div>
-              <p>オプション</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ControllersOptionsView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WellView</span></span>
-      <span class="hljs-attribute">initialize</span>:<span class="hljs-function"> -&gt;</span>
-        <span class="hljs-property">@parser_options</span> = $ <span class="hljs-string">'&lt;div&gt;&lt;/div&gt;'</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-11">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
-              </div>
-              <p>パーサーの種類が変更されたとき</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@model</span>.<span class="hljs-literal">on</span> <span class="hljs-string">"change:parser"</span>,<span class="hljs-function"> =&gt;</span>
-          parser = <span class="hljs-property">@model</span>.get <span class="hljs-string">"parser"</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-12">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
-              </div>
-              <p>オプションのリストを更新する</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>          <span class="hljs-property">@parser_options</span>.empty()
-          _<span class="hljs-function"><span class="hljs-params">(parser.get_options())</span>.<span class="hljs-title">each</span> <span class="hljs-params">(parser_option)</span>=&gt;</span>
-            parser_option_view = <span class="hljs-keyword">new</span> ParserOptionView
-              <span class="hljs-attribute">model</span>: parser_option
-            <span class="hljs-property">@parser_options</span>.append parser_option_view.render().el
-        @
-
-      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
-        <span class="hljs-property">@$el</span>.empty()
-        <span class="hljs-property">@$el</span>.append <span class="hljs-string">'&lt;p class="bg-info"&gt;options&lt;/p&gt;'</span>
-        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@parser_options</span>
-        @</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-13">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
-              </div>
-              <p>アクション</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ControllersActionsView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WellView</span></span>
-      <span class="hljs-attribute">initialize</span>:<span class="hljs-function"> -&gt;</span>
-        @</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-14">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
-              </div>
-              <p>DOMイベント</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-attribute">events</span>:
-        <span class="hljs-string">'click .action-btn[data-action="run-visualize"]'</span>: <span class="hljs-string">"visualize"</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-15">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
-              </div>
-              <p>視覚化</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-attribute">visualize</span>:<span class="hljs-function"> =&gt;</span>
-        parser = <span class="hljs-property">@model</span>.get <span class="hljs-string">"parser"</span>
-        input_text = <span class="hljs-property">@model</span>.get(<span class="hljs-string">"input_text"</span>) || <span class="hljs-string">""</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-16">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
-              </div>
-              <p>parse()を実行して得られたグラフをモデルに送信</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        graph = parser.parse input_text
-        <span class="hljs-property">@model</span>.set <span class="hljs-string">"graph"</span>, graph</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-17">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
-              </div>
-              <p>DOMの描画</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
-        <span class="hljs-property">@$el</span>.empty()
-        <span class="hljs-property">@$el</span>.append <span class="hljs-string">'&lt;p class="bg-info"&gt;actions&lt;/p&gt;'</span>
-        <span class="hljs-property">@$el</span>.append <span class="hljs-string">'&lt;button data-action="run-visualize" class="action-btn btn btn-lg btn-primary btn-block"&gt;Visualize&lt;/button&gt;'</span>
-        <span class="hljs-property">@$el</span>.append <span class="hljs-string">'&lt;button disabled class="action-btn btn btn-lg btn-default btn-block"&gt;Save as Image&lt;/button&gt;'</span>
-        @</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-18">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
-              </div>
-              <p>右側</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ControllersRightView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Backbone</span>.<span class="hljs-title">View</span></span>
-      <span class="hljs-attribute">initialize</span>:<span class="hljs-function"> -&gt;</span>
-        <span class="hljs-property">@parser_select</span> = <span class="hljs-keyword">new</span> ControllersParserSelectView
-          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>
-        <span class="hljs-property">@options</span> = <span class="hljs-keyword">new</span> ControllersOptionsView
-          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>
-        <span class="hljs-property">@actions</span> = <span class="hljs-keyword">new</span> ControllersActionsView
-          <span class="hljs-attribute">model</span>: <span class="hljs-property">@model</span>
-
-      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
-        <span class="hljs-property">@$el</span>.empty()
-        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@parser_select</span>.render().el
-        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@options</span>.render().el
-        <span class="hljs-property">@$el</span>.append <span class="hljs-property">@actions</span>.render().el
-        @</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-19">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
-              </div>
               <p>入力などの各種操作を行う</p>
 
             </div>
@@ -476,11 +159,11 @@
         </li>
         
         
-        <li id="section-20">
+        <li id="section-3">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <p>初期化</p>
 
@@ -498,11 +181,11 @@
         </li>
         
         
-        <li id="section-21">
+        <li id="section-4">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>DOMの描画</p>
 
