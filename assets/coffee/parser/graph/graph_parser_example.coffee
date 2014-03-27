@@ -4,12 +4,14 @@ define(
     "graph/models/graph_model"
     "misc/models/select_model"
     "parser/models/parser_option_model"
+    "parser/errors/parse_error"
   ]
   (
     ParserBase
     GraphModel
     SelectModel
     ParserOptionModel
+    ParseError
   )->
     # パーサー実装のサンプル
     class GraphParserExample extends ParserBase
@@ -64,7 +66,7 @@ define(
             graph.add_edge 7, 9
 
           else
-            throw new Error "ERROR_Q3ORKH: Unknown Graph Type"
+            throw new ParseError "ERROR_Q3ORKH: Unknown Graph Type"
 
         graph
 )
