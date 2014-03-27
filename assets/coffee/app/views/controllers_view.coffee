@@ -36,7 +36,7 @@ define(
 
         # 内容が変更されたらモデルに送信
         @textarea.$el.on "change", =>
-          @model.set "input_text", @textarea.val()
+          @model.set "input_text", @textarea.$el.val()
 
         # パーサーの種類が変更されたとき
         @model.on "change:parser", =>
