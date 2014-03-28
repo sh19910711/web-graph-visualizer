@@ -45,6 +45,7 @@ if ENV['RACK_ENV'] == 'development'
   map '/test/load_spec_files.js' do
     # TODO: ファイルに分割する
     require 'sinatra/base'
+    require 'pathname'
     class SpecLoader < Sinatra::Base
       get "/" do
         content_type "text/javascript"
@@ -67,7 +68,11 @@ if ENV['RACK_ENV'] == 'development'
         script_tag += "var deferreds = [];\n"
         res_text += script_tag
 
-        Dir.glob "spec/coffee/{,**/}*_spec.coffee" do |filepath|
+        cur_path = File.expand_path(File.dirname(__FILE__))
+        glob_path = cur_path + "/spec/coffee/{,**/}*_spec.coffee"
+        Dir.glob glob_path do |filepath|
+          pathname = Pathname(filepath)
+          filepath = pathname.relative_path_from(Pathname cur_path).to_s
           filepath.gsub! /^spec\//, ""
           filepath.gsub! /\.coffee$/, ".js"
           res_text += "deferreds.push(load_script('/test/#{filepath}'));\n"
