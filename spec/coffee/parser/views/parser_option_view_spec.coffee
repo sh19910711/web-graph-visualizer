@@ -255,10 +255,15 @@ describe "parser/views/parser_option_view", ->
       context "option 1 -> option 2 -> option 1 x 2を順に切り替えて", ->
         beforeEach ->
           option_1 = @data.view.$el.find('.multiselect-option[value="option 1"]')
+          option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
+
           option_2 = @data.view.$el.find('.multiselect-option[value="option 2"]')
-          option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
           option_2.prop("checked", ! option_2.prop("checked")).trigger("change")
+
+          option_1 = @data.view.$el.find('.multiselect-option[value="option 1"]')
           option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
+
+          option_1 = @data.view.$el.find('.multiselect-option[value="option 1"]')
           option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
 
         context "option.get_value()を実行すると", ->
@@ -277,11 +282,18 @@ describe "parser/views/parser_option_view", ->
       context "option 1 -> option 2 -> option 1 x 3を順に切り替えて", ->
         beforeEach ->
           option_1 = @data.view.$el.find('.multiselect-option[value="option 1"]')
+          option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
+
           option_2 = @data.view.$el.find('.multiselect-option[value="option 2"]')
-          option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
           option_2.prop("checked", ! option_2.prop("checked")).trigger("change")
+
+          option_1 = @data.view.$el.find('.multiselect-option[value="option 1"]')
           option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
+
+          option_1 = @data.view.$el.find('.multiselect-option[value="option 1"]')
           option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
+
+          option_1 = @data.view.$el.find('.multiselect-option[value="option 1"]')
           option_1.prop("checked", ! option_1.prop("checked")).trigger("change")
 
         context "option.get_value()を実行すると", ->
