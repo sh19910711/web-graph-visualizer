@@ -56,10 +56,16 @@ define(
         # type=select
         select_tag = @$el.find(".select-option")
         select_tag.empty()
+        # optionタグを追加していく
         _(@model.get "options").each (option)->
           select_tag.append "<option value=\"#{option}\">#{option}</option>"
         model_value = @model.get_value()
+        # 新しく追加されたときは最初の要素を選択しておく
+        unless model_value && @model.get("options").length
+          model_value = @model.get("options")[0]
         select_tag.val(model_value).trigger("change") unless model_value == select_tag.val()
+        select_tag.val(model_value).trigger("change") unless !! select_tag.val()
+        @
 
       # type=multiselectでモデルが更新されたときの処理
       # @return [ParserOptionView] void
