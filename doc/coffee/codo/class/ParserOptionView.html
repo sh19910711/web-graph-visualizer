@@ -49,9 +49,31 @@
     <pre><code class='coffeescript'>&quot;form-group&quot;</code></pre>
     
   </dd>
+  <dt id='events-variable'>
+    events
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>{
+  &quot;change input.multiselect-option&quot;: &quot;change_multiselect_option&quot;
+}</code></pre>
+    
+  </dd>
 </dl>
       <h2>Instance Method Summary</h2>
       <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#change_multiselect_option-dynamic'>
+        #
+(void)
+<b>change_multiselect_option</b><span>(event)</span>
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+    </span>
+  </li>
   <li>
     <span class='signature'>
       <a href='#initialize-dynamic'>
@@ -79,11 +101,72 @@
     <span class='signature'>
       <a href='#update-dynamic'>
         #
-(void)
+(ParserOptionView)
 <b>update</b><span>()</span>
       </a>
     </span>
     <span class='desc'>
+      モデルが更新されたときの処理 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#update_text-dynamic'>
+        #
+(ParserOptionView)
+<b>update_text</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      type=textでモデルが更新されたときの処理 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#update_select-dynamic'>
+        #
+(ParserOptionView)
+<b>update_select</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      type=selectでモデルが更新されたときの処理 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#update_multiselect-dynamic'>
+        #
+(ParserOptionView)
+<b>update_multiselect</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      type=multiselectでモデルが更新されたときの処理 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#update_flag-dynamic'>
+        #
+(ParserOptionView)
+<b>update_flag</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      type=flagでモデルが更新されたときの処理 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#update_hidden-dynamic'>
+        #
+(ParserOptionView)
+<b>update_hidden</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      type=flagでモデルが更新されたときの処理 
     </span>
   </li>
   <li>
@@ -98,9 +181,79 @@
       DOMの描画 
     </span>
   </li>
+  <li>
+    <span class='signature'>
+      <a href='#render_text-dynamic'>
+        #
+(ParserOptionView)
+<b>render_text</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      type=textに関するDOMの描画 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#render_select-dynamic'>
+        #
+(ParserOptionView)
+<b>render_select</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      type=selectに関するDOMの描画 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#render_multiselect-dynamic'>
+        #
+(ParserOptionView)
+<b>render_multiselect</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      type=multiselectに関するDOMの描画 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#render_flag-dynamic'>
+        #
+(ParserOptionView)
+<b>render_flag</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      type=flagに関するDOMの描画 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#render_hidden-dynamic'>
+        #
+(ParserOptionView)
+<b>render_hidden</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      type=hiddenに関するDOMの描画 
+    </span>
+  </li>
 </ul>
       <h2>Instance Method Details</h2>
       <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='change_multiselect_option-dynamic'>
+      #
+(void)
+<b>change_multiselect_option</b><span>(event)</span>
+      <span class='bound note'>Bound</span>
+      <br>
+    </p>
+    
+  </div>
   <div class='method_details'>
     <p class='signature' id='initialize-dynamic'>
       #
@@ -126,11 +279,146 @@
   <div class='method_details'>
     <p class='signature' id='update-dynamic'>
       #
-(void)
+(ParserOptionView)
 <b>update</b><span>()</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>モデルが更新されたときの処理</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ParserOptionView.html'>ParserOptionView</a></tt>
+      )
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='update_text-dynamic'>
+      #
+(ParserOptionView)
+<b>update_text</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>type=textでモデルが更新されたときの処理</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ParserOptionView.html'>ParserOptionView</a></tt>
+      )
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='update_select-dynamic'>
+      #
+(ParserOptionView)
+<b>update_select</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>type=selectでモデルが更新されたときの処理</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ParserOptionView.html'>ParserOptionView</a></tt>
+      )
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='update_multiselect-dynamic'>
+      #
+(ParserOptionView)
+<b>update_multiselect</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>type=multiselectでモデルが更新されたときの処理</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ParserOptionView.html'>ParserOptionView</a></tt>
+      )
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='update_flag-dynamic'>
+      #
+(ParserOptionView)
+<b>update_flag</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>type=flagでモデルが更新されたときの処理</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ParserOptionView.html'>ParserOptionView</a></tt>
+      )
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='update_hidden-dynamic'>
+      #
+(ParserOptionView)
+<b>update_hidden</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>type=flagでモデルが更新されたときの処理</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ParserOptionView.html'>ParserOptionView</a></tt>
+      )
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='render-dynamic'>
@@ -145,10 +433,130 @@
 <div class='tags'>
 </div>
   </div>
+  <div class='method_details'>
+    <p class='signature' id='render_text-dynamic'>
+      #
+(ParserOptionView)
+<b>render_text</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>type=textに関するDOMの描画</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ParserOptionView.html'>ParserOptionView</a></tt>
+      )
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='render_select-dynamic'>
+      #
+(ParserOptionView)
+<b>render_select</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>type=selectに関するDOMの描画</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ParserOptionView.html'>ParserOptionView</a></tt>
+      )
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='render_multiselect-dynamic'>
+      #
+(ParserOptionView)
+<b>render_multiselect</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>type=multiselectに関するDOMの描画</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ParserOptionView.html'>ParserOptionView</a></tt>
+      )
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='render_flag-dynamic'>
+      #
+(ParserOptionView)
+<b>render_flag</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>type=flagに関するDOMの描画</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ParserOptionView.html'>ParserOptionView</a></tt>
+      )
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='render_hidden-dynamic'>
+      #
+(ParserOptionView)
+<b>render_hidden</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>type=hiddenに関するDOMの描画</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ParserOptionView.html'>ParserOptionView</a></tt>
+      )
+      &mdash;
+      <span class='desc'>void </span>
+    </li>
+  </ul>
+</div>
+  </div>
 </div>
     </div>
     <div id='footer'>
-  March 28, 14 19:56:13 by
+  March 29, 14 10:04:56 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
