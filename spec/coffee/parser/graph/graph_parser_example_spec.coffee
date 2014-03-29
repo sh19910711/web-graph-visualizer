@@ -125,7 +125,7 @@ describe "parser/graph/graph_parser_example", ->
     
     context "graph_typeをGRAPH_TYPE_0に設定して", ->
       beforeEach ->
-        @data.parser.get_option("graph_type").set_value "GRAPH_TYPE_0"
+        @data.parser.set_option_value "graph_type", "GRAPH_TYPE_0"
 
       context "parse(this is test)したとき", ->
         beforeEach ->
@@ -153,7 +153,7 @@ describe "parser/graph/graph_parser_example", ->
 
     context "graph_typeをGRAPH_TYPE_1に設定して", ->
       beforeEach ->
-        @data.parser.get_option("graph_type").set_value "GRAPH_TYPE_1"
+        @data.parser.set_option_value "graph_type", "GRAPH_TYPE_1"
 
       context "parse(this is test)したとき", ->
         beforeEach ->

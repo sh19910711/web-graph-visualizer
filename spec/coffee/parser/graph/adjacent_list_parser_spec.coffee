@@ -113,7 +113,7 @@ describe "coffee/parser/graph/adjacent_list_parser", ->
             expect(@data.graph.get_num_vertices()).to.eql 5
 
           it "should have 4 edges", ->
-            expect(@data.grpah.get_num_edges()).to.eql 4
+            expect(@data.graph.get_num_edges()).to.eql 4
 
           it "should have edge 0-1", ->
             expect(@data.graph.check_edge(0, 1)).to.be.true
