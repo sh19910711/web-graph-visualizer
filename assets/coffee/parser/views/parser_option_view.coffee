@@ -8,6 +8,13 @@ define(
     class ParserOptionView extends Backbone.View
       className: "form-group"
 
+      events:
+        "change input.multiselect-option": "change_multiselect_option"
+
+      change_multiselect_option: (event)=>
+        option_key = $(event.target).val()
+        @model.set_value option_key if @model.get_value() != $(event.target).prop('checked')
+
       # 初期化
       initialize: ->
         @init_model_events()
@@ -67,9 +74,6 @@ define(
             multiselect_option_tag = $ '<div class="checkbox"><label><input value="' + option + '" checked="checked" type="checkbox" class="multiselect-option">' + option + '</label></div>'
           else
             multiselect_option_tag = $ '<div class="checkbox"><label><input value="' + option + '" type="checkbox" class="multiselect-option">' + option + '</label></div>'
-          multiselect_option_tag.on "change", =>
-            multiselect_option_tag.find('input:checked').each (k, element)=>
-              @model.set_value $(element).val()
           multiselect.append multiselect_option_tag
 
       # type=flagでモデルが更新されたときの処理

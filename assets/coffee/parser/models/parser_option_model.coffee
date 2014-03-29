@@ -97,7 +97,7 @@ define(
       # type=select/multiselectで使うオプションを追加する
       # @param [String] option 追加するオプション
       add_option: (option)->
-        options = @get("options") || []
+        options = _.clone(@get("options")) || []
         # 存在しないときに追加する
         options.push option unless _(options).include option
         @set "options", options
