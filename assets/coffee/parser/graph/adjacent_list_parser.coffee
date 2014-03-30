@@ -18,6 +18,7 @@ define(
       defaults: ->
         "option/0-indexed": new ParserOptionModel
           type: "flag"
+          name: "enable 0-indexed"
 
       # parse
       # @param [String] text 入力文字列
