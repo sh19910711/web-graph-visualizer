@@ -29,8 +29,10 @@ define(
 
         items.on "add", =>
           @trigger "change:items"
+
         items.on "remove", =>
           @trigger "change:items"
+
         @set "items", items
 
         # selected_idが設定されていない時はitemsの最初の要素のidで初期化する

@@ -86,6 +86,10 @@ define(
             # リストを初期化
             @set "select_id_list", []
           when "flag"
+            console.log "type: ", @get("type")
+            console.log "name, ", @get("name")
+            unless !! @get("name")
+              throw new Error "ERROR_ZS4PMC: name property must be specified" 
             @set "value", @get("value") || false
           when "hidden"
             # 値をStringに正規化
@@ -94,7 +98,16 @@ define(
             throw new Error "ERROR_AT8YQ4: Unknown Parser Option Type"
         @
 
-      # selectで使うオプションを設定する
+      # type=select/multiselectで使うオプションを追加する
+      # @param [String] option 追加するオプション
+      add_option: (option)->
+        options = _.clone(@get("options")) || []
+        # 存在しないときに追加する
+        options.push option unless _(options).include option
+        @set "options", options
+
+      # type=select/multiselectで使うオプションを設定する
+      # @param [Array] options 指定するオプション
       set_select_options: (options)->
         # optionsが未定義の場合は空の配列で初期化
         @set "options", options || []

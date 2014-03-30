@@ -25,10 +25,12 @@ define(
         @select_tag.empty()
         @model.get("items").each (item, key)=>
           @select_tag.append "<option value=\"#{item.id}\">#{item.get("value")}</option>"
-
         selected_id = @model.get "selected_id"
-        @select_tag.val(selected_id)
-
+        if selected_id
+          @select_tag.val(selected_id).trigger("change") unless @select_tag.val() == selected_id
+        else
+          # 存在しないときは先頭の要素
+          @select_tag.val(@select_tag.find("option").first().val()).trigger("change")
         @
 
       # アイテムが選択されたとき

@@ -21,8 +21,6 @@ define(
 
       # 初期化
       initialize: ->
-        console.log "@ApplicationModel#initialize"
-
         # GraphModelの初期化
         graph = new GraphModel
         @set "graph", graph
@@ -36,7 +34,7 @@ define(
         parser_select.on "change:selected_id", =>
           parsers = @get "parsers"
           selected_id = parser_select.get "selected_id"
-          @set "parser", new parsers[selected_id]
+          @set "parser", new parsers[selected_id] if parsers[selected_id] instanceof Function
 
         # パーサーの読み込み
         requirejs(
