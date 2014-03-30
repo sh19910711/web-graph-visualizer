@@ -24,7 +24,7 @@ define(
 
       render: ->
         @$el.empty()
-        @$el.append '<p class="bg-info">options</p>'
+        @$el.append '<p class="bg-info">parser options</p>'
         @$el.append @parser_options
         @
 )
