@@ -160,8 +160,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-attribute">initialize</span>:<span class="hljs-function"> -&gt;</span>
-        <span class="hljs-built_in">console</span>.log <span class="hljs-string">"@ApplicationModel#initialize"</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-attribute">initialize</span>:<span class="hljs-function"> -&gt;</span></pre></div></div>
             
         </li>
         
@@ -201,7 +200,7 @@
             <div class="content"><div class='highlight'><pre>        parser_select.<span class="hljs-literal">on</span> <span class="hljs-string">"change:selected_id"</span>,<span class="hljs-function"> =&gt;</span>
           parsers = <span class="hljs-property">@get</span> <span class="hljs-string">"parsers"</span>
           selected_id = parser_select.get <span class="hljs-string">"selected_id"</span>
-          <span class="hljs-property">@set</span> <span class="hljs-string">"parser"</span>, <span class="hljs-keyword">new</span> parsers[selected_id]</pre></div></div>
+          <span class="hljs-property">@set</span> <span class="hljs-string">"parser"</span>, <span class="hljs-keyword">new</span> parsers[selected_id] <span class="hljs-keyword">if</span> parsers[selected_id] <span class="hljs-keyword">instanceof</span> Function</pre></div></div>
             
         </li>
         
