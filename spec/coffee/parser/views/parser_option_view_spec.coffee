@@ -463,19 +463,6 @@ describe "parser/views/parser_option_view", ->
             expect(@data.ret).to.include "option 3"
 
   context "typeがflagのときについて", ->
-    context "nameが未指定のオプションを作成すると", ->
-      beforeEach ->
-        @data.func = ->
-          @data.option = new @modules.ParserOptionModel
-            type: "flag"
-          @data.view = new @modules.ParserOptionView
-            model: @data.option
-          @data.view.render()
-
-      it "should throw Error", ->
-        expect(@data.func).to.throw Error
-
-
     context "nameがdummyのオプションを作成して", ->
       beforeEach ->
         @data.option = new @modules.ParserOptionModel

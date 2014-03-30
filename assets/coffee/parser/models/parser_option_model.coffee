@@ -86,6 +86,10 @@ define(
             # リストを初期化
             @set "select_id_list", []
           when "flag"
+            console.log "type: ", @get("type")
+            console.log "name, ", @get("name")
+            unless !! @get("name")
+              throw new Error "ERROR_ZS4PMC: name property must be specified" 
             @set "value", @get("value") || false
           when "hidden"
             # 値をStringに正規化
