@@ -463,41 +463,55 @@ describe "parser/views/parser_option_view", ->
             expect(@data.ret).to.include "option 3"
 
   context "typeがflagのときについて", ->
-    beforeEach ->
-      @data.option = new @modules.ParserOptionModel
-        type: "flag"
-        name: "dummy"
-      @data.view = new @modules.ParserOptionView
-        model: @data.option
-      @data.view.render()
-
-    context "何もせずに", ->
-      context "$(.checked).prop(checked)を実行すると", ->
-        beforeEach ->
-          @data.ret = @data.view.$el.find(".flag").prop "checked"
-
-        it "should be false", ->
-          expect(@data.ret).to.be.false
-
-    context "option.set_value()を実行して", ->
+    context "nameが未指定のオプションを作成すると", ->
       beforeEach ->
-        @data.option.set_value()
+        @data.func = ->
+          @data.option = new @modules.ParserOptionModel
+            type: "flag"
+          @data.view = new @modules.ParserOptionView
+            model: @data.option
+          @data.view.render()
 
-      context "$(.checkbox).prop(checked)を実行すると", ->
-        beforeEach ->
-          @data.ret = @data.view.$el.find(".flag").prop "checked"
+      it "should throw Error", ->
+        expect(@data.func).to.throw Error
 
-        it "should be true", ->
-          expect(@data.ret).to.be.true
 
-    context "option.set_value(false)を実行して", ->
+    context "nameがdummyのオプションを作成して", ->
       beforeEach ->
-        @data.option.set_value false
+        @data.option = new @modules.ParserOptionModel
+          type: "flag"
+          name: "dummy"
+        @data.view = new @modules.ParserOptionView
+          model: @data.option
+        @data.view.render()
 
-      context "$(.checkbox).prop(checked)を実行すると", ->
+      context "何もせずに", ->
+        context "$(.flag).prop(checked)を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.view.$el.find(".flag").prop "checked"
+
+          it "should be false", ->
+            expect(@data.ret).to.be.false
+
+      context "option.set_value()を実行して", ->
         beforeEach ->
-          @data.ret = @data.view.$el.find(".flag").prop "checked"
+          @data.option.set_value()
 
-        it "should be false", ->
-          expect(@data.ret).to.be.false
+        context "$(.flag).prop(checked)を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.view.$el.find(".flag").prop "checked"
+
+          it "should be true", ->
+            expect(@data.ret).to.be.true
+
+      context "option.set_value(false)を実行して", ->
+        beforeEach ->
+          @data.option.set_value false
+
+        context "$(.flag).prop(checked)を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.view.$el.find(".flag").prop "checked"
+
+          it "should be false", ->
+            expect(@data.ret).to.be.false
 
