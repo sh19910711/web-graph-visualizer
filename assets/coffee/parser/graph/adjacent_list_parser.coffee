@@ -1,10 +1,12 @@
 define(
   [
     "parser/parser_base"
+    "parser/models/parser_option_model"
     "graph/models/graph_model"
   ]
   (
     ParserBase
+    ParserOptionModel
     GraphModel
   )->
     # 隣接リスト形式の入力を読み込むクラス
@@ -13,6 +15,10 @@ define(
     # spec/parser/graph/adjacent_list_parser_spec.coffee
     # を参照すること
     class AdjacentListParser extends ParserBase
+      defaults: ->
+        "option/0-indexed": new ParserOptionModel
+          type: "flag"
+
       # parse
       # @param [String] text 入力文字列
       # @return [GraphModel] parse後のグラフ
@@ -29,8 +35,12 @@ define(
 
         for i in [1 ... num_lines]
           link = lines[i].split(" ")
-          from = parseInt(link[0], 10) - 1 # 1-indexed -> 0-indexed
-          to   = parseInt(link[1], 10) - 1 # 1-indexed -> 0-indexed
+          from = parseInt(link[0], 10)
+          to   = parseInt(link[1], 10)
+
+          if @get_option_value("0-indexed") == false
+            from -= 1 # 1-indexed -> 0-indexed
+            to   -= 1 # 1-indexed -> 0-indexed
 
           graph.add_edge(from, to)
 
