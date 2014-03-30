@@ -34,72 +34,83 @@ describe "parser/models/parser_option_model", ->
           expect(@data.ret).to.eql "aiueo"
 
   context "typeがflagのときについて", ->
-    beforeEach ->
-      @data.option = new @modules.ParserOptionModel
-        type: "flag"
-
-    context "何も操作せずに", ->
-      context "get_value()を実行すると", ->
-        beforeEach ->
-          @data.ret = @data.option.get_value()
-
-        it "should be false", ->
-          expect(@data.ret).to.be.false
-
-    context "set_value()を実行して", ->
+    context "nameが未指定のオプションを作成すると", ->
       beforeEach ->
-        @data.option.set_value()
+        @data.func = =>
+          @data.option = new @modules.ParserOptionModel
+            type: "flag"
 
-      context "さらにset_value()を実行して", ->
+      it "should throw Error", ->
+        expect(@data.func).to.throw Error
+
+    context "nameがdummyのオプションを作成して", ->
+      beforeEach ->
+        @data.option = new @modules.ParserOptionModel
+          type: "flag"
+          name: "dummy"
+
+      context "何も操作せずに", ->
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should be false", ->
+            expect(@data.ret).to.be.false
+
+      context "set_value()を実行して", ->
         beforeEach ->
           @data.option.set_value()
+
+        context "さらにset_value()を実行して", ->
+          beforeEach ->
+            @data.option.set_value()
+
+          context "get_value()を実行すると", ->
+            beforeEach ->
+              @data.ret = @data.option.get_value()
+
+            it "should be true", ->
+              expect(@data.ret).to.be.false
 
         context "get_value()を実行すると", ->
           beforeEach ->
             @data.ret = @data.option.get_value()
 
           it "should be true", ->
-            expect(@data.ret).to.be.false
+            expect(@data.ret).to.be.true
 
-      context "get_value()を実行すると", ->
+      context "set_value(true)を実行して", ->
         beforeEach ->
-          @data.ret = @data.option.get_value()
+          @data.option.set_value true
 
-        it "should be true", ->
-          expect(@data.ret).to.be.true
+        context "さらにset_value()を実行して", ->
+          beforeEach ->
+            @data.option.set_value()
 
-    context "set_value(true)を実行して", ->
-      beforeEach ->
-        @data.option.set_value true
+          context "get_value()を実行すると", ->
+            beforeEach ->
+              @data.ret = @data.option.get_value()
 
-      context "さらにset_value()を実行して", ->
-        beforeEach ->
-          @data.option.set_value()
+            it "should be true", ->
+              expect(@data.ret).to.be.false
 
         context "get_value()を実行すると", ->
           beforeEach ->
             @data.ret = @data.option.get_value()
 
           it "should be true", ->
+            expect(@data.ret).to.be.true
+
+      context "set_value(false)を実行して", ->
+        beforeEach ->
+          @data.option.set_value false
+
+        context "get_value()を実行すると", ->
+          beforeEach ->
+            @data.ret = @data.option.get_value()
+
+          it "should be false", ->
             expect(@data.ret).to.be.false
-
-      context "get_value()を実行すると", ->
-        beforeEach ->
-          @data.ret = @data.option.get_value()
-
-        it "should be true", ->
-          expect(@data.ret).to.be.true
-
-    context "set_value(false)を実行して", ->
-      beforeEach ->
-        @data.option.set_value false
-
-      context "get_value()を実行すると", ->
-        beforeEach ->
-          @data.ret = @data.option.get_value()
-
-        it "should be false", ->
-          expect(@data.ret).to.be.false
 
   context "typeがmultiselectのときについて", ->
     context "何もオプションを持たないとき", ->
