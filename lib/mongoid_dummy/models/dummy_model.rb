@@ -1,4 +1,4 @@
-module Dummy
+module MongoidDummy
   module Models
     class DummyModel
       include Mongoid::Document
