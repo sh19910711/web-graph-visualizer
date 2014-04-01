@@ -1,0 +1,12 @@
+development:
+  sessions:
+    default:
+      database: graph-visualizer-development
+      hosts:
+        - localhost:27019
+test:
+  sessions:
+    default:
+      database: graph-visualizer-test
+      hosts:
+        - localhost:27019

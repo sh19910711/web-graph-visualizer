@@ -1,6 +1,9 @@
 require_relative 'lib/application/server'
 require 'sprockets'
 
+require 'mongoid'
+Mongoid.load! 'mongoid.yml'
+
 # http://.../lib/
 map '/lib' do
   env = Sprockets::Environment.new
