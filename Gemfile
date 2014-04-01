@@ -10,6 +10,8 @@ group :production, :development do
   gem "sass"
   gem "coffee-script"
   gem "sprockets"
+  gem "mongoid"
+  gem "bson_ext"
 end
 
 group :development do
