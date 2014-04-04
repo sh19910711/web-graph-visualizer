@@ -3,7 +3,7 @@ module Application
     class InputTextModel
       include Mongoid::Document
       # Input Text
-      field :text, type: string
+      field :text, type: String
     end
   end
 end
