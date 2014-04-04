@@ -25,5 +25,7 @@ group :test do
   gem "rspec"
   gem "rspec-extra-formatters"
   gem "database_cleaner"
+  gem "rack-test"
+  gem "factory_girl"
 end
 

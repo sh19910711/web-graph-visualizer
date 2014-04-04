@@ -24,7 +24,7 @@ module Debug
       script_tag += "var deferreds = [];\n"
       res_text += script_tag
 
-      cur_path = File.expand_path(File.dirname(__FILE__))
+      cur_path = File.expand_path(File.dirname(__FILE__) + "/../../")
       glob_path = cur_path + "/spec/coffee/{,**/}*_spec.coffee"
       Dir.glob glob_path do |filepath|
         pathname = Pathname(filepath)
