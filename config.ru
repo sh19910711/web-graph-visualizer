@@ -45,8 +45,11 @@ if ENV['RACK_ENV'] == 'development'
     run Rack::Directory.new(File.expand_path('doc', File.dirname(__FILE__)))
   end
 
-  map '/test' do
+  map '/test/load_coffee_script' do
     require_relative 'lib/debug/load_coffee_script'
     run Debug::LoadCoffeeScript
   end
 end
+
+I18n.enforce_available_locales = true
+
