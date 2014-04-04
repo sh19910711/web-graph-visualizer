@@ -17,6 +17,8 @@ end
 group :development do
   gem "rake"
   gem "yard"
+  gem "byebug"
+  gem "pry"
 end
 
 group :test do
