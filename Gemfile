@@ -17,10 +17,13 @@ end
 group :development do
   gem "rake"
   gem "yard"
+  gem "byebug"
+  gem "pry"
 end
 
 group :test do
   gem "rspec"
   gem "rspec-extra-formatters"
+  gem "database_cleaner"
 end
 

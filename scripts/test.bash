@@ -2,6 +2,7 @@
 
 # テストを実行する
 bundle exec rake test > tmp/test/result-ruby.txt
+cat tmp/test/result-ruby.txt
 npm run-script test
 
 # タグなどの修正
