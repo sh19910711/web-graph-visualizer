@@ -19,6 +19,7 @@ describe Application::Models::InputTextModel do
       end
     end
   end
+
   context "create()で生成して" do
     before :each do
       @input_text = Application::Models::InputTextModel.create(
