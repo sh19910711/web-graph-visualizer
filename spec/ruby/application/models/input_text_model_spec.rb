@@ -23,7 +23,7 @@ describe Application::Models::InputTextModel do
   context "create()で生成して" do
     before :each do
       @input_text = Application::Models::InputTextModel.create(
-        :_id => "test"
+        :id => "test"
       )
     end
     context "write_attribute()で文字列を設定して" do

@@ -1,3 +1,5 @@
+require "mongoid"
+
 module Application
   module Models
     class ParserModel
