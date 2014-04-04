@@ -21,6 +21,7 @@ GEM
       execjs
     coffee-script-source (1.7.0)
     columnize (0.3.6)
+    database_cleaner (1.2.0)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     execjs (2.0.2)
@@ -92,6 +93,7 @@ DEPENDENCIES
   bson_ext
   byebug
   coffee-script
+  database_cleaner
   haml
   mongoid
   pry

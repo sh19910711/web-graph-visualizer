@@ -24,5 +24,6 @@ end
 group :test do
   gem "rspec"
   gem "rspec-extra-formatters"
+  gem "database_cleaner"
 end
 
