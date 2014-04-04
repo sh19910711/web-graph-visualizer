@@ -8,7 +8,7 @@ module.exports = (grunt)->
     url  = require 'url'
     glob = require 'glob'
     pathname = url.parse(req.url).pathname
-    if req.method == 'GET' && pathname == '/test/load_spec_files.js'
+    if req.method == 'GET' && pathname == '/test/load_coffee_script/load_spec_files.js'
       res_text = ''
       glob 'spec/coffee/{,**/}*_spec.coffee', {}, (error, files)->
         files = _(files).map (filepath)->
