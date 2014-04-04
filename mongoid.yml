@@ -1,7 +1,6 @@
 <% url = ENV['MONGODB_URL'] || ENV['MONGOLAB_URI'] || ENV['MONGOHQ_URL'] %>
 <% if url %>
 <% uri = URI.parse(url) %>
-  <% puts ".mongoid.yml: setup test" %>
   production:
     sessions:
       default:
@@ -24,7 +23,6 @@
 <% url = ENV['MONGODB_TEST_URL'] %>
 <% if url %>
   <% uri = URI.parse(url) %>
-  <% puts ".mongoid.yml: setup test" %>
   test:
     sessions:
       default:
