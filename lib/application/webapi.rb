@@ -4,6 +4,7 @@ require_relative 'models/input_text_model'
 module Application
   module WebAPI
     def self.registered(app)
+      # GET /api/inputs/xxx.json
       app.get "/api/inputs/:graph_id.json" do
         graph_id = params[:graph_id]
         begin
@@ -22,6 +23,12 @@ module Application
           }
           json res
         end
+      end
+
+      # GET /api/parsers/xxx.json
+      app.get "/api/parsers/:graph_id.json" do
+        graph_id = params[:graph_id]
+        json {}
       end
     end
   end
