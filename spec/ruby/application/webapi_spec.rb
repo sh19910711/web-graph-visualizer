@@ -12,9 +12,9 @@ describe Application::WebAPI do
   end
 
   context "/api/inputsについて" do
-    context "GET /api/inputs/exist.json したとき" do
+    context "GET /api/inputs/exist したとき" do
       before :each do
-        get "/api/inputs/exist.json"
+        get "/api/inputs/exist"
       end
 
       it "should return HTTP 200 OK" do
@@ -27,9 +27,9 @@ describe Application::WebAPI do
       end
     end
 
-    context "GET /api/inputs/not_exist.json したとき" do
+    context "GET /api/inputs/not_exist したとき" do
       before :each do
-        get "/api/inputs/not_exist.json"
+        get "/api/inputs/not_exist"
       end
 
       it "should return HTTP 404" do
@@ -39,9 +39,9 @@ describe Application::WebAPI do
   end
 
   context "/api/parsersについて" do
-    context "GET /api/parsers/exist.json したとき" do
+    context "GET /api/parsers/exist したとき" do
       before :each do
-        get "/api/parsers/exist.json"
+        get "/api/parsers/exist"
       end
 
       it "should return HTTP 200 OK" do
@@ -64,9 +64,9 @@ describe Application::WebAPI do
       end
     end
 
-    context "GET /api/parsers/not_exist.json したとき" do
+    context "GET /api/parsers/not_exist したとき" do
       before :each do
-        get "/api/parsers/not_exist.json"
+        get "/api/parsers/not_exist"
       end
 
       it "should return HTTP 404" do

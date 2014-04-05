@@ -1,8 +1,14 @@
+#
+# set up mongoid
+#
+require 'mongoid'
+Mongoid.load! 'mongoid.yml', ENV['RACK_ENV'].to_sym
+
+#
+# set up web server
+#
 require_relative 'lib/application/server'
 require 'sprockets'
-
-require 'mongoid'
-Mongoid.load! 'mongoid.yml'
 
 # http://.../lib/
 map '/lib' do
@@ -51,5 +57,4 @@ if ENV['RACK_ENV'] == 'development'
   end
 end
 
-I18n.enforce_available_locales = true
 

@@ -5,14 +5,14 @@ require_relative 'models/parser_model'
 module Application
   module WebAPI
     def self.registered(app)
-      # GET /api/inputs/xxx.json
-      app.get "/api/inputs/:graph_id.json" do
+      # GET /api/inputs/xxx
+      app.get "/api/inputs/:graph_id" do
         graph_id = params[:graph_id]
         begin
-          input_text = Application::Models::InputTextModel.find graph_id
+          graph = Application::Models::GraphModel.find graph_id
           # データが存在するときは、input_textにデータを入れて返す
           res = {
-            :input_text => input_text.text,
+            :input_text => graph.input_text_model.text,
           }
           json res
         rescue
@@ -26,15 +26,15 @@ module Application
         end
       end
 
-      # GET /api/parsers/xxx.json
-      app.get "/api/parsers/:graph_id.json" do
+      # GET /api/parsers/xxx
+      app.get "/api/parsers/:graph_id" do
         graph_id = params[:graph_id]
         begin
           # データが存在するときは、type, optionsにデータを入れて返す
-          parser = Application::Models::ParserModel.find graph_id
+          graph = Application::Models::GraphModel.find graph_id
           res = {
-            :type => parser.type,
-            :options => parser.options,
+            :type => graph.parser_model.type,
+            :options => graph.parser_model.options,
           }
           json res
         rescue
