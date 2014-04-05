@@ -18,6 +18,13 @@ define(
       initialize: (options)->
         if options
           @config = options.config
+          # fetch()などで変更があるとき
+          @config.on "change:options", =>
+            options = @config.get "options"
+            console.log "options: ", options
+            _(options).each (option)=>
+              console.log "option loop", option.key, option.value
+              @set_option_value option.key, option.value
         @
 
       # 与えられた文字列を解析して結果を返す（インターフェース）
