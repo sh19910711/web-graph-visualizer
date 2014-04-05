@@ -19,6 +19,7 @@ group :development do
   gem "yard"
   gem "byebug"
   gem "pry"
+  gem "juicer"
 end
 
 group :test do

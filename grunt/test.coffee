@@ -91,6 +91,12 @@ module.exports = (grunt)->
               connect.static path.resolve('dist/')
             ]
 
+  # shell:sinon
+  _(config).merge
+    shell:
+      sinon:
+        command: "./node_modules/bower/bin/bower install sinon && cd bower_components/sinon && bundle exec ./build"
+
   # mocha_phantomjs
   _(config).merge
     mocha_phantomjs:
@@ -108,6 +114,7 @@ module.exports = (grunt)->
   grunt.registerTask(
     'concurrent:test'
     [
+      'shell:sinon'
       'bower:test'
       'coffee:test_assets'
       'coffee:test_spec'
