@@ -19,96 +19,169 @@
       Index
     </a>
     &raquo;
-    <span class='title'>ApplicationRouter</span>
+    <span class='title'>ParserConfigModel</span>
   </div>
 </div>
     <div id='content'>
       <h1>
         Class:
-        ApplicationRouter
+        ParserConfigModel
       </h1>
       <table class='box'>
         <tr>
           <td>Defined in:</td>
-          <td>assets&#47;coffee&#47;app&#47;routers&#47;application_router.coffee</td>
+          <td>assets&#47;coffee&#47;parser&#47;models&#47;parser_config_model.coffee</td>
         </tr>
         <tr>
           <td>Inherits:</td>
           <td>
-            Backbone.Router
+            Backbone.Model
           </td>
         </tr>
       </table>
-      <h2>Variables Summary</h2>
-      <dl class='constants'>
-  <dt id='routes-variable'>
-    routes
-    =
-  </dt>
-  <dd>
-    <pre><code class='coffeescript'>{
-  &#39;&#39;: &#39;show_index&#39;
-}</code></pre>
-    <div class='docstring'>
-  <p>ルーティング</p>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>パーサーに関する設定を管理するモデル
+データは内部でJSONの文字列として保持する</p>
 </div>
 <div class='tags'>
 </div>
+      <h2>Variables Summary</h2>
+      <dl class='constants'>
+  <dt id='urlRoot-variable'>
+    urlRoot
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>&quot;&#47;api&#47;parsers&quot;</code></pre>
+    
   </dd>
 </dl>
       <h2>Instance Method Summary</h2>
       <ul class='summary'>
   <li>
     <span class='signature'>
-      <a href='#initialize-dynamic'>
+      <a href='#defaults-dynamic'>
         #
 (void)
-<b>initialize</b><span>()</span>
+<b>defaults</b><span>()</span>
       </a>
     </span>
     <span class='desc'>
-      初期化 
     </span>
   </li>
   <li>
     <span class='signature'>
-      <a href='#show_index-dynamic'>
+      <a href='#set_value-dynamic'>
         #
-(void)
-<b>show_index</b><span>()</span>
+(ParserConfigModel)
+<b>set_value</b><span>(key, value)</span>
       </a>
     </span>
     <span class='desc'>
-      初期画面 
+      keyにvalueを対応付けて保存する 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#get_value-dynamic'>
+        #
+(Any)
+<b>get_value</b><span>(key)</span>
+      </a>
+    </span>
+    <span class='desc'>
+      指定されたkeyに関する情報を取り出す 
     </span>
   </li>
 </ul>
       <h2>Instance Method Details</h2>
       <div class='methods'>
   <div class='method_details'>
-    <p class='signature' id='initialize-dynamic'>
+    <p class='signature' id='defaults-dynamic'>
       #
 (void)
-<b>initialize</b><span>()</span>
+<b>defaults</b><span>()</span>
+      <br>
+    </p>
+    
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='set_value-dynamic'>
+      #
+(ParserConfigModel)
+<b>set_value</b><span>(key, value)</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>初期化</p>
+  <p>keyにvalueを対応付けて保存する</p>
 </div>
 <div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>key</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+    </li>
+    <li>
+      <span class='name'>value</span>
+      <span class='type'>
+        (
+          <tt>Any</tt>
+        )
+      </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/ParserConfigModel.html'>ParserConfigModel</a></tt>
+      )
+      &mdash;
+      <span class='desc'>void  </span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
-    <p class='signature' id='show_index-dynamic'>
+    <p class='signature' id='get_value-dynamic'>
       #
-(void)
-<b>show_index</b><span>()</span>
+(Any)
+<b>get_value</b><span>(key)</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>初期画面</p>
+  <p>指定されたkeyに関する情報を取り出す</p>
 </div>
 <div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>key</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Any</tt>
+      )
+      &mdash;
+      <span class='desc'>keyに対応する情報 </span>
+    </li>
+  </ul>
 </div>
   </div>
 </div>
