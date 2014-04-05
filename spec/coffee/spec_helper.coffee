@@ -1,4 +1,5 @@
 @expect = chai.expect
+@sinon = sinon
 
 class @SpecHelpers
   # 可変引数で読み込むモジュールのパスを渡すと

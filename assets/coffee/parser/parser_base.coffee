@@ -3,17 +3,28 @@ define(
     "backbone"
     "underscore"
     "parser/models/parser_option_model"
+    "parser/models/parser_config_model"
   ]
   (
     Backbone
     _
     ParserOptionModel
+    ParserConfigModel
   )->
     # パーサーのインタフェース的なクラス
     class ParserBase extends Backbone.Model
       # 初期化
       # @return [ParserBase] void
-      initialize: ->
+      initialize: (options)->
+        if options
+          @config = options.config
+          # fetch()などで変更があるとき
+          @config.on "change:options", =>
+            options = @config.get "options"
+            console.log "options: ", options
+            _(options).each (option)=>
+              console.log "option loop", option.key, option.value
+              @set_option_value option.key, option.value
         @
 
       # 与えられた文字列を解析して結果を返す（インターフェース）
@@ -44,6 +55,8 @@ define(
       set_option_value: (key, value)->
         option = @get_option key
         option.set_value value
+        # change config
+        @config.set_value key, value if @config instanceof ParserConfigModel
         @
 
       # 指定したオプションを取得する
