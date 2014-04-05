@@ -1,21 +1,19 @@
 define(
   [
-    "backbone"
+    "misc/views/form_control_view"
   ]
   (
-    Backbone
+    FormControlView
   )->
     # textarea
-    class TextAreaView extends Backbone.View
+    class TextareaTagView extends FormControlView
       tagName: "textarea"
-      className: "form-control"
 
+      # 初期化
       initialize: ->
         @$el.css
           maxWidth: "100%"
+          minWidth: "100%"
           width: "100%"
-        @
-
-      render: ->
         @
 )

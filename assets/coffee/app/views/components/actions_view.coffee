@@ -1,29 +1,24 @@
 define(
   [
-    "./well_view"
+    "misc/views/well_view"
   ]
   (
     WellView
   )->
-    # アクション
-    class ControllersActionsView extends WellView
-      initialize: ->
-        @
-
-      # DOMイベント
+    class ActionsView extends WellView
       events:
         'click .action-btn[data-action="run-visualize"]': "visualize"
 
-      # 視覚化
+      # 視覚化を実行する　
       visualize: =>
         parser = @model.get "parser"
-        input_text = @model.get("input_text") || ""
+        input_text = @model.get("input_text").get_text() || ""
 
-        # parse()を実行して得られたグラフをモデルに送信
+        # parse()を実行して得られたグラフをモデルに追加
         graph = parser.parse input_text
         @model.set "graph", graph
 
-      # DOMの描画
+      # DOMの構築
       render: ->
         @$el.empty()
         @$el.append '<p class="bg-info">actions</p>'

@@ -3,87 +3,56 @@ define(
     "backbone"
     "jquery"
     "app/models/application_model"
-    "app/views/application_view"
-    "app/models/input_text_model"
-    "parser/models/parser_config_model"
+    "app/views/layouts/basic_layout_view"
+    "app/views/screens/first_screen_view"
+    "app/views/screens/second_screen_view"
   ]
   (
     Backbone
     $
     ApplicationModel
-    ApplicationView
-    InputTextModel
-    ParserConfigModel
+    BasicLayoutView
+    FirstScreenView
+    SecondScreenView
   )->
     class ApplicationRouter extends Backbone.Router
+      # 初期化
+      initialize: ->
+        @application_model = new ApplicationModel
+          "page/title": "Graph Visualizer - Graph"
+          "page/desc": "工事中 - Under Construction"
+
+        # 基本レイアウト
+        @layout_view = new BasicLayoutView
+          model: @application_model
+        $("body").empty().append @layout_view.render().el
+
       # ルーティング
       routes:
-        "": "show_index"
-        "graphs/:graph_id": "show_graph"
+        # http://host/
+        "": "show_first_view"
+
+        # http://host/graphs/:graph_id
+        "graphs/:graph_id": "show_second_view"
 
       # グラフを描画する画面
-      show_graph: (graph_id)->
-        model = new ApplicationModel
-          "page.title": "Graph Visualizer - Graph"
-          "page.desc": "test"
+      show_second_view: (graph_id)->
+        view = new SecondScreenView
+          model: @application_model
 
-        view = new ApplicationView
-          model: model
+        $("#main")
+          .empty()
+          .append view.render().el
 
-        $("body").empty().append view.render().el
-
-        # availableなパーサを読み込み
-        requirejs(
-          [
-            "parser/graph/graph_parser_example"
-            "parser/graph/adjacent_list_parser"
-            "parser/graph/adjacent_matrix_parser"
-          ]
-          =>
-            # parsers[class name] = class
-            parsers = _(arguments).reduce(
-              (prev, ParserClass)->
-                obj = {}
-                obj[ParserClass.name] = ParserClass
-                _(prev).extend obj
-              {}
-            )
-
-            # パーサを読み込み終わったら、指定されたIDでInputTextModelとParserConfigModelをfetch()する
-            deferreds = []
-
-            input_text = new InputTextModel
-              id: graph_id
-            deferreds.push input_text.fetch()
-            model.set "input_text", input_text
-
-            parser_config = new ParserConfigModel
-              id: graph_id
-            deferreds.push parser_config.fetch()
-            model.set "parser_config", parser_config
-
-            $.when.apply(@, deferreds).done =>
-              # fetch()に成功したらパーサーのインスタンスを生成
-              parser = new parsers[parser_config.get "type"]
-                config: parser_config
-
-              model.set "parser", parser
-
-              # parse()を実行してGraphModelを更新
-              graph = parser.parse input_text.get "text"
-              model.set "graph", graph
-        )
+        # IDに対応するグラフを取得させる
+        @application_model.fetch_graph graph_id
 
       # 初期画面
-      show_index: ->
-        # ApplicationModelの初期化
-        model = new ApplicationModel
-          "page.title": "Graph Visualizer - Home"
-          "page.desc": "工事中（under construction）"
+      show_first_view: ->
+        view = new FirstScreenView
+          model: @application_model
 
-        # ApplicationViewの初期化
-        view = new ApplicationView
-          model: model
-
-        $("body").empty().append view.render().el
+        $("#main")
+          .empty()
+          .append view.render().el
 )

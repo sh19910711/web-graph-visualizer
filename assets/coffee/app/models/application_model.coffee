@@ -15,12 +15,34 @@ define(
     ItemModel
     ItemCollection
   )->
+    # アプリケーションに関する情報を管理するクラス
     class ApplicationModel extends Backbone.Model
+      # 初期値の設定
       defaults: ->
+        # 描画するグラフ（GraphModel）
+        graph: undefined
+
+        # 選択されているパーサー（ParserBase）
+        parser: undefined
+
+        # 有効なパーサークラスの集合
         parsers: {}
+
+        # 有効なパーサークラスのキー一覧
+        parser_keys: []
 
       # 初期化
       initialize: ->
+
+
+        #
+        #
+        #
+        # TODO: この辺の書き変えから
+        #
+        #
+        #
+
         # GraphModelの初期化
         graph = new GraphModel
         @set "graph", graph
