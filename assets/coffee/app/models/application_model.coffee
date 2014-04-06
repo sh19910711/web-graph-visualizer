@@ -47,11 +47,13 @@ define(
 
         # InputTextの初期化
         input_text = new InputTextModel
+          id: "dummy"
         @set "input_text", input_text
 
         # ParserConfigModelの初期化
         parser_config_model = new ParserConfigModel
-        @set "parser_config_model", parser_config_model
+          id: "dummy"
+        @set "parser_config", parser_config_model
 
         # パーサーの読み込み
         @fetch_all_parsers().done =>
@@ -109,5 +111,30 @@ define(
             deferred.resolve()
         )
         deferred
+
+      save_graph: ->
+        # グラフIDを申請
+        $.ajax(
+          type: "post"
+          url: "/graphs"
+          data: JSON.stringify({})
+          contentType: "application/json"
+          dataType: "json"
+        ).done (res)=>
+          graph_id = res.graph_id
+
+          input_text = @get("input_text")
+          input_text.id = graph_id
+
+          parser_config = @get("parser_config")
+          parser_config.id = graph_id
+
+          # 保存する
+          deferreds = []
+          deferreds.push input_text.save {}
+          deferreds.push parser_config.save {}
+          # 保存が完了したとき
+          $.when.apply(@, deferreds).done =>
+            console.log "save ok"
 
 )

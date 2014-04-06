@@ -1,6 +1,7 @@
 define(
   [
     "backbone"
+    "jquery"
     "app/views/components/input_text_view"
     "app/views/components/parser_select_view"
     "app/views/components/parser_options_view"
@@ -8,6 +9,7 @@ define(
   ]
   (
     Backbone
+    $
     InputTextView
     ParserSelectView
     ParserOptionsView
@@ -34,6 +36,14 @@ define(
         # 各種処理の実行
         @actions = new ActionsView
           model: @model
+
+      # DOM イベント
+      events:
+        'click .action-btn[data-action="run-visualize"]': "visualize"
+
+      # 視覚化を実行する　
+      visualize: =>
+        @model.save_graph()
 
       # DOMの構築
       render: ->

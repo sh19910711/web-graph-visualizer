@@ -47,6 +47,53 @@ module Application
           json res
         end
       end
+
+      # PUT /api/inputs/xxx
+      app.put "/api/inputs/:graph_id" do
+        graph_id = params[:graph_id]
+        json_params = JSON.parse request.body.read
+        begin
+          # データが存在するときは更新する
+          graph = Application::Models::GraphModel.find graph_id
+          graph.input_text.text = json_params[:text]
+          graph.save
+          res = {
+            :status => "OK"
+          }
+          json res
+        rescue
+          # 存在しないときは、404エラーを返す
+          # TODO: 存在しないとき以外のエラーへの対応
+          status 404
+          res = {
+            :status => "Not Found",
+          }
+          json res
+        end
+      end
+
+      # PUT /api/parsers/xxx
+      app.put "/api/parsers/:graph_id" do
+        graph_id = params[:graph_id]
+        json_params = JSON.parse request.body.read
+        begin
+          graph = Application::Models::GraphModel.find graph_id
+          graph.parser.type = json_params[:type]
+          grpah.parser.options = json_params[:options]
+          res = {
+            :status => "OK"
+          }
+          json res
+        rescue
+          # 存在しないときは、404エラーを返す
+          # TODO: 存在しないとき以外のエラーへの対応
+          status 404
+          res = {
+            :status => "Not Found",
+          }
+          json res
+        end
+      end
     end
   end
 end
