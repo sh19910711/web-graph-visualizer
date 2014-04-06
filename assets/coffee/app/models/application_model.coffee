@@ -3,17 +3,15 @@ define(
     "backbone"
     "underscore"
     "graph/models/graph_model"
-    "misc/models/select_model"
-    "misc/models/item_model"
-    "misc/collections/item_collection"
+    "app/models/input_text_model"
+    "parser/models/parser_config_model"
   ]
   (
     Backbone
     _
     GraphModel
-    SelectModel
-    ItemModel
-    ItemCollection
+    InputTextModel
+    ParserConfigModel
   )->
     # アプリケーションに関する情報を管理するクラス
     class ApplicationModel extends Backbone.Model
@@ -21,9 +19,15 @@ define(
       defaults: ->
         # 描画するグラフ（GraphModel）
         graph: undefined
+        
+        # 入力文字列を管理する
+        input_text: undefined
 
-        # 選択されているパーサー（ParserBase）
+        # 選択されているパーサーをインスタンス化したもの（ParserBase）
         parser: undefined
+
+        # インスタンス化されているパーサーのオプションを管理する
+        parser_config: undefined
 
         # 有効なパーサークラスの集合
         parsers: {}
@@ -31,34 +35,60 @@ define(
         # 有効なパーサークラスのキー一覧
         parser_keys: []
 
+        # 選択されているパーサー
+        selected_parser: undefined
+
       # 初期化
       initialize: ->
-
-
-        #
-        #
-        #
-        # TODO: この辺の書き変えから
-        #
-        #
-        #
-
         # GraphModelの初期化
         graph = new GraphModel
+        graph.init 0
         @set "graph", graph
 
-        parser_keys = new ItemCollection []
-        parser_select = new SelectModel
-          items: parser_keys
-        @set "parser_select", parser_select
-        @set "parser", undefined
-        # パーサーが選択されたらパーサーのインスタンスを作り直す
-        parser_select.on "change:selected_id", =>
-          parsers = @get "parsers"
-          selected_id = parser_select.get "selected_id"
-          @set "parser", new parsers[selected_id] if parsers[selected_id] instanceof Function
+        # InputTextの初期化
+        input_text = new InputTextModel
+        @set "input_text", input_text
+
+        # ParserConfigModelの初期化
+        parser_config_model = new ParserConfigModel
+        @set "parser_config_model", parser_config_model
 
         # パーサーの読み込み
+        @fetch_all_parsers().done =>
+          # とりあえずインスタンスをつくっておく  　
+          @touch_parser()
+
+        #
+        # 自身の状態を監視する　
+        #
+        
+        # 選択されているパーサーが変更されたとき
+        @on "change:selected_parser", =>
+          parsers = @get "parsers"
+          selected_parser = @get "selected_parser"
+          @set "parser", new parsers[selected_parser]
+
+        @
+
+      # parserが未定義の場合はparsersの先頭の要素でインスタンスをつくる
+      touch_parser: ->
+        parsers = @get "parsers"
+        # parserが未定義の場合
+        unless @get "parser"
+          if @get "selected_parser"
+            # selected_parserが指定してあるときはそのパーサーでインスタンス生成
+            selected_parser = @get "selected_parser"
+            @set "parser", new parsers[selected_parser]
+          else if parsers.length > 0
+            # parsersの先頭の要素で初期化しておく
+            parser_keys = @get "parser_keys"
+            @set "parser", new parsers[parser_keys[0]]
+            @set "selected_parser", parsers[parser_keys[0]].name
+
+      # すべてのパーサーを読み込む
+      # @return [jQuery.Deferred]
+      fetch_all_parsers: ->
+        deferred = new $.Deferred
         requirejs(
           [
             "parser/graph/graph_parser_example"
@@ -66,22 +96,18 @@ define(
             "parser/graph/adjacent_matrix_parser"
           ]
           =>
+            # パーサーの集合をつくる
             parsers = _(arguments).reduce(
               (prev, ParserClass)->
-                # キーを登録
-                parser_keys.add
-                  id: ParserClass.name
-                  value: ParserClass.name
                 obj = {}
                 obj[ParserClass.name] = ParserClass
                 _(prev).extend obj
               {}
             )
-            @set "parser", new arguments[0] if arguments.length > 0
             @set "parsers", parsers
+            @set "parser_keys", _(parsers).keys()
+            deferred.resolve()
         )
+        deferred
 
-        graph.init 0
-
-        @
 )

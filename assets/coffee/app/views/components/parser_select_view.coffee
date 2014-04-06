@@ -13,10 +13,10 @@ define(
       initialize: ->
         @select_view = new SelectTagView
           model: @model
-          # 選択されている値が格納されるモデルのプロパティ
+          # 選択されているパーサーのモデル名をselected_parserに格納する
           key: "selected_parser"
           # model.get(items_key)に含まれるものをoptionタグに落とし込む
-          items_key: "parsers_keys"
+          items_key: "parser_keys"
 
       # DOMの構築
       render: ->
