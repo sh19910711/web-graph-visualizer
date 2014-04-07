@@ -55,7 +55,7 @@ module Application
         begin
           # データが存在するときは更新する
           graph = Application::Models::GraphModel.find graph_id
-          graph.input_text.text = json_params[:text]
+          graph.input_text_model.text = json_params["text"]
           graph.save
           res = {
             :status => "OK"
@@ -78,8 +78,10 @@ module Application
         json_params = JSON.parse request.body.read
         begin
           graph = Application::Models::GraphModel.find graph_id
-          graph.parser.type = json_params[:type]
-          grpah.parser.options = json_params[:options]
+          graph.parser_model.type = json_params["type"]
+          graph.save
+          graph.parser_model.options = json_params["options"]
+          graph.save
           res = {
             :status => "OK"
           }

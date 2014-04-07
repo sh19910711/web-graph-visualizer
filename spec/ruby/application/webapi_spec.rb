@@ -27,6 +27,24 @@ describe Application::WebAPI do
       end
     end
 
+    context "PUT /api/inputs/exist したとき" do
+      before :each do
+        put(
+          "/api/inputs/exist",
+          {
+            :text => "update value",
+          }.to_json,
+          {
+            "CONTENT_TYPE" => "application/json"
+          },
+        )
+      end
+      it "should update text" do
+        model = Application::Models::GraphModel.find "exist"
+        expect(model.input_text_model.text).to eql "update value"
+      end
+    end
+
     context "GET /api/inputs/not_exist したとき" do
       before :each do
         get "/api/inputs/not_exist"
@@ -71,6 +89,27 @@ describe Application::WebAPI do
 
       it "should return HTTP 404" do
         expect(last_response.status).to eql 404
+      end
+    end
+
+    context "PUT /api/parsers/exist したとき" do
+      before :each do
+        put(
+          "/api/parsers/exist",
+          {
+            type: "NextParser",
+            options: [
+            ],
+          }.to_json,
+          {
+            "CONTENT_TYPE" => "application/json",
+          },
+        )
+      end
+
+      it "should update parser values" do
+        model = Application::Models::GraphModel.find "exist"
+        expect(model.parser_model.type).to eql "NextParser"
       end
     end
   end

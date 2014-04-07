@@ -19,6 +19,7 @@ group :development do
   gem "yard"
   gem "byebug"
   gem "pry"
+  gem "rb-readline"
   gem "juicer"
 end
 
