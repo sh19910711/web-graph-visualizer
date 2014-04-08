@@ -112,6 +112,26 @@ define(
         )
         deferred
 
+
+      # グラフを取得する
+      fetch_graph: ()->
+        deferred = new $.Deferred
+        graph_id = @get "graph_id"
+
+        input_text = @get "input_text"
+        input_text.id = graph_id
+
+        parser_config = @get "parser_config"
+        parser_config.id = graph_id
+
+        deferreds = []
+        deferreds.push input_text.fetch()
+        deferreds.push parser_config.fetch()
+        $.when.apply(@, deferreds).done =>
+          deferred.resolve graph_id
+
+        deferred
+
       # グラフを保存する
       # 保存に成功したとき deferred.resolve(graph_id) を呼び出す
       # @return [jQuery.Deferred] Deferred Object
@@ -127,6 +147,7 @@ define(
           dataType: "json"
         ).done (res)=>
           graph_id = res.graph_id
+          @set "graph_id", graph_id
 
           input_text = @get("input_text")
           input_text.id = graph_id
@@ -141,7 +162,7 @@ define(
 
           # 保存が完了したとき
           $.when.apply(@, deferreds).done =>
-            deferred.resolve()
+            deferred.resolve(graph_id)
 
         deferred
 

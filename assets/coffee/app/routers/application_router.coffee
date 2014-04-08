@@ -38,6 +38,8 @@ define(
 
       # グラフを描画する画面
       show_second_view: (graph_id)->
+        @application_model.set "graph_id", graph_id
+
         view = new SecondScreenView
           model: @application_model
           router: @
