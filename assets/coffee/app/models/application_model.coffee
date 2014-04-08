@@ -88,7 +88,7 @@ define(
             @set "selected_parser", parsers[parser_keys[0]].name
 
       # すべてのパーサーを読み込む
-      # @return [jQuery.Deferred]
+      # @return [jQuery.Deferred] Deferred Object
       fetch_all_parsers: ->
         deferred = new $.Deferred
         requirejs(
@@ -112,7 +112,12 @@ define(
         )
         deferred
 
+      # グラフを保存する
+      # 保存に成功したとき deferred.resolve(graph_id) を呼び出す
+      # @return [jQuery.Deferred] Deferred Object
       save_graph: ->
+        deferred = new $.Deferred
+
         # グラフIDを申請
         $.ajax(
           type: "post"
@@ -133,8 +138,11 @@ define(
           deferreds = []
           deferreds.push input_text.save {}
           deferreds.push parser_config.save {}
+
           # 保存が完了したとき
           $.when.apply(@, deferreds).done =>
-            console.log "save ok"
+            deferred.resolve()
+
+        deferred
 
 )

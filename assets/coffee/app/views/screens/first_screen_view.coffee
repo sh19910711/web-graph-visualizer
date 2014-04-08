@@ -20,7 +20,14 @@ define(
       className: "view"
 
       # 初期化 
-      initialize: ->
+      initialize: (options)->
+        # options
+        @router = options.router
+
+        #
+        # Child Views
+        #
+
         # 入力欄
         @textarea = new InputTextView
           model: @model
@@ -43,7 +50,8 @@ define(
 
       # 視覚化を実行する　
       visualize: =>
-        @model.save_graph()
+        @model.save_graph().done (graph_id)=>
+          @router.navigate "/graphs/#{graph_id}"
 
       # DOMの構築
       render: ->

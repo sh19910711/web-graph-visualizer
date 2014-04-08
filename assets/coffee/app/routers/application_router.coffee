@@ -25,6 +25,7 @@ define(
         # 基本レイアウト
         @layout_view = new BasicLayoutView
           model: @application_model
+          router: @
         $("body").empty().append @layout_view.render().el
 
       # ルーティング
@@ -39,6 +40,7 @@ define(
       show_second_view: (graph_id)->
         view = new SecondScreenView
           model: @application_model
+          router: @
 
         $("#main")
           .empty()
@@ -51,6 +53,7 @@ define(
       show_first_view: ->
         view = new FirstScreenView
           model: @application_model
+          router: @
 
         $("#main")
           .empty()
