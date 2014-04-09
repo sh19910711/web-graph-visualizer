@@ -16,14 +16,24 @@ define(
       # 初期化
       # @return [ParserBase] void
       initialize: (options)->
+        console.log "options = ", @get_options()
         if options
-          @config = options.config
+          # ParserConfigModelを取得する
+          if options.config
+            @config = options.config
+          else
+            @config = new ParserConfigModel
+
+          parser_options = @get_options()
+
+          # 定義済みのオプションを設定しておく
+          _(_(parser_options).keys()).each (option_key)=>
+            @config.set_value option_key, parser_options[option_key].get_value()
+
           # fetch()などで変更があるとき
           @config.on "change:options", =>
             options = @config.get "options"
-            console.log "options: ", options
             _(options).each (option)=>
-              console.log "option loop", option.key, option.value
               @set_option_value option.key, option.value
         @
 

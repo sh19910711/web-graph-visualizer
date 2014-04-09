@@ -19,7 +19,7 @@ define(
         @textarea.$el.prop "rows", 14
 
         # テキストエリアの内容が変更されたらinput_text_modelに内容を送信する
-        @textarea.on "change", =>
+        @textarea.$el.on "change", =>
           @input_text_model.set "text", @textarea.$el.val()
 
         # パーサーの種類が変更されたとき
