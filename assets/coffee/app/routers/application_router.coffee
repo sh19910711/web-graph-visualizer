@@ -38,6 +38,7 @@ define(
 
       # グラフを描画する画面
       show_second_view: (graph_id)->
+        console.log "@show_second_view"
         @application_model.set "graph_id", graph_id
 
         view = new SecondScreenView
@@ -53,6 +54,7 @@ define(
 
       # 初期画面
       show_first_view: ->
+        console.log "@show_first_view"
         view = new FirstScreenView
           model: @application_model
           router: @

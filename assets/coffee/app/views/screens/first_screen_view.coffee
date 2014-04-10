@@ -51,7 +51,7 @@ define(
       # 視覚化を実行する　
       visualize: =>
         @model.save_graph().done (graph_id)=>
-          @router.navigate "/graphs/#{graph_id}"
+          @router.navigate "/graphs/#{graph_id}", {trigger: true}
 
       # DOMの構築
       render: ->

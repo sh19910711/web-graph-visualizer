@@ -26,6 +26,7 @@ define(
           # パーサーの種類
           @config.set "type", @constructor.name
 
+          # パーサーの現在の⎋設定を取得
           parser_options = @get_options()
 
           # 定義済みのオプションを設定しておく
@@ -36,13 +37,26 @@ define(
               option_key = option_key.match(/^option\/(.*)/)[1]
               @config.set_value option_key, @get_option_value option_key
 
+          # configの内容を反映させる
+          @apply_config()
+
           # fetch()などで変更があるとき
           @config.on "change:options", =>
-            options = @config.get "options"
-            _(options).each (option)=>
-              @set_option_value option.key, option.value
+            @apply_config()
 
         @
+
+      # configの設定を反映させる
+      apply_config: ->
+        options = @config.get "options"
+        _(options).each (option)=>
+          if @get_option(option.key)
+            # 配列のときは1つずつ反映させる
+            if option.value instanceof Array
+              _(option.value).each (value)=>
+                @set_option_value option.key, value
+            else
+              @set_option_value option.key, option.value
 
       # 与えられた文字列を解析して結果を返す（インターフェース）
       # @param [String] text 解析する文字列
