@@ -16,7 +16,6 @@ define(
       # 初期化
       # @return [ParserBase] void
       initialize: (options)->
-        console.log "options = ", @get_options()
         if options
           # ParserConfigModelを取得する
           if options.config
@@ -24,17 +23,25 @@ define(
           else
             @config = new ParserConfigModel
 
+          # パーサーの種類
+          @config.set "type", @constructor.name
+
           parser_options = @get_options()
 
           # 定義済みのオプションを設定しておく
-          _(_(parser_options).keys()).each (option_key)=>
-            @config.set_value option_key, parser_options[option_key].get_value()
+          option_keys = _(@attributes).keys()
+          _(option_keys).each (option_key)=>
+            if /^option\//.test option_key
+              # option/xxx -> xxx
+              option_key = option_key.match(/^option\/(.*)/)[1]
+              @config.set_value option_key, @get_option_value option_key
 
           # fetch()などで変更があるとき
           @config.on "change:options", =>
             options = @config.get "options"
             _(options).each (option)=>
               @set_option_value option.key, option.value
+
         @
 
       # 与えられた文字列を解析して結果を返す（インターフェース）

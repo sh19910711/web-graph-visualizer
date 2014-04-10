@@ -69,6 +69,7 @@ define(
           parsers = @get "parsers"
           selected_parser = @get "selected_parser"
           @set "parser", new parsers[selected_parser]
+            config: @get "parser_config"
 
         @
 
