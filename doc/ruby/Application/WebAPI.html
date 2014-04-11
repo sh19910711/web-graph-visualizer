@@ -188,20 +188,69 @@
 47
 48
 49
-50</pre>
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/application/webapi.rb', line 7</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_registered'>registered</span><span class='lparen'>(</span><span class='id identifier rubyid_app'>app</span><span class='rparen'>)</span>
-  <span class='comment'># GET /api/inputs/xxx.json
-</span>  <span class='id identifier rubyid_app'>app</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/api/inputs/:graph_id.json</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
+  <span class='comment'># GET /api/inputs/xxx
+</span>  <span class='id identifier rubyid_app'>app</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/api/inputs/:graph_id</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
     <span class='id identifier rubyid_graph_id'>graph_id</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:graph_id</span><span class='rbracket'>]</span>
     <span class='kw'>begin</span>
-      <span class='id identifier rubyid_input_text'>input_text</span> <span class='op'>=</span> <span class='const'>Application</span><span class='op'>::</span><span class='const'>Models</span><span class='op'>::</span><span class='const'>InputTextModel</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='id identifier rubyid_graph_id'>graph_id</span>
+      <span class='id identifier rubyid_graph'>graph</span> <span class='op'>=</span> <span class='const'>Application</span><span class='op'>::</span><span class='const'>Models</span><span class='op'>::</span><span class='const'>GraphModel</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='id identifier rubyid_graph_id'>graph_id</span>
       <span class='comment'># データが存在するときは、input_textにデータを入れて返す
 </span>      <span class='id identifier rubyid_res'>res</span> <span class='op'>=</span> <span class='lbrace'>{</span>
-        <span class='symbol'>:input_text</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_input_text'>input_text</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span><span class='comma'>,</span>
+        <span class='symbol'>:text</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_graph'>graph</span><span class='period'>.</span><span class='id identifier rubyid_input_text_model'>input_text_model</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span><span class='comma'>,</span>
       <span class='rbrace'>}</span>
       <span class='id identifier rubyid_json'>json</span> <span class='id identifier rubyid_res'>res</span>
     <span class='kw'>rescue</span>
@@ -215,15 +264,64 @@
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
-  <span class='comment'># GET /api/parsers/xxx.json
-</span>  <span class='id identifier rubyid_app'>app</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/api/parsers/:graph_id.json</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
+  <span class='comment'># GET /api/parsers/xxx
+</span>  <span class='id identifier rubyid_app'>app</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/api/parsers/:graph_id</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
     <span class='id identifier rubyid_graph_id'>graph_id</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:graph_id</span><span class='rbracket'>]</span>
     <span class='kw'>begin</span>
       <span class='comment'># データが存在するときは、type, optionsにデータを入れて返す
-</span>      <span class='id identifier rubyid_parser'>parser</span> <span class='op'>=</span> <span class='const'>Application</span><span class='op'>::</span><span class='const'>Models</span><span class='op'>::</span><span class='const'>ParserModel</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='id identifier rubyid_graph_id'>graph_id</span>
+</span>      <span class='id identifier rubyid_graph'>graph</span> <span class='op'>=</span> <span class='const'>Application</span><span class='op'>::</span><span class='const'>Models</span><span class='op'>::</span><span class='const'>GraphModel</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='id identifier rubyid_graph_id'>graph_id</span>
       <span class='id identifier rubyid_res'>res</span> <span class='op'>=</span> <span class='lbrace'>{</span>
-        <span class='symbol'>:type</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span>
-        <span class='symbol'>:options</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span>
+        <span class='symbol'>:type</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_graph'>graph</span><span class='period'>.</span><span class='id identifier rubyid_parser_model'>parser_model</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span>
+        <span class='symbol'>:options</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_graph'>graph</span><span class='period'>.</span><span class='id identifier rubyid_parser_model'>parser_model</span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span>
+      <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_json'>json</span> <span class='id identifier rubyid_res'>res</span>
+    <span class='kw'>rescue</span>
+      <span class='comment'># 存在しないときは、404エラーを返す
+</span>      <span class='comment'># TODO: 存在しないとき以外のエラーへの対応
+</span>      <span class='id identifier rubyid_status'>status</span> <span class='int'>404</span>
+      <span class='id identifier rubyid_res'>res</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+        <span class='symbol'>:status</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Not Found</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_json'>json</span> <span class='id identifier rubyid_res'>res</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># PUT /api/inputs/xxx
+</span>  <span class='id identifier rubyid_app'>app</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/api/inputs/:graph_id</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_graph_id'>graph_id</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:graph_id</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_json_params'>json_params</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
+    <span class='kw'>begin</span>
+      <span class='comment'># データが存在するときは更新する
+</span>      <span class='id identifier rubyid_graph'>graph</span> <span class='op'>=</span> <span class='const'>Application</span><span class='op'>::</span><span class='const'>Models</span><span class='op'>::</span><span class='const'>GraphModel</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='id identifier rubyid_graph_id'>graph_id</span>
+      <span class='id identifier rubyid_graph'>graph</span><span class='period'>.</span><span class='id identifier rubyid_input_text_model'>input_text_model</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='id identifier rubyid_json_params'>json_params</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>text</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_graph'>graph</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='id identifier rubyid_res'>res</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+        <span class='symbol'>:status</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OK</span><span class='tstring_end'>&quot;</span></span>
+      <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_json'>json</span> <span class='id identifier rubyid_res'>res</span>
+    <span class='kw'>rescue</span>
+      <span class='comment'># 存在しないときは、404エラーを返す
+</span>      <span class='comment'># TODO: 存在しないとき以外のエラーへの対応
+</span>      <span class='id identifier rubyid_status'>status</span> <span class='int'>404</span>
+      <span class='id identifier rubyid_res'>res</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+        <span class='symbol'>:status</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Not Found</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_json'>json</span> <span class='id identifier rubyid_res'>res</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># PUT /api/parsers/xxx
+</span>  <span class='id identifier rubyid_app'>app</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/api/parsers/:graph_id</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_graph_id'>graph_id</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:graph_id</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_json_params'>json_params</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
+    <span class='kw'>begin</span>
+      <span class='id identifier rubyid_graph'>graph</span> <span class='op'>=</span> <span class='const'>Application</span><span class='op'>::</span><span class='const'>Models</span><span class='op'>::</span><span class='const'>GraphModel</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='id identifier rubyid_graph_id'>graph_id</span>
+      <span class='id identifier rubyid_graph'>graph</span><span class='period'>.</span><span class='id identifier rubyid_parser_model'>parser_model</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='id identifier rubyid_json_params'>json_params</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>type</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_graph'>graph</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='id identifier rubyid_graph'>graph</span><span class='period'>.</span><span class='id identifier rubyid_parser_model'>parser_model</span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_json_params'>json_params</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>options</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_graph'>graph</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='id identifier rubyid_res'>res</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+        <span class='symbol'>:status</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OK</span><span class='tstring_end'>&quot;</span></span>
       <span class='rbrace'>}</span>
       <span class='id identifier rubyid_json'>json</span> <span class='id identifier rubyid_res'>res</span>
     <span class='kw'>rescue</span>
@@ -247,7 +345,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sat Apr  5 06:46:24 2014 by
+  Generated on Fri Apr 11 01:52:03 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.4 (ruby-2.1.0).
 </div>

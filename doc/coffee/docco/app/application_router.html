@@ -49,63 +49,38 @@
               </a>
             
               
-              <a class="source" href="application_view.html">
-                application_view.coffee
+              <a class="source" href="actions_view.html">
+                actions_view.coffee
               </a>
             
               
-              <a class="source" href="contents_view.html">
-                contents_view.coffee
+              <a class="source" href="input_text_view.html">
+                input_text_view.coffee
               </a>
             
               
-              <a class="source" href="controllers_actions_view.html">
-                controllers_actions_view.coffee
+              <a class="source" href="parser_options_view.html">
+                parser_options_view.coffee
               </a>
             
               
-              <a class="source" href="controllers_left_view.html">
-                controllers_left_view.coffee
+              <a class="source" href="parser_select_view.html">
+                parser_select_view.coffee
               </a>
             
               
-              <a class="source" href="controllers_options_view.html">
-                controllers_options_view.coffee
+              <a class="source" href="basic_layout_view.html">
+                basic_layout_view.coffee
               </a>
             
               
-              <a class="source" href="controllers_parser_select_view.html">
-                controllers_parser_select_view.coffee
+              <a class="source" href="first_screen_view.html">
+                first_screen_view.coffee
               </a>
             
               
-              <a class="source" href="controllers_right_view.html">
-                controllers_right_view.coffee
-              </a>
-            
-              
-              <a class="source" href="controllers_text_area_view.html">
-                controllers_text_area_view.coffee
-              </a>
-            
-              
-              <a class="source" href="textarea_view.html">
-                textarea_view.coffee
-              </a>
-            
-              
-              <a class="source" href="well_view.html">
-                well_view.coffee
-              </a>
-            
-              
-              <a class="source" href="controllers_view.html">
-                controllers_view.coffee
-              </a>
-            
-              
-              <a class="source" href="header_view.html">
-                header_view.coffee
+              <a class="source" href="second_screen_view.html">
+                second_screen_view.coffee
               </a>
             
           </div>
@@ -134,15 +109,19 @@
             <div class="content"><div class='highlight'><pre>define(
   [
     <span class="hljs-string">"backbone"</span>
-    <span class="hljs-string">'jquery'</span>
+    <span class="hljs-string">"jquery"</span>
     <span class="hljs-string">"app/models/application_model"</span>
-    <span class="hljs-string">"app/views/application_view"</span>
+    <span class="hljs-string">"app/views/layouts/basic_layout_view"</span>
+    <span class="hljs-string">"app/views/screens/first_screen_view"</span>
+    <span class="hljs-string">"app/views/screens/second_screen_view"</span>
   ]
   (
     Backbone
     $
     ApplicationModel
-    ApplicationView
+    BasicLayoutView
+    FirstScreenView
+    SecondScreenView
   )<span class="hljs-function">-&gt;</span>
     <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationRouter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Backbone</span>.<span class="hljs-title">Router</span></span></pre></div></div>
             
@@ -160,7 +139,9 @@
             </div>
             
             <div class="content"><div class='highlight'><pre>      <span class="hljs-attribute">initialize</span>:<span class="hljs-function"> -&gt;</span>
-        <span class="hljs-built_in">console</span>.log <span class="hljs-string">"@ApplicationRouter#initialize"</span></pre></div></div>
+        <span class="hljs-property">@application_model</span> = <span class="hljs-keyword">new</span> ApplicationModel
+          <span class="hljs-string">"page/title"</span>: <span class="hljs-string">"Graph Visualizer - Graph"</span>
+          <span class="hljs-string">"page/desc"</span>: <span class="hljs-string">"工事中 - Under Construction"</span></pre></div></div>
             
         </li>
         
@@ -171,12 +152,14 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>ルーティング</p>
+              <p>基本レイアウト</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-attribute">routes</span>:
-        <span class="hljs-string">''</span>: <span class="hljs-string">'show_index'</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@layout_view</span> = <span class="hljs-keyword">new</span> BasicLayoutView
+          <span class="hljs-attribute">model</span>: <span class="hljs-property">@application_model</span>
+          <span class="hljs-attribute">router</span>: @
+        $(<span class="hljs-string">"body"</span>).empty().append <span class="hljs-property">@layout_view</span>.render().el</pre></div></div>
             
         </li>
         
@@ -187,12 +170,11 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>初期画面</p>
+              <p>ルーティング</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-attribute">show_index</span>:<span class="hljs-function"> -&gt;</span>
-        <span class="hljs-built_in">console</span>.log <span class="hljs-string">"@ApplicationRouter#show_index"</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-attribute">routes</span>:</pre></div></div>
             
         </li>
         
@@ -203,13 +185,11 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>ApplicationModelの初期化</p>
+              <p><a href="http://host/">http://host/</a></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        model = <span class="hljs-keyword">new</span> ApplicationModel
-          <span class="hljs-string">'page.title'</span>: <span class="hljs-string">'Graph Visualizer - Home'</span>
-          <span class="hljs-string">'page.desc'</span>: <span class="hljs-string">'工事中（under construction）'</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-string">""</span>: <span class="hljs-string">"show_first_view"</span></pre></div></div>
             
         </li>
         
@@ -220,14 +200,74 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>ApplicationViewの初期化</p>
+              <p><a href="http://host/graphs/:graph_id">http://host/graphs/:graph_id</a></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        view = <span class="hljs-keyword">new</span> ApplicationView
-          <span class="hljs-attribute">model</span>: model
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-string">"graphs/:graph_id"</span>: <span class="hljs-string">"show_second_view"</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>グラフを描画する画面</p>
 
-        $(<span class="hljs-string">'body'</span>).empty().append view.render().el
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-attribute">show_second_view</span>: <span class="hljs-function"><span class="hljs-params">(graph_id)</span>-&gt;</span>
+        <span class="hljs-built_in">console</span>.log <span class="hljs-string">"@show_second_view"</span>
+        <span class="hljs-property">@application_model</span>.set <span class="hljs-string">"graph_id"</span>, graph_id
+
+        view = <span class="hljs-keyword">new</span> SecondScreenView
+          <span class="hljs-attribute">model</span>: <span class="hljs-property">@application_model</span>
+          <span class="hljs-attribute">router</span>: @
+
+        $(<span class="hljs-string">"#main"</span>)
+          .empty()
+          .append view.render().el</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>IDに対応するグラフを取得させる</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@application_model</span>.fetch_graph graph_id</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>初期画面</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-attribute">show_first_view</span>:<span class="hljs-function"> -&gt;</span>
+        <span class="hljs-built_in">console</span>.log <span class="hljs-string">"@show_first_view"</span>
+        view = <span class="hljs-keyword">new</span> FirstScreenView
+          <span class="hljs-attribute">model</span>: <span class="hljs-property">@application_model</span>
+          <span class="hljs-attribute">router</span>: @
+
+        $(<span class="hljs-string">"#main"</span>)
+          .empty()
+          .append view.render().el
 )</pre></div></div>
             
         </li>

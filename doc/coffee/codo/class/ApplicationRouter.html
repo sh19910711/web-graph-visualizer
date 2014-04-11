@@ -47,7 +47,8 @@
   </dt>
   <dd>
     <pre><code class='coffeescript'>{
-  &#39;&#39;: &#39;show_index&#39;
+  &quot;&quot;: &quot;show_first_view&quot;,
+  &quot;graphs&#47;:graph_id&quot;: &quot;show_second_view&quot;
 }</code></pre>
     <div class='docstring'>
   <p>ルーティング</p>
@@ -72,10 +73,22 @@
   </li>
   <li>
     <span class='signature'>
-      <a href='#show_index-dynamic'>
+      <a href='#show_second_view-dynamic'>
         #
 (void)
-<b>show_index</b><span>()</span>
+<b>show_second_view</b><span>(graph_id)</span>
+      </a>
+    </span>
+    <span class='desc'>
+      グラフを描画する画面 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#show_first_view-dynamic'>
+        #
+(void)
+<b>show_first_view</b><span>()</span>
       </a>
     </span>
     <span class='desc'>
@@ -99,10 +112,23 @@
 </div>
   </div>
   <div class='method_details'>
-    <p class='signature' id='show_index-dynamic'>
+    <p class='signature' id='show_second_view-dynamic'>
       #
 (void)
-<b>show_index</b><span>()</span>
+<b>show_second_view</b><span>(graph_id)</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>グラフを描画する画面</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='show_first_view-dynamic'>
+      #
+(void)
+<b>show_first_view</b><span>()</span>
       <br>
     </p>
     <div class='docstring'>
@@ -114,7 +140,7 @@
 </div>
     </div>
     <div id='footer'>
-  April 05, 14 06:46:31 by
+  April 11, 14 01:52:14 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

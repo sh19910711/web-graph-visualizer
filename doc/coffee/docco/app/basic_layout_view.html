@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>basic_layout_view.coffee</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="application.js.html">
+                application.js.coffee
+              </a>
+            
+              
+              <a class="source" href="main.js.html">
+                main.js.coffee
+              </a>
+            
+              
+              <a class="source" href="application_model.html">
+                application_model.coffee
+              </a>
+            
+              
+              <a class="source" href="input_text_model.html">
+                input_text_model.coffee
+              </a>
+            
+              
+              <a class="source" href="requirejs_config.js.html">
+                requirejs_config.js.coffee
+              </a>
+            
+              
+              <a class="source" href="application_router.html">
+                application_router.coffee
+              </a>
+            
+              
+              <a class="source" href="actions_view.html">
+                actions_view.coffee
+              </a>
+            
+              
+              <a class="source" href="input_text_view.html">
+                input_text_view.coffee
+              </a>
+            
+              
+              <a class="source" href="parser_options_view.html">
+                parser_options_view.coffee
+              </a>
+            
+              
+              <a class="source" href="parser_select_view.html">
+                parser_select_view.coffee
+              </a>
+            
+              
+              <a class="source" href="basic_layout_view.html">
+                basic_layout_view.coffee
+              </a>
+            
+              
+              <a class="source" href="first_screen_view.html">
+                first_screen_view.coffee
+              </a>
+            
+              
+              <a class="source" href="second_screen_view.html">
+                second_screen_view.coffee
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>basic_layout_view.coffee</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>define(
+  [
+    "backbone"
+    "jquery"
+  ]
+  (
+    Backbone
+    $
+  )-&gt;
+    class LayoutView extends Backbone.View
+      className: "container"</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>DOMの構築</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-attribute">render</span>:<span class="hljs-function"> -&gt;</span>
+        <span class="hljs-property">@$el</span>
+          .empty()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>上部</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          .append<span class="hljs-function"> =&gt;</span>
+            row = $(<span class="hljs-string">"&lt;div&gt;&lt;/div&gt;"</span>)
+            row
+              .addClass <span class="hljs-string">"container"</span>
+              .append $ <span class="hljs-string">'&lt;h1 class="page_title"&gt;'</span> + <span class="hljs-property">@model</span>.get(<span class="hljs-string">"page/title"</span>) + <span class="hljs-string">'&lt;/h1&gt;'</span>
+              .append $ <span class="hljs-string">'&lt;p class="page_desc lead"&gt;'</span> + <span class="hljs-property">@model</span>.get(<span class="hljs-string">"page/desc"</span>) + <span class="hljs-string">'&lt;/p&gt;'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>メインコンテンツ</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          .append<span class="hljs-function"> =&gt;</span>
+            row = $(<span class="hljs-string">"&lt;div&gt;&lt;/div&gt;"</span>)
+            row
+              .addClass <span class="hljs-string">"container"</span>
+              .prop <span class="hljs-string">"id"</span>, <span class="hljs-string">"main"</span>
+        @
+
+)</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
