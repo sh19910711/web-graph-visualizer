@@ -17,15 +17,56 @@ define(
       # @return [ParserBase] void
       initialize: (options)->
         if options
-          @config = options.config
+          # ParserConfigModelを取得する
+          if options.config
+            @config = options.config
+          else
+            @config = new ParserConfigModel
+
+          # パーサーの種類
+          @config.set "type", @constructor.name
+
+          # パーサーの現在の⎋設定を取得
+          parser_options = @get_options()
+
+          # 定義済みのオプションをconfigに設定しておく
+          option_keys = _(@attributes).keys()
+          _(option_keys).each (option_key)=>
+            # TODO: optionのキーだけを取り出すメソッドを追加する
+            if /^option\//.test option_key
+              # option/xxx -> xxx
+              option_key = option_key.match(/^option\/(.*)/)[1]
+              @config.set_value option_key, @get_option_value option_key
+
+          # オプションの値の変更をconfigに追従させる
+          _(option_keys).each (option_key)=>
+            if /^option\//.test option_key
+              # option/xxx -> xxx
+              option_key = option_key.match(/^option\/(.*)/)[1]
+              parser_option = @get_option option_key
+              parser_option.on "change:value", =>
+                @config.set_value option_key, parser_option.get "value"
+
+          # configの内容を反映させる
+          @apply_config()
+
           # fetch()などで変更があるとき
           @config.on "change:options", =>
-            options = @config.get "options"
-            console.log "options: ", options
-            _(options).each (option)=>
-              console.log "option loop", option.key, option.value
-              @set_option_value option.key, option.value
+            @apply_config()
+
         @
+
+      # configの設定を反映させる
+      apply_config: ->
+        options = @config.get "options"
+        _(options).each (option)=>
+          if @get_option(option.key)
+            # 配列のときは1つずつ反映させる
+            if option.value instanceof Array
+              _(option.value).each (value)=>
+                @set_option_value option.key, value
+            else
+              @set_option_value option.key, option.value
 
       # 与えられた文字列を解析して結果を返す（インターフェース）
       # @param [String] text 解析する文字列

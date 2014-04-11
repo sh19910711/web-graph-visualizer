@@ -12,9 +12,9 @@ describe Application::WebAPI do
   end
 
   context "/api/inputsについて" do
-    context "GET /api/inputs/exist.json したとき" do
+    context "GET /api/inputs/exist したとき" do
       before :each do
-        get "/api/inputs/exist.json"
+        get "/api/inputs/exist"
       end
 
       it "should return HTTP 200 OK" do
@@ -27,9 +27,27 @@ describe Application::WebAPI do
       end
     end
 
-    context "GET /api/inputs/not_exist.json したとき" do
+    context "PUT /api/inputs/exist したとき" do
       before :each do
-        get "/api/inputs/not_exist.json"
+        put(
+          "/api/inputs/exist",
+          {
+            :text => "update value",
+          }.to_json,
+          {
+            "CONTENT_TYPE" => "application/json"
+          },
+        )
+      end
+      it "should update text" do
+        model = Application::Models::GraphModel.find "exist"
+        expect(model.input_text_model.text).to eql "update value"
+      end
+    end
+
+    context "GET /api/inputs/not_exist したとき" do
+      before :each do
+        get "/api/inputs/not_exist"
       end
 
       it "should return HTTP 404" do
@@ -39,9 +57,9 @@ describe Application::WebAPI do
   end
 
   context "/api/parsersについて" do
-    context "GET /api/parsers/exist.json したとき" do
+    context "GET /api/parsers/exist したとき" do
       before :each do
-        get "/api/parsers/exist.json"
+        get "/api/parsers/exist"
       end
 
       it "should return HTTP 200 OK" do
@@ -64,13 +82,34 @@ describe Application::WebAPI do
       end
     end
 
-    context "GET /api/parsers/not_exist.json したとき" do
+    context "GET /api/parsers/not_exist したとき" do
       before :each do
-        get "/api/parsers/not_exist.json"
+        get "/api/parsers/not_exist"
       end
 
       it "should return HTTP 404" do
         expect(last_response.status).to eql 404
+      end
+    end
+
+    context "PUT /api/parsers/exist したとき" do
+      before :each do
+        put(
+          "/api/parsers/exist",
+          {
+            type: "NextParser",
+            options: [
+            ],
+          }.to_json,
+          {
+            "CONTENT_TYPE" => "application/json",
+          },
+        )
+      end
+
+      it "should update parser values" do
+        model = Application::Models::GraphModel.find "exist"
+        expect(model.parser_model.type).to eql "NextParser"
       end
     end
   end

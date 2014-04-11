@@ -47,6 +47,8 @@ GEM
     multi_json (1.9.2)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
+    nokogiri (1.6.1-x86-mswin32)
+      mini_portile (~> 0.5.0)
     origin (1.1.0)
     pry (0.9.12.6)
       coderay (~> 1.0)
@@ -63,6 +65,7 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     rake (10.2.2)
+    rb-readline (0.5.1)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -112,6 +115,7 @@ DEPENDENCIES
   pry
   rack-test
   rake
+  rb-readline
   rspec
   rspec-extra-formatters
   sass

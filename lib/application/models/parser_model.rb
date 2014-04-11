@@ -8,6 +8,7 @@ module Application
       field :type, type: String
       # パーサーのオプションの値
       field :options, type: Array
+      belongs_to :graph_model
     end
   end
 end

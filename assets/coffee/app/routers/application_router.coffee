@@ -1,37 +1,65 @@
 define(
   [
     "backbone"
-    'jquery'
+    "jquery"
     "app/models/application_model"
-    "app/views/application_view"
+    "app/views/layouts/basic_layout_view"
+    "app/views/screens/first_screen_view"
+    "app/views/screens/second_screen_view"
   ]
   (
     Backbone
     $
     ApplicationModel
-    ApplicationView
+    BasicLayoutView
+    FirstScreenView
+    SecondScreenView
   )->
     class ApplicationRouter extends Backbone.Router
       # 初期化
       initialize: ->
-        console.log "@ApplicationRouter#initialize"
+        @application_model = new ApplicationModel
+          "page/title": "Graph Visualizer - Graph"
+          "page/desc": "工事中 - Under Construction"
+
+        # 基本レイアウト
+        @layout_view = new BasicLayoutView
+          model: @application_model
+          router: @
+        $("body").empty().append @layout_view.render().el
 
       # ルーティング
       routes:
-        '': 'show_index'
+        # http://host/
+        "": "show_first_view"
+
+        # http://host/graphs/:graph_id
+        "graphs/:graph_id": "show_second_view"
+
+      # グラフを描画する画面
+      show_second_view: (graph_id)->
+        console.log "@show_second_view"
+        @application_model.set "graph_id", graph_id
+
+        view = new SecondScreenView
+          model: @application_model
+          router: @
+
+        $("#main")
+          .empty()
+          .append view.render().el
+
+        # IDに対応するグラフを取得させる
+        @application_model.fetch_graph graph_id
 
       # 初期画面
-      show_index: ->
-        console.log "@ApplicationRouter#show_index"
+      show_first_view: ->
+        console.log "@show_first_view"
+        view = new FirstScreenView
+          model: @application_model
+          router: @
 
-        # ApplicationModelの初期化
-        model = new ApplicationModel
-          'page.title': 'Graph Visualizer - Home'
-          'page.desc': '工事中（under construction）'
-
-        # ApplicationViewの初期化
-        view = new ApplicationView
-          model: model
-
-        $('body').empty().append view.render().el
+        $("#main")
+          .empty()
+          .append view.render().el
 )
