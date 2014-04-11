@@ -82,7 +82,7 @@ define(
             # selected_parserが指定してあるときはそのパーサーでインスタンス生成
             selected_parser = @get "selected_parser"
             @set "parser", new parsers[selected_parser]
-          else if parsers.length > 0
+          else if _(parsers).keys().length > 0
             # parsersの先頭の要素で初期化しておく
             parser_keys = @get "parser_keys"
             @set "parser", new parsers[parser_keys[0]]
