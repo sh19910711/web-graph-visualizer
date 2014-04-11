@@ -17,8 +17,6 @@ class @SpecHelpers
     modules = Array::splice.call arguments, 0
 
     beforeEach (done)->
-      @timeout 5000
-
       requirejs modules, =>
         # modulesが未定義のときは空のオブジェクトとして初期化する
         @modules ||= {}
