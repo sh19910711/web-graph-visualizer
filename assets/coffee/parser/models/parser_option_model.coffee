@@ -90,9 +90,8 @@ define(
           when "multiselect"
             # リストを初期化
             @set "select_id_list", []
+            @set "value", []
           when "flag"
-            console.log "type: ", @get("type")
-            console.log "name, ", @get("name")
             unless !! @get("name")
               throw new Error "ERROR_ZS4PMC: name property must be specified" 
             @set "value", @get("value") || false
@@ -108,8 +107,12 @@ define(
       add_option: (option)->
         options = _.clone(@get("options")) || []
         # 存在しないときに追加する
-        options.push option unless _(options).include option
-        @set "options", options
+        unless _(options).include option
+          options.push option 
+          @set "options", options
+          # type=selectで新しく要素が追加されたときはその要素を選択状態にしておく
+          if @get("type") == "select" && options.length == 1
+            @set_value option
 
       # type=select/multiselectで使うオプションを設定する
       # @param [Array] options 指定するオプション
@@ -117,7 +120,10 @@ define(
         # optionsが未定義の場合は空の配列で初期化
         @set "options", options || []
         # 1つ以上のオプションが与えられたときは先頭の要素を選択状態にしておく
-        @set "select_id", 0 if @get("options").length > 0
+        if @get("options").length > 0
+          select_id = 0
+          @set "select_id", select_id
+          @set "value", @get("options")[select_id]
 
 
 )
