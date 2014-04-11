@@ -35,6 +35,7 @@ define(
             parser = new parsers[parser_type]
               config: parser_config
             @model.set "parser", parser
+            console.log parser_config, input_text
             graph = parser.parse input_text.get "text"
             console.log "parsed graph = ", graph
             @model.set "graph", graph

@@ -29,13 +29,23 @@ define(
           # パーサーの現在の⎋設定を取得
           parser_options = @get_options()
 
-          # 定義済みのオプションを設定しておく
+          # 定義済みのオプションをconfigに設定しておく
           option_keys = _(@attributes).keys()
           _(option_keys).each (option_key)=>
+            # TODO: optionのキーだけを取り出すメソッドを追加する
             if /^option\//.test option_key
               # option/xxx -> xxx
               option_key = option_key.match(/^option\/(.*)/)[1]
               @config.set_value option_key, @get_option_value option_key
+
+          # オプションの値の変更をconfigに追従させる
+          _(option_keys).each (option_key)=>
+            if /^option\//.test option_key
+              # option/xxx -> xxx
+              option_key = option_key.match(/^option\/(.*)/)[1]
+              parser_option = @get_option option_key
+              parser_option.on "change:value", =>
+                @config.set_value option_key, parser_option.get "value"
 
           # configの内容を反映させる
           @apply_config()

@@ -12,7 +12,7 @@ module Application
           graph = Application::Models::GraphModel.find graph_id
           # データが存在するときは、input_textにデータを入れて返す
           res = {
-            :input_text => graph.input_text_model.text,
+            :text => graph.input_text_model.text,
           }
           json res
         rescue
