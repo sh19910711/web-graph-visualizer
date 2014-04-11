@@ -102,6 +102,7 @@ module.exports = (grunt)->
     mocha_phantomjs:
       test:
         options:
+          timeout: 5000
           reporter: 'tap'
           output: 'tmp/test/result-coffee.txt'
           urls: [

@@ -20,6 +20,7 @@ define(
         @init_model_events()
 
       init_model_events: ->
+        @update()
         @model.on "change", =>
           @update()
 
@@ -135,7 +136,8 @@ define(
         # type=select
         select_tag = $ '<select class="select-option form-control"></select>'
         select_tag.on "change", =>
-          @model.set_value select_tag.val() if select_tag.val()
+          if select_tag.val()
+            @model.set_value select_tag.val() unless select_tag.val() == @model.get_value()
         @$el.append select_tag
         @
 

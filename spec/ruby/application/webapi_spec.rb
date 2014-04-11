@@ -21,9 +21,9 @@ describe Application::WebAPI do
         expect(last_response.ok?).to be_true
       end
 
-      it "should contain input_text as String" do
+      it "should contain text as String" do
         obj = JSON.parse last_response.body
-        expect(obj["input_text"]).to be_a String
+        expect(obj["text"]).to be_a String
       end
     end
 
