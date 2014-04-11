@@ -11,7 +11,8 @@
   },
   "devDependencies": {
     "mocha": "~1.17.1",
-    "chai": "~1.9.0"
+    "chai": "~1.9.0",
+    "sinon": "~1.9.1"
   },
   "exportsOverride": {
     "requirejs": {
@@ -39,6 +40,9 @@
     },
     "d3": {
       "js": "d3.js"
+    },
+    "sinon": {
+      "js": "pkg/sinon.js"
     }
   }
 }

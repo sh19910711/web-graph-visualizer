@@ -38,10 +38,6 @@ define(
           type: "flag"
           name: "dummy flag"
 
-      # 初期化
-      initialize: ->
-        @
-
       # 固定の結果を返す
       parse: ->
         graph = new GraphModel

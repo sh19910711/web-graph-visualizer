@@ -8,7 +8,7 @@ module.exports = (grunt)->
     url  = require 'url'
     glob = require 'glob'
     pathname = url.parse(req.url).pathname
-    if req.method == 'GET' && pathname == '/test/load_spec_files.js'
+    if req.method == 'GET' && pathname == '/test/load_coffee_script/load_spec_files.js'
       res_text = ''
       glob 'spec/coffee/{,**/}*_spec.coffee', {}, (error, files)->
         files = _(files).map (filepath)->
@@ -91,11 +91,18 @@ module.exports = (grunt)->
               connect.static path.resolve('dist/')
             ]
 
+  # shell:sinon
+  _(config).merge
+    shell:
+      sinon:
+        command: "./node_modules/bower/bin/bower install sinon && cd bower_components/sinon && bundle exec ./build"
+
   # mocha_phantomjs
   _(config).merge
     mocha_phantomjs:
       test:
         options:
+          timeout: 5000
           reporter: 'tap'
           output: 'tmp/test/result-coffee.txt'
           urls: [
@@ -108,6 +115,7 @@ module.exports = (grunt)->
   grunt.registerTask(
     'concurrent:test'
     [
+      'shell:sinon'
       'bower:test'
       'coffee:test_assets'
       'coffee:test_spec'
