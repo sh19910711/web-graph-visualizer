@@ -10,11 +10,12 @@ rvm:
   - 2.1.0
 services:
   - mongodb
+before_install:
+  - export NOKOGIRI_USE_SYSTEM_LIBRARIES="YES"
 before_script:
   - bash scripts/before_script.bash
 script:
-  - NOKOGIRI_USE_SYSTEM_LIBRARIES="YES" \
-    MONGODB_TEST_URL=mongo://localhost:27017/graph-visualizer-test \
+  - MONGODB_TEST_URL=mongo://localhost:27017/graph-visualizer-test \
     MONGODB_URL=mongo://localhost:27017/graph-visualizer \
     bash scripts/test.bash
 after_script:
