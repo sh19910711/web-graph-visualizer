@@ -15,9 +15,7 @@ before_install:
 before_script:
   - bash scripts/before_script.bash
 script:
-  - MONGODB_TEST_URL=mongo://localhost:27017/graph-visualizer-test \
-    MONGODB_URL=mongo://localhost:27017/graph-visualizer \
-    bash scripts/test.bash
+  - MONGODB_TEST_URL=mongo://localhost:27017/graph-visualizer-test MONGODB_URL=mongo://localhost:27017/graph-visualizer bash scripts/test.bash
 after_script:
   - bash scripts/after_script.bash
 env:
