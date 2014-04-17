@@ -7,10 +7,10 @@ module.exports = (grunt)->
     docco:
       doc_app:
         src: [
-          'assets/coffee/app/{,**/}*.coffee'
+          'assets/coffee/application/{,**/}*.coffee'
         ]
         options:
-          output: 'doc/coffee/docco/app'
+          output: 'tmp/doc/coffee/docco/app'
 
   # docco:doc_module01
   _(config).merge
@@ -20,7 +20,7 @@ module.exports = (grunt)->
           'assets/coffee/module01/{,**/}*.coffee'
         ]
         options:
-          output: 'doc/coffee/docco/module01'
+          output: 'tmp/doc/coffee/docco/module01'
 
   # markdown:doc
   _(config).merge
@@ -29,9 +29,9 @@ module.exports = (grunt)->
         files: [
           {
             expand: true
-            cwd: 'doc_src'
+            cwd: 'doc'
             src: '{,**/}/*.md'
-            dest: 'doc'
+            dest: 'tmp/doc'
             ext: '.html'
           }
         ]
@@ -40,7 +40,7 @@ module.exports = (grunt)->
   _(config).merge
     codo:
       options:
-        output: 'doc/coffee/codo'
+        output: 'tmp/doc/coffee/codo'
         inputs: ['assets/coffee']
 
   grunt.initConfig config

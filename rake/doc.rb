@@ -7,7 +7,7 @@ YARD::Rake::YardocTask.new do |t|
     'lib/{,**/}/*.rb'
   ]
   t.options = [
-    '-odoc/ruby'
+    '-otmp/doc/ruby'
   ]
 end
 
