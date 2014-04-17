@@ -2,10 +2,10 @@ define(
   [
     "backbone"
     "jquery"
-    "app/views/components/input_text_view"
-    "app/views/components/parser_select_view"
-    "app/views/components/parser_options_view"
-    "app/views/components/actions_view"
+    "application/views/components/input_text_view"
+    "application/views/components/parser_select_view"
+    "application/views/components/parser_options_view"
+    "application/views/components/actions_view"
   ]
   (
     Backbone
