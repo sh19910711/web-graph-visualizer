@@ -19,13 +19,18 @@
           <div id="jump_page">
             
               
-              <a class="source" href="application.js.html">
-                application.js.coffee
+              <a class="source" href="application.html">
+                application.coffee
               </a>
             
               
-              <a class="source" href="main.js.html">
-                main.js.coffee
+              <a class="source" href="requirejs.html">
+                requirejs.coffee
+              </a>
+            
+              
+              <a class="source" href="main.html">
+                main.coffee
               </a>
             
               
@@ -36,11 +41,6 @@
               
               <a class="source" href="input_text_model.html">
                 input_text_model.coffee
-              </a>
-            
-              
-              <a class="source" href="requirejs_config.js.html">
-                requirejs_config.js.coffee
               </a>
             
               
@@ -176,11 +176,11 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>パーサーの種類が変更されたとき</p>
+              <p>input_text_modelの内容をテキストエリアに反映させる</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@model</span>.<span class="hljs-literal">on</span> <span class="hljs-string">"change:parser"</span>,<span class="hljs-function"> =&gt;</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@update_textarea</span>()</pre></div></div>
             
         </li>
         
@@ -191,16 +191,16 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>サンプル入力があればそれをplaceholderとして設定する</p>
+              <p>パーサーの種類が変更されたとき</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>          parser = <span class="hljs-property">@model</span>.get <span class="hljs-string">"parser"</span>
-          <span class="hljs-keyword">try</span>
-            example_input = parser.get_example_input()
-            <span class="hljs-property">@textarea</span>.set_placeholder example_input
-          <span class="hljs-keyword">catch</span>
-            <span class="hljs-property">@textarea</span>.set_placeholder <span class="hljs-string">"input text"</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-property">@model</span>.<span class="hljs-literal">on</span> <span class="hljs-string">"change:parser"</span>,<span class="hljs-function"> =&gt;</span>
+          <span class="hljs-property">@update_textarea</span>()
+
+        @
+
+      <span class="hljs-attribute">update_textarea</span>:<span class="hljs-function"> -&gt;</span></pre></div></div>
             
         </li>
         
@@ -210,6 +210,27 @@
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>サンプル入力があればそれをplaceholderとして設定する</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        parser = <span class="hljs-property">@model</span>.get <span class="hljs-string">"parser"</span>
+        <span class="hljs-keyword">try</span>
+          example_input = parser.get_example_input()
+          <span class="hljs-property">@textarea</span>.set_placeholder example_input
+        <span class="hljs-keyword">catch</span>
+          <span class="hljs-property">@textarea</span>.set_placeholder <span class="hljs-string">"input text"</span>
+        @</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>DOMの構築</p>
 
