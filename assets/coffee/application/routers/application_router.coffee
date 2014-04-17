@@ -2,10 +2,10 @@ define(
   [
     "backbone"
     "jquery"
-    "app/models/application_model"
-    "app/views/layouts/basic_layout_view"
-    "app/views/screens/first_screen_view"
-    "app/views/screens/second_screen_view"
+    "application/models/application_model"
+    "application/views/layouts/basic_layout_view"
+    "application/views/screens/first_screen_view"
+    "application/views/screens/second_screen_view"
   ]
   (
     Backbone

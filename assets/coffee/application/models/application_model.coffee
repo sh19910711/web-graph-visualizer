@@ -3,7 +3,7 @@ define(
     "backbone"
     "underscore"
     "graph/models/graph_model"
-    "app/models/input_text_model"
+    "application/models/input_text_model"
     "parser/models/parser_config_model"
   ]
   (

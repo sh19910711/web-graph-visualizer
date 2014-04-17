@@ -1,6 +1,6 @@
 describe "app/models/input_text_model", ->
   SpecHelpers.load_modules(
-    "app/models/input_text_model"
+    "application/models/input_text_model"
   )
 
   beforeEach ->

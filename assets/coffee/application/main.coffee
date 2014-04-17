@@ -5,7 +5,7 @@
 # load modules
 requirejs(
   [
-    "app/routers/application_router"
+    "application/routers/application_router"
     "backbone"
     "bootstrap"
   ]

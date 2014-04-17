@@ -22,15 +22,24 @@ define(
         @textarea.$el.on "change", =>
           @input_text_model.set "text", @textarea.$el.val()
 
+        # input_text_modelの内容をテキストエリアに反映させる
+        @update_textarea()
+
         # パーサーの種類が変更されたとき
         @model.on "change:parser", =>
-          # サンプル入力があればそれをplaceholderとして設定する
-          parser = @model.get "parser"
-          try
-            example_input = parser.get_example_input()
-            @textarea.set_placeholder example_input
-          catch
-            @textarea.set_placeholder "input text"
+          @update_textarea()
+
+        @
+
+      update_textarea: ->
+        # サンプル入力があればそれをplaceholderとして設定する
+        parser = @model.get "parser"
+        try
+          example_input = parser.get_example_input()
+          @textarea.set_placeholder example_input
+        catch
+          @textarea.set_placeholder "input text"
+        @
 
 
       # DOMの構築
